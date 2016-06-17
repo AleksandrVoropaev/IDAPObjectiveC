@@ -10,8 +10,12 @@
 
 @implementation AVMaleCreature
 
--(void)makeWar {
+- (void)makeWar {
     NSLog(@"I'm %@! Let's make some WAR!", self.name);
+}
+
+- (void)performGenderSpecificOperation {
+    self.makeWar;
 }
 
 @end

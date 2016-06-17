@@ -11,6 +11,5 @@
 #import "AVCreatureTest.h"
 
 void AVRunApplication() {
-    AVCreatureTest *test = [AVCreatureTest new];
-    [test startTest];
+    
 }

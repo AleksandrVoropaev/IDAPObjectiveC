@@ -10,6 +10,7 @@
 
 @interface AVMaleCreature : AVCreature
 
--(void)makeWar;
+- (void)makeWar;
+- (void)performGenderSpecificOperation;
 
 @end

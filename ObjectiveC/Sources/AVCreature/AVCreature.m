@@ -17,17 +17,21 @@
 
 @dynamic children;
 
+- (instancetype)init {
+    self = [super init];
+    self.mutableChildren = [NSMutableArray array];
+    
+    return self;
+}
+
 - (NSArray *)children {
     return [[self.mutableChildren copy] autorelease];
 }
 
 - (void)addChild:(AVCreature *)child {
-//    NSMutableArray *children = self.mutableChildren;
-//    if (![children containsObject:child]) {
-//        [children addObject:child];
-//    }
-    if (![self.mutableChildren containsObject:child]) {
-        [self.mutableChildren addObject:(AVCreature *)child];
+    NSMutableArray *children = self.mutableChildren;
+    if (![children containsObject:child]) {
+        [children addObject:child];
     }
 }
 
@@ -44,6 +48,10 @@
     for (AVCreature *child in self.mutableChildren) {
         [child sayHi];
     }
+}
+
+- (void)performGenderSpecificOperation {
+    
 }
 
 @end

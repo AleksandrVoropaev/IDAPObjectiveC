@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AVRunApplication.h"
+#import "AVCreatureTest.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        AVRunApplication();
+        AVCreatureTest *test = [[AVCreatureTest new] autorelease];
+        [test startTest];
     }
+    
     return 0;
 }

@@ -14,31 +14,33 @@
 @implementation AVCreatureTest
 
 - (void)startTest {
-    AVMaleCreature *man = [AVMaleCreature new];
-    [man setGender:AVGenderMale];
-    AVFemaleCreature *woman = [AVFemaleCreature new];
-    [woman setGender:AVGenderFemale];
-    AVMaleCreature *boy = (AVMaleCreature *)[woman makeChild];
-    [boy setGender:AVGenderMale];
-    AVFemaleCreature *girl = (AVFemaleCreature *)[woman makeChild];
-    [girl setGender:AVGenderFemale];
+    AVMaleCreature *man = [[AVMaleCreature new] autorelease];
+    man.gender = AVGenderMale;
+    
+    AVFemaleCreature *woman = [[AVFemaleCreature new] autorelease];
+    woman.gender = AVGenderFemale;
+    
+    AVMaleCreature *boy = [woman makeChild];
+    boy.gender = AVGenderMale;
+    
+    AVFemaleCreature *girl = [woman makeChild];
+    girl.gender = AVGenderFemale;
 
-    NSMutableArray *array = [NSMutableArray new];
+    NSMutableArray *array = [[NSMutableArray new] autorelease];
     [array addObject:man];
     [array addObject:woman];
     [array addObject:boy];
     [array addObject:girl];
     
-//    for (AVCreature *creature in array) {
-//        if (AVMaleCreature == creature.gender) {
-//            [(AVMaleCreature *)creature makeWar];
-//        }
-//    }
+    for (AVCreature *creature in array) {
+        [creature performGenderSpecificOperation];
+    }
     
     [man addChild:boy];
     [man addChild:girl];
-    NSLog(@" %@ ", man.children);
+
     [man sayHi];
+    NSLog(@"\n");
     [woman sayHi];
 }
 
