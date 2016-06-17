@@ -13,6 +13,17 @@
 		1F96B8641D1058170018B3CB /* AVFemaleCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8631D1058170018B3CB /* AVFemaleCreature.m */; };
 		1F96B8711D12DB790018B3CB /* AVCreatureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8701D12DB790018B3CB /* AVCreatureTest.m */; };
 		1F96B8731D12DBA20018B3CB /* AVRunApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8721D12DBA20018B3CB /* AVRunApplication.m */; };
+		1F96B88C1D1443470018B3CB /* AVBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8891D1443470018B3CB /* AVBuilding.m */; };
+		1F96B88D1D1443470018B3CB /* AVRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B88B1D1443470018B3CB /* AVRoom.m */; };
+		1F96B8901D1443700018B3CB /* AVCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B88F1D1443700018B3CB /* AVCarWash.m */; };
+		1F96B8931D14438A0018B3CB /* AVAdministration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8921D14438A0018B3CB /* AVAdministration.m */; };
+		1F96B8971D14440E0018B3CB /* AVEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8961D14440E0018B3CB /* AVEmployee.m */; };
+		1F96B89A1D14442A0018B3CB /* AVWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8991D14442A0018B3CB /* AVWasher.m */; };
+		1F96B89D1D14446A0018B3CB /* AVBookkeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B89C1D14446A0018B3CB /* AVBookkeeper.m */; };
+		1F96B8A01D14447D0018B3CB /* AVDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B89F1D14447D0018B3CB /* AVDirector.m */; };
+		1F96B8A41D1444C40018B3CB /* AVCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8A31D1444C40018B3CB /* AVCar.m */; };
+		1F96B8A71D1449AF0018B3CB /* AVMakeBusiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8A61D1449AF0018B3CB /* AVMakeBusiness.m */; };
+		1F96B8AA1D144BC40018B3CB /* AVCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8A91D144BC40018B3CB /* AVCarWash.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +51,28 @@
 		1F96B8701D12DB790018B3CB /* AVCreatureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCreatureTest.m; sourceTree = "<group>"; };
 		1F96B8721D12DBA20018B3CB /* AVRunApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVRunApplication.m; sourceTree = "<group>"; };
 		1F96B8741D12DBB30018B3CB /* AVRunApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVRunApplication.h; sourceTree = "<group>"; };
+		1F96B8881D1443470018B3CB /* AVBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVBuilding.h; sourceTree = "<group>"; };
+		1F96B8891D1443470018B3CB /* AVBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVBuilding.m; sourceTree = "<group>"; };
+		1F96B88A1D1443470018B3CB /* AVRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVRoom.h; sourceTree = "<group>"; };
+		1F96B88B1D1443470018B3CB /* AVRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVRoom.m; sourceTree = "<group>"; };
+		1F96B88E1D1443700018B3CB /* AVCarWash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCarWash.h; sourceTree = "<group>"; };
+		1F96B88F1D1443700018B3CB /* AVCarWash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCarWash.m; sourceTree = "<group>"; };
+		1F96B8911D14438A0018B3CB /* AVAdministration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAdministration.h; sourceTree = "<group>"; };
+		1F96B8921D14438A0018B3CB /* AVAdministration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAdministration.m; sourceTree = "<group>"; };
+		1F96B8951D14440E0018B3CB /* AVEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVEmployee.h; sourceTree = "<group>"; };
+		1F96B8961D14440E0018B3CB /* AVEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVEmployee.m; sourceTree = "<group>"; };
+		1F96B8981D14442A0018B3CB /* AVWasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVWasher.h; sourceTree = "<group>"; };
+		1F96B8991D14442A0018B3CB /* AVWasher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVWasher.m; sourceTree = "<group>"; };
+		1F96B89B1D14446A0018B3CB /* AVBookkeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVBookkeeper.h; sourceTree = "<group>"; };
+		1F96B89C1D14446A0018B3CB /* AVBookkeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVBookkeeper.m; sourceTree = "<group>"; };
+		1F96B89E1D14447D0018B3CB /* AVDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVDirector.h; sourceTree = "<group>"; };
+		1F96B89F1D14447D0018B3CB /* AVDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVDirector.m; sourceTree = "<group>"; };
+		1F96B8A21D1444C40018B3CB /* AVCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCar.h; sourceTree = "<group>"; };
+		1F96B8A31D1444C40018B3CB /* AVCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCar.m; sourceTree = "<group>"; };
+		1F96B8A51D1449AF0018B3CB /* AVMakeBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVMakeBusiness.h; sourceTree = "<group>"; };
+		1F96B8A61D1449AF0018B3CB /* AVMakeBusiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVMakeBusiness.m; sourceTree = "<group>"; };
+		1F96B8A81D144BC40018B3CB /* AVCarWash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCarWash.h; sourceTree = "<group>"; };
+		1F96B8A91D144BC40018B3CB /* AVCarWash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCarWash.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +114,7 @@
 		1F96B84F1D100F5F0018B3CB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1F96B8861D1443470018B3CB /* AVCarWash */,
 				1F96B8531D100FC50018B3CB /* AVCreature */,
 				1F96B8741D12DBB30018B3CB /* AVRunApplication.h */,
 				1F96B8721D12DBA20018B3CB /* AVRunApplication.m */,
@@ -134,6 +168,59 @@
 				1F96B8701D12DB790018B3CB /* AVCreatureTest.m */,
 			);
 			path = AVCreatureTest;
+			sourceTree = "<group>";
+		};
+		1F96B8861D1443470018B3CB /* AVCarWash */ = {
+			isa = PBXGroup;
+			children = (
+				1F96B8A11D1444AF0018B3CB /* AVCar */,
+				1F96B8941D1443E90018B3CB /* Employees */,
+				1F96B8871D1443470018B3CB /* Buildings */,
+				1F96B8A81D144BC40018B3CB /* AVCarWash.h */,
+				1F96B8A91D144BC40018B3CB /* AVCarWash.m */,
+				1F96B8A51D1449AF0018B3CB /* AVMakeBusiness.h */,
+				1F96B8A61D1449AF0018B3CB /* AVMakeBusiness.m */,
+			);
+			path = AVCarWash;
+			sourceTree = "<group>";
+		};
+		1F96B8871D1443470018B3CB /* Buildings */ = {
+			isa = PBXGroup;
+			children = (
+				1F96B88A1D1443470018B3CB /* AVRoom.h */,
+				1F96B88B1D1443470018B3CB /* AVRoom.m */,
+				1F96B8881D1443470018B3CB /* AVBuilding.h */,
+				1F96B8891D1443470018B3CB /* AVBuilding.m */,
+				1F96B88E1D1443700018B3CB /* AVCarWash.h */,
+				1F96B88F1D1443700018B3CB /* AVCarWash.m */,
+				1F96B8911D14438A0018B3CB /* AVAdministration.h */,
+				1F96B8921D14438A0018B3CB /* AVAdministration.m */,
+			);
+			path = Buildings;
+			sourceTree = "<group>";
+		};
+		1F96B8941D1443E90018B3CB /* Employees */ = {
+			isa = PBXGroup;
+			children = (
+				1F96B8951D14440E0018B3CB /* AVEmployee.h */,
+				1F96B8961D14440E0018B3CB /* AVEmployee.m */,
+				1F96B8981D14442A0018B3CB /* AVWasher.h */,
+				1F96B8991D14442A0018B3CB /* AVWasher.m */,
+				1F96B89B1D14446A0018B3CB /* AVBookkeeper.h */,
+				1F96B89C1D14446A0018B3CB /* AVBookkeeper.m */,
+				1F96B89E1D14447D0018B3CB /* AVDirector.h */,
+				1F96B89F1D14447D0018B3CB /* AVDirector.m */,
+			);
+			path = Employees;
+			sourceTree = "<group>";
+		};
+		1F96B8A11D1444AF0018B3CB /* AVCar */ = {
+			isa = PBXGroup;
+			children = (
+				1F96B8A21D1444C40018B3CB /* AVCar.h */,
+				1F96B8A31D1444C40018B3CB /* AVCar.m */,
+			);
+			path = AVCar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,10 +281,21 @@
 			files = (
 				1F96B8491D100DE50018B3CB /* main.m in Sources */,
 				1F96B8641D1058170018B3CB /* AVFemaleCreature.m in Sources */,
+				1F96B89A1D14442A0018B3CB /* AVWasher.m in Sources */,
+				1F96B8A41D1444C40018B3CB /* AVCar.m in Sources */,
+				1F96B89D1D14446A0018B3CB /* AVBookkeeper.m in Sources */,
+				1F96B8931D14438A0018B3CB /* AVAdministration.m in Sources */,
+				1F96B8AA1D144BC40018B3CB /* AVCarWash.m in Sources */,
+				1F96B8971D14440E0018B3CB /* AVEmployee.m in Sources */,
+				1F96B8A01D14447D0018B3CB /* AVDirector.m in Sources */,
+				1F96B8901D1443700018B3CB /* AVCarWash.m in Sources */,
 				1F96B85D1D1057BC0018B3CB /* AVMaleCreature.m in Sources */,
 				1F96B8711D12DB790018B3CB /* AVCreatureTest.m in Sources */,
 				1F96B8561D100FC50018B3CB /* AVCreature.m in Sources */,
+				1F96B8A71D1449AF0018B3CB /* AVMakeBusiness.m in Sources */,
 				1F96B8731D12DBA20018B3CB /* AVRunApplication.m in Sources */,
+				1F96B88C1D1443470018B3CB /* AVBuilding.m in Sources */,
+				1F96B88D1D1443470018B3CB /* AVRoom.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +416,7 @@
 				1F96B84E1D100DE50018B3CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

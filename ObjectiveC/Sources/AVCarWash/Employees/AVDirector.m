@@ -1,0 +1,18 @@
+//
+//  AVDirector.m
+//  ObjectiveC
+//
+//  Created by Aleksandr Voropaev on 6/17/16.
+//  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
+//
+
+#import "AVDirector.h"
+#import "AVCarWash.h"
+
+@implementation AVDirector
+
+- (void)earnProfit:(NSUInteger)profit inCarWash:(AVCarWash *)carWash {
+    carWash.money += profit;
+}
+
+@end
