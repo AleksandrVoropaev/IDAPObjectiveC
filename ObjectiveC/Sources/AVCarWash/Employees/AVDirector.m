@@ -11,8 +11,4 @@
 
 @implementation AVDirector
 
-- (void)earnProfit:(NSUInteger)profit inCarWash:(AVCarWash *)carWash {
-    carWash.money += profit;
-}
-
 @end

@@ -10,6 +10,6 @@
 
 @interface AVDirector : AVEmployee
 
-- (void)earnProfit:(NSUInteger)profit inCarWash:(AVCarWash *)carWash;
+- (void)earnProfit;
 
 @end

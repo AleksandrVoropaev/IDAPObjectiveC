@@ -1,15 +1,16 @@
 //
-//  AVCar.h
+//  NSObject+AVMoney.h
 //  ObjectiveC
 //
-//  Created by Aleksandr Voropaev on 6/17/16.
+//  Created by Aleksandr Voropaev on 6/20/16.
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface AVCar : NSObject
-@property (nonatomic, assign, getter=isClean) BOOL clean;
+@interface NSObject (AVMoney)
 @property (nonatomic, assign) NSUInteger money;
+
+- (void)getMoneyFromObject:(NSObject *)object;
 
 @end

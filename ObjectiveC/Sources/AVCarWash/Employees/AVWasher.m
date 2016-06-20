@@ -10,8 +10,8 @@
 
 @implementation AVWasher
 
-- (void)wash:(AVCar *)car {
-    car.isClean = true;
+- (void)washCar:(AVCar *)car {
+    car.clean = YES;
 }
 
 @end

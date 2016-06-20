@@ -11,6 +11,6 @@
 
 @interface AVWasher : AVEmployee
 
-- (void)wash:(AVCar *)car;
+- (void)washCar:(AVCar *)car;
 
 @end

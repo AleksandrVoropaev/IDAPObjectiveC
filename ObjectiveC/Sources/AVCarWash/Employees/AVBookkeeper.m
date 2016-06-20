@@ -10,9 +10,8 @@
 
 @implementation AVBookkeeper
 
-- (void)countMoneyForDirector:(AVDirector *)director {
-    NSUInteger cleaningCost = 100;
-    [director earnProfit:cleaningCost inCarWash:self.firm];
+- (void)countMoney {
+
 }
 
 @end

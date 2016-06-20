@@ -8,17 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
-    AVGenderMale,
-    AVGenderFemale
-} AVGender;
-
 @interface AVCreature : NSObject
-@property (nonatomic, assign)   AVGender gender;
-@property (nonatomic, copy)     NSString *name;
-@property (nonatomic, assign)   NSUInteger weight;
-@property (nonatomic, assign)   NSUInteger age;
-@property (nonatomic, readonly) NSArray *children;
+@property (nonatomic, copy)     NSString    *name;
+@property (nonatomic, assign)   NSUInteger  weight;
+@property (nonatomic, assign)   NSUInteger  age;
+@property (nonatomic, readonly) NSArray     *children;
 
 - (void)addChild:(AVCreature *)child;
 - (void)removeChild:(AVCreature *)child;

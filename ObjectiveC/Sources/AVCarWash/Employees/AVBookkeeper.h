@@ -11,6 +11,6 @@
 
 @interface AVBookkeeper : AVEmployee
 
-- (void)countMoneyForDirector:(AVDirector *)director;
+- (void)countMoney;
 
 @end

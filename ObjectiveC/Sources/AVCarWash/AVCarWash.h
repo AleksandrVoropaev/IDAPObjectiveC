@@ -10,6 +10,4 @@
 
 @interface AVCarWash : NSObject
 
-@property (nonatomic, assign) NSInteger money;
-
 @end

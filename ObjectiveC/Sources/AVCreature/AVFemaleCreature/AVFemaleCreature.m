@@ -10,15 +10,16 @@
 
 @implementation AVFemaleCreature
 
-- (id *)makeChild {
-    AVCreature *child = [[AVCreature new] autorelease];
+- (id)makeChild {
+    AVCreature *child = [AVCreature object];
     [self addChild:child];
     NSLog(@"We have new one!");
+    
     return child;
 }
 
 - (void)performGenderSpecificOperation {
-    self.makeChild;
+    [self makeChild];
 }
 
 @end
