@@ -1,14 +1,14 @@
 //
-//  NSObject+AVAddObject.m
+//  NSObject+AVExtentions.m
 //  ObjectiveC
 //
-//  Created by Aleksandr Voropaev on 6/20/16.
+//  Created by Aleksandr Voropaev on 6/21/16.
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
-#import "NSObject+AVAddObject.h"
+#import "NSObject+AVExtentions.h"
 
-@implementation NSObject (AVAddObject)
+@implementation NSObject (AVExtentions)
 
 + (instancetype)object {
     return [[[self alloc] init] autorelease];

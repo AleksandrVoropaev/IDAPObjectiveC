@@ -8,6 +8,8 @@
 
 #import "AVFemaleCreature.h"
 
+#import "NSObject+AVExtentions.h"
+
 @implementation AVFemaleCreature
 
 - (id)makeChild {

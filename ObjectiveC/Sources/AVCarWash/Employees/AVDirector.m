@@ -7,7 +7,6 @@
 //
 
 #import "AVDirector.h"
-#import "AVCarWash.h"
 
 @implementation AVDirector
 

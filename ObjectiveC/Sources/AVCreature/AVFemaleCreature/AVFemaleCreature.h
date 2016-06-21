@@ -11,6 +11,5 @@
 @interface AVFemaleCreature : AVCreature
 
 - (id)makeChild;
-- (void)performGenderSpecificOperation;
 
 @end

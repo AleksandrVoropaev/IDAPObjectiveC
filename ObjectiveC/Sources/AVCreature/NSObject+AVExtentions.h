@@ -1,14 +1,14 @@
 //
-//  NSObject+AVAddObject.h
+//  NSObject+AVExtentions.h
 //  ObjectiveC
 //
-//  Created by Aleksandr Voropaev on 6/20/16.
+//  Created by Aleksandr Voropaev on 6/21/16.
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (AVAddObject)
+@interface NSObject (AVExtentions)
 
 + (instancetype)object;
 

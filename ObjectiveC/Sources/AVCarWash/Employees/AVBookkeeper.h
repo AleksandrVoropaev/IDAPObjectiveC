@@ -7,7 +7,6 @@
 //
 
 #import "AVEmployee.h"
-#import "AVDirector.h"
 
 @interface AVBookkeeper : AVEmployee
 
