@@ -8,6 +8,27 @@
 
 #import "AVRoom.h"
 
+@interface AVRoom()
+@property (nonatomic, retain) NSMutableArray *mutableEmployees;
+
+@end
+
 @implementation AVRoom
+@dynamic employees;
+
+- (instancetype)init {
+    self = [super init];
+    self.mutableEmployees = [NSMutableArray array];
+    
+    return self;
+}
+
+- (NSArray *)employees {
+    return [[self.mutableEmployees copy] autorelease];
+}
+
+-(void)addEmployee:(NSObject *)employee {
+    [self.mutableEmployees addObject:employee];
+}
 
 @end

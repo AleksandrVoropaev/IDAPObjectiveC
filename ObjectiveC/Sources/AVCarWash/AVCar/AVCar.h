@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AVCar : NSObject
+#import "AVMoney.h"
+
+@interface AVCar : NSObject <AVMoney>
 @property (nonatomic, assign, getter=isClean) BOOL clean;
-@property (nonatomic, assign) NSUInteger money;
 
 @end

@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AVCarWash.h"
+#import "AVMoney.h"
 
-@interface AVEmployee : NSObject
+@interface AVEmployee : NSObject <AVMoney>
 @property (nonatomic, assign) NSUInteger salary;
 @property (nonatomic, assign) NSUInteger yearsOfExperience;
-
 
 @end

@@ -8,6 +8,27 @@
 
 #import "AVBuilding.h"
 
+@interface AVBuilding()
+@property (nonatomic, retain) NSMutableArray *mutableRooms;
+
+@end
+
 @implementation AVBuilding
+@dynamic rooms;
+
+- (instancetype)init {
+    self = [super init];
+    self.mutableRooms = [NSMutableArray array];
+    
+    return self;
+}
+
+- (NSArray *)rooms {
+    return [[self.mutableRooms copy] autorelease];
+}
+
+- (void)addRoom:(NSObject *)room {
+    [self.mutableRooms addObject:room];
+}
 
 @end

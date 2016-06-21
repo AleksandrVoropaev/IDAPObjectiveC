@@ -9,5 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface AVRoom : NSObject
+@property (nonatomic, readonly) NSArray *employees;
+@property (nonatomic, assign) NSUInteger maxEmployeesNumber;
+
+- (void)addEmployee:(NSObject *)employee;
 
 @end

@@ -9,5 +9,8 @@
 #import "AVRoom.h"
 
 @interface AVWashingRoom : AVRoom
+@property (nonatomic, readonly) NSArray *cars;
+
+- (void)addCar:(NSObject *)object;
 
 @end

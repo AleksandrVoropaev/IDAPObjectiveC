@@ -9,5 +9,8 @@
 #import "AVRoom.h"
 
 @interface AVBuilding : NSObject
+@property (nonatomic, readonly) NSArray *rooms;
+
+- (void)addRoom:(NSObject *)room;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface AVCarWash : NSObject
 
+- (void)makeCarClean;
+
 @end

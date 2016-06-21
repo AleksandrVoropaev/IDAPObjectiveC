@@ -11,4 +11,8 @@
 
 @implementation AVDirector
 
+- (void)earnProfitWithValue:(NSUInteger)value {
+    NSLog(@"I've earned %lu", value);
+}
+
 @end

@@ -10,5 +10,10 @@
 
 @implementation AVCar
 
+@synthesize money = _money;
+
+- (void)decreaseMoney:(NSUInteger)value {
+    self.money -= value;
+}
 
 @end

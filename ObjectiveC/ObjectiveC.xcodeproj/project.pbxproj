@@ -14,7 +14,6 @@
 		1F96B8711D12DB790018B3CB /* AVCreatureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8701D12DB790018B3CB /* AVCreatureTest.m */; };
 		1F96B88C1D1443470018B3CB /* AVBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8891D1443470018B3CB /* AVBuilding.m */; };
 		1F96B88D1D1443470018B3CB /* AVRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B88B1D1443470018B3CB /* AVRoom.m */; };
-		1F96B8901D1443700018B3CB /* AVCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B88F1D1443700018B3CB /* AVCarWash.m */; };
 		1F96B8971D14440E0018B3CB /* AVEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8961D14440E0018B3CB /* AVEmployee.m */; };
 		1F96B89A1D14442A0018B3CB /* AVWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8991D14442A0018B3CB /* AVWasher.m */; };
 		1F96B89D1D14446A0018B3CB /* AVBookkeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B89C1D14446A0018B3CB /* AVBookkeeper.m */; };
@@ -23,7 +22,6 @@
 		1F96B8AA1D144BC40018B3CB /* AVCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8A91D144BC40018B3CB /* AVCarWash.m */; };
 		1F96B8AD1D183E180018B3CB /* NSObject+AVAddObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8AC1D183E180018B3CB /* NSObject+AVAddObject.m */; };
 		1F96B8B01D18437F0018B3CB /* AVWashingRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8AF1D18437F0018B3CB /* AVWashingRoom.m */; };
-		1F96B8B31D1844510018B3CB /* NSObject+AVMoney.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8B21D1844510018B3CB /* NSObject+AVMoney.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,8 +51,6 @@
 		1F96B8891D1443470018B3CB /* AVBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVBuilding.m; sourceTree = "<group>"; };
 		1F96B88A1D1443470018B3CB /* AVRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVRoom.h; sourceTree = "<group>"; };
 		1F96B88B1D1443470018B3CB /* AVRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVRoom.m; sourceTree = "<group>"; };
-		1F96B88E1D1443700018B3CB /* AVCarWash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCarWash.h; sourceTree = "<group>"; };
-		1F96B88F1D1443700018B3CB /* AVCarWash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCarWash.m; sourceTree = "<group>"; };
 		1F96B8951D14440E0018B3CB /* AVEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVEmployee.h; sourceTree = "<group>"; };
 		1F96B8961D14440E0018B3CB /* AVEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVEmployee.m; sourceTree = "<group>"; };
 		1F96B8981D14442A0018B3CB /* AVWasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVWasher.h; sourceTree = "<group>"; };
@@ -71,8 +67,7 @@
 		1F96B8AC1D183E180018B3CB /* NSObject+AVAddObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AVAddObject.m"; sourceTree = "<group>"; };
 		1F96B8AE1D18437F0018B3CB /* AVWashingRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVWashingRoom.h; sourceTree = "<group>"; };
 		1F96B8AF1D18437F0018B3CB /* AVWashingRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVWashingRoom.m; sourceTree = "<group>"; };
-		1F96B8B11D1844510018B3CB /* NSObject+AVMoney.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AVMoney.h"; sourceTree = "<group>"; };
-		1F96B8B21D1844510018B3CB /* NSObject+AVMoney.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AVMoney.m"; sourceTree = "<group>"; };
+		1F96B8B41D1931300018B3CB /* AVMoney.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVMoney.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,8 +173,7 @@
 				1F96B8871D1443470018B3CB /* Buildings */,
 				1F96B8A81D144BC40018B3CB /* AVCarWash.h */,
 				1F96B8A91D144BC40018B3CB /* AVCarWash.m */,
-				1F96B8B11D1844510018B3CB /* NSObject+AVMoney.h */,
-				1F96B8B21D1844510018B3CB /* NSObject+AVMoney.m */,
+				1F96B8B41D1931300018B3CB /* AVMoney.h */,
 			);
 			path = AVCarWash;
 			sourceTree = "<group>";
@@ -193,8 +187,6 @@
 				1F96B8AF1D18437F0018B3CB /* AVWashingRoom.m */,
 				1F96B8881D1443470018B3CB /* AVBuilding.h */,
 				1F96B8891D1443470018B3CB /* AVBuilding.m */,
-				1F96B88E1D1443700018B3CB /* AVCarWash.h */,
-				1F96B88F1D1443700018B3CB /* AVCarWash.m */,
 			);
 			path = Buildings;
 			sourceTree = "<group>";
@@ -284,11 +276,9 @@
 				1F96B89A1D14442A0018B3CB /* AVWasher.m in Sources */,
 				1F96B8A41D1444C40018B3CB /* AVCar.m in Sources */,
 				1F96B89D1D14446A0018B3CB /* AVBookkeeper.m in Sources */,
-				1F96B8B31D1844510018B3CB /* NSObject+AVMoney.m in Sources */,
 				1F96B8AA1D144BC40018B3CB /* AVCarWash.m in Sources */,
 				1F96B8971D14440E0018B3CB /* AVEmployee.m in Sources */,
 				1F96B8A01D14447D0018B3CB /* AVDirector.m in Sources */,
-				1F96B8901D1443700018B3CB /* AVCarWash.m in Sources */,
 				1F96B85D1D1057BC0018B3CB /* AVMaleCreature.m in Sources */,
 				1F96B8AD1D183E180018B3CB /* NSObject+AVAddObject.m in Sources */,
 				1F96B8711D12DB790018B3CB /* AVCreatureTest.m in Sources */,

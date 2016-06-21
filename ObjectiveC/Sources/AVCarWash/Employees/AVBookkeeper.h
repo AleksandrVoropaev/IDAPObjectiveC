@@ -11,6 +11,6 @@
 
 @interface AVBookkeeper : AVEmployee
 
-- (void)countMoney;
+- (void)countMoneyWithValue:(NSUInteger)value;
 
 @end
