@@ -23,12 +23,22 @@
     return self;
 }
 
+- (void)dealloc {
+    self.mutableRooms = nil;
+    
+    [super dealloc];
+}
+
 - (NSArray *)rooms {
     return [[self.mutableRooms copy] autorelease];
 }
 
 - (void)addRoom:(NSObject *)room {
     [self.mutableRooms addObject:room];
+}
+
+- (void)removeRoom:(NSObject *)room {
+    [self.mutableRooms removeObject:room];
 }
 
 @end

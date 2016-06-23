@@ -16,7 +16,7 @@ int main(int argc, const char * argv[]) {
         AVCreatureTest *test = [[AVCreatureTest new] autorelease];
         [test startTest];
         AVCarWash *testCarWash = [[AVCarWash new] autorelease];
-        [testCarWash makeCarClean];
+        [testCarWash washCar];
     }
     
     return 0;

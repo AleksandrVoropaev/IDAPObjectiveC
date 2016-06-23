@@ -11,6 +11,7 @@
 @interface AVWashingRoom : AVRoom
 @property (nonatomic, readonly) NSArray *cars;
 
-- (void)addCar:(NSObject *)object;
+- (void)addCar:(NSObject *)car;
+- (void)removeCar:(NSObject *)car;
 
 @end

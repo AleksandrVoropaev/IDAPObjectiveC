@@ -111,6 +111,7 @@
 			children = (
 				1F96B8861D1443470018B3CB /* AVCarWash */,
 				1F96B8531D100FC50018B3CB /* AVCreature */,
+				1F96B8671D12C3D90018B3CB /* Tests */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -122,7 +123,6 @@
 				1F96B8551D100FC50018B3CB /* AVCreature.m */,
 				1F96B85A1D1057BC0018B3CB /* AVMaleCreature */,
 				1F96B8611D1058170018B3CB /* AVFemaleCreature */,
-				1F96B8671D12C3D90018B3CB /* Tests */,
 				1F96B8B51D194FC50018B3CB /* NSObject+AVExtentions.h */,
 				1F96B8B61D194FC50018B3CB /* NSObject+AVExtentions.m */,
 			);
@@ -152,8 +152,7 @@
 			children = (
 				1F96B8681D12C3D90018B3CB /* AVCreatureTest */,
 			);
-			name = Tests;
-			path = ../Tests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		1F96B8681D12C3D90018B3CB /* AVCreatureTest */ = {

@@ -23,6 +23,12 @@
     return self;
 }
 
+- (void)dealloc {
+    self.mutableCars = nil;
+    
+    [super dealloc];
+}
+
 - (NSArray *)cars {
     return [[self.mutableCars copy] autorelease];
 }

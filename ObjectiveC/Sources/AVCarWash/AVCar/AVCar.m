@@ -8,9 +8,12 @@
 
 #import "AVCar.h"
 
-@implementation AVCar
+@interface AVCar()
+@property (nonatomic, assign, readwrite) NSUInteger money;
 
-@synthesize money = _money;
+@end
+
+@implementation AVCar
 
 - (void)decreaseMoney:(NSUInteger)value {
     self.money -= value;

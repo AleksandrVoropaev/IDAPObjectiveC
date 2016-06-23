@@ -16,35 +16,43 @@
 #import "AVWashingRoom.h"
 #import "AVBuilding.h"
 
+#import "NSObject+AVExtentions.h"
+
 @implementation AVCarWash
 
--(void)makeCarClean {
-    AVRoom *room = [[[AVRoom alloc] init] autorelease];
-    AVWashingRoom *carWashRoom = [[[AVWashingRoom alloc] init] autorelease];
-    AVBuilding *administrationBuilding = [[[AVBuilding alloc] init] autorelease];
-    AVBuilding *carWashBuilding = [[[AVBuilding alloc] init] autorelease];
+- (void)initCarWash {
+    self.room = [AVRoom object];
+    self.carWashRoom = [AVWashingRoom object];
+    self.administrationBuilding = [AVBuilding object];
+    self.carWashBuilding =[AVBuilding object];
     
-    AVWasher *washer = [[[AVWasher alloc] init] autorelease];
-    AVBookkeeper *bookkeeper = [[[AVBookkeeper alloc] init] autorelease];
-    AVDirector *director = [[[AVDirector alloc] init] autorelease];
+    self.washer = [AVWasher object];
+    self.bookkeeper = [AVBookkeeper object];
+    self.director = [AVDirector object];
     
-    AVCar *car = [[[AVCar alloc] init] autorelease];
+    [self.administrationBuilding addRoom:self.room];
+    [self.carWashBuilding addRoom:self.carWashRoom];
     
-    [administrationBuilding addRoom:room];
-    [carWashBuilding addRoom:carWashRoom];
+    [self.room addEmployee:self.director];
+    [self.room addEmployee:self.bookkeeper];
+    [self.carWashRoom addEmployee:self.washer];
+}
+
+- (void)washCar {
+    AVCar *car = [AVCar object];
     
-    [room addEmployee:director];
-    [room addEmployee:bookkeeper];
-    [carWashRoom addEmployee:washer];
-    
-    NSUInteger carWashCost =  100;
+    NSUInteger carWashCost = 100;
     car.money = carWashCost * 3;
+//    [car increaseMoney:carWashCost * 3];
     
-    [washer takeMoneyFromObject:car withValue:carWashCost];
-    [bookkeeper takeMoneyFromObject:washer withValue:carWashCost];
-    [bookkeeper countMoneyWithValue:carWashCost];
-    [director takeMoneyFromObject:bookkeeper withValue:carWashCost];
-    [director earnProfitWithValue:carWashCost];
+    [self.washer washCar:car];
+    [self.washer takeMoneyFromObject:car withValue:carWashCost];
+    
+    [self.bookkeeper takeMoneyFromObject:self.washer withValue:carWashCost];
+    [self.bookkeeper countMoneyWithValue:carWashCost];
+    
+    [self.director takeMoneyFromObject:self.bookkeeper withValue:carWashCost];
+    [self.director earnProfitWithValue:carWashCost];
 }
 
 @end

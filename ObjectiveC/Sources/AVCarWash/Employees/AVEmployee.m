@@ -8,6 +8,11 @@
 
 #import "AVEmployee.h"
 
+@interface AVEmployee()
+@property (nonatomic, assign) NSUInteger money;
+
+@end
+
 @implementation AVEmployee
 
 @synthesize money = _money;

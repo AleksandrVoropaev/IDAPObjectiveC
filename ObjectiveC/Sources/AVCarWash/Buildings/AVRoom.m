@@ -23,12 +23,22 @@
     return self;
 }
 
+- (void)dealloc {
+    self.mutableEmployees = nil;
+    
+    [super dealloc];
+}
+
 - (NSArray *)employees {
     return [[self.mutableEmployees copy] autorelease];
 }
 
 -(void)addEmployee:(NSObject *)employee {
     [self.mutableEmployees addObject:employee];
+}
+
+- (void)removeEmployee:(NSObject *)employee {
+    [self.mutableEmployees removeObject:employee];
 }
 
 @end

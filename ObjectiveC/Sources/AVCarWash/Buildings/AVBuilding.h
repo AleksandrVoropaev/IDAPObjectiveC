@@ -12,5 +12,6 @@
 @property (nonatomic, readonly) NSArray *rooms;
 
 - (void)addRoom:(NSObject *)room;
+- (void)removeRoom:(NSObject *)room;
 
 @end

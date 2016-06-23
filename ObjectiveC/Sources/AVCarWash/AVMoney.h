@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @protocol AVMoney <NSObject>
-@property (nonatomic, assign) NSUInteger money;
+@property (nonatomic, readonly) NSUInteger money;
 
-@required
 - (void)decreaseMoney:(NSUInteger)value;
 
 @optional

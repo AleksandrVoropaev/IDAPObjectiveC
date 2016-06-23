@@ -14,4 +14,6 @@
 @property (nonatomic, assign) NSUInteger salary;
 @property (nonatomic, assign) NSUInteger yearsOfExperience;
 
+- (void)takeMoneyFromObject:(id)object withValue:(NSUInteger)value;
+
 @end

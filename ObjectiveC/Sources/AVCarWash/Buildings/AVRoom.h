@@ -13,5 +13,6 @@
 @property (nonatomic, assign) NSUInteger maxEmployeesNumber;
 
 - (void)addEmployee:(NSObject *)employee;
+- (void)removeEmployee:(NSObject *)employee;
 
 @end
