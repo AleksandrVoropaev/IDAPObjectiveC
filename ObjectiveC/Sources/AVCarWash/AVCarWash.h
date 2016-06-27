@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AVCar.h"
 #import "AVRoom.h"
 #import "AVWashingRoom.h"
 #import "AVBuilding.h"
@@ -16,15 +17,12 @@
 #import "AVDirector.h"
 
 @interface AVCarWash : NSObject
-@property (nonatomic, retain) AVRoom *room;
-@property (nonatomic, retain) AVWashingRoom *carWashRoom;
-@property (nonatomic, retain) AVBuilding *administrationBuilding;
-@property (nonatomic, retain) AVBuilding *carWashBuilding;
-@property (nonatomic, retain) AVWasher *washer;
-@property (nonatomic, retain) AVBookkeeper *bookkeeper;
-@property (nonatomic, retain) AVDirector *director;
+@property (nonatomic, readonly) NSArray *carsQueue;
 
-- (void)initCarWash;
-- (void)washCar;
+- (void)washCar:(AVCar *)car;
+- (void)addCarToQueue:(AVCar *)car;
+- (void)removeCarFromQueue:(AVCar *)car;
+- (AVCar *)firstCarInQueue;
+- (NSMutableArray *)carQueue;
 
 @end

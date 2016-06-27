@@ -10,6 +10,4 @@
 
 @interface AVBookkeeper : AVEmployee
 
-- (void)countMoneyWithValue:(NSUInteger)value;
-
 @end

@@ -25,7 +25,7 @@
     self.money -= value;
 }
 
-- (void)takeMoneyFromObject:(id)object withValue:(NSUInteger)value {
+- (void)processObject:(id)object withValue:(NSUInteger)value {
     [object decreaseMoney:value];
     [self increaseMoney:value];
 }

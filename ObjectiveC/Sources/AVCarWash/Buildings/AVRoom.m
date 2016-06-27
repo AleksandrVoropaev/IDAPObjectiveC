@@ -14,7 +14,14 @@
 @end
 
 @implementation AVRoom
+
 @dynamic employees;
+
+- (void)dealloc {
+    self.mutableEmployees = nil;
+    
+    [super dealloc];
+}
 
 - (instancetype)init {
     self = [super init];
@@ -23,22 +30,26 @@
     return self;
 }
 
-- (void)dealloc {
-    self.mutableEmployees = nil;
-    
-    [super dealloc];
-}
-
 - (NSArray *)employees {
     return [[self.mutableEmployees copy] autorelease];
 }
 
--(void)addEmployee:(NSObject *)employee {
+- (void)addEmployee:(NSObject *)employee {
     [self.mutableEmployees addObject:employee];
 }
 
 - (void)removeEmployee:(NSObject *)employee {
     [self.mutableEmployees removeObject:employee];
+}
+
+- (AVEmployee *)findFreeEmployeeWithClass:(Class)cls {
+    for (AVEmployee *employee in self.employees) {
+        if (employee.isFree == YES && [employee isKindOfClass:cls]) {
+            return employee;
+        }
+    }
+    
+    return nil;
 }
 
 @end

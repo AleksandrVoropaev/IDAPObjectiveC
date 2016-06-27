@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AVEmployee.h"
+
 @interface AVRoom : NSObject
 @property (nonatomic, readonly) NSArray *employees;
 @property (nonatomic, assign) NSUInteger maxEmployeesNumber;
 
 - (void)addEmployee:(NSObject *)employee;
 - (void)removeEmployee:(NSObject *)employee;
+- (AVEmployee *)findFreeEmployeeWithClass:(Class)cls;
 
 @end

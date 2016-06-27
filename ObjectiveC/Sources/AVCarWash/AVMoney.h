@@ -12,9 +12,9 @@
 @property (nonatomic, readonly) NSUInteger money;
 
 - (void)decreaseMoney:(NSUInteger)value;
+- (void)increaseMoney:(NSUInteger)value;
 
 @optional
-- (void)increaseMoney:(NSUInteger)value;
 - (void)takeMoneyFromObject:(id)object withValue:(NSUInteger)value;
 
 @end

@@ -13,10 +13,13 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        AVCreatureTest *test = [[AVCreatureTest new] autorelease];
-        [test startTest];
+//        AVCreatureTest *test = [[AVCreatureTest new] autorelease];
+//        [test startTest];
+        
+        AVCar *car = [[AVCar new] autorelease];
         AVCarWash *testCarWash = [[AVCarWash new] autorelease];
-        [testCarWash washCar];
+        [testCarWash addCarToQueue:car];
+        [testCarWash washCar:[testCarWash firstCarInQueue]];
     }
     
     return 0;

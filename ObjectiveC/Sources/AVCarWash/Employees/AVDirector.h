@@ -10,6 +10,4 @@
 
 @interface AVDirector : AVEmployee
 
-- (void)earnProfitWithValue:(NSUInteger)value;
-
 @end

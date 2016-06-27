@@ -19,4 +19,8 @@
     self.money -= value;
 }
 
+- (void)increaseMoney:(NSUInteger)value {
+    self.money += value;
+}
+
 @end

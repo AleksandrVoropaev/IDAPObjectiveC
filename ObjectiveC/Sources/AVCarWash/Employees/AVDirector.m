@@ -10,7 +10,10 @@
 
 @implementation AVDirector
 
-- (void)earnProfitWithValue:(NSUInteger)value {
+- (void)processObject:(id)object withValue:(NSUInteger)value {
+    [object decreaseMoney:value];
+    [self increaseMoney:value];
+    
     NSLog(@"I've earned %lu", value);
 }
 

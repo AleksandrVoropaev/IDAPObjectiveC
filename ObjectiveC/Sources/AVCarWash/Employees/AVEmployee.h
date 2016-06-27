@@ -11,9 +11,10 @@
 #import "AVMoney.h"
 
 @interface AVEmployee : NSObject <AVMoney>
-@property (nonatomic, assign) NSUInteger salary;
-@property (nonatomic, assign) NSUInteger yearsOfExperience;
+@property (nonatomic, assign)                   NSUInteger  salary;
+@property (nonatomic, assign)                   NSUInteger  yearsOfExperience;
+@property (nonatomic, assign, getter=isFree)    BOOL        free;
 
-- (void)takeMoneyFromObject:(id)object withValue:(NSUInteger)value;
+- (void)processObject:(id)object withValue:(NSUInteger)value;
 
 @end
