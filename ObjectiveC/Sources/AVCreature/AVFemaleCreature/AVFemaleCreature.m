@@ -8,7 +8,7 @@
 
 #import "AVFemaleCreature.h"
 
-#import "NSObject+AVExtentions.h"
+#import "NSObject+AVExtensions.h"
 
 @implementation AVFemaleCreature
 

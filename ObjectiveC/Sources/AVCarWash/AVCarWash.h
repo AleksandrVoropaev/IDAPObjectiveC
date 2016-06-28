@@ -15,14 +15,11 @@
 #import "AVWasher.h"
 #import "AVBookkeeper.h"
 #import "AVDirector.h"
+#import "AVQueue.h"
 
 @interface AVCarWash : NSObject
-@property (nonatomic, readonly) NSArray *carsQueue;
+@property (nonatomic, readonly) NSArray *employees;
 
 - (void)washCar:(AVCar *)car;
-- (void)addCarToQueue:(AVCar *)car;
-- (void)removeCarFromQueue:(AVCar *)car;
-- (AVCar *)firstCarInQueue;
-- (NSMutableArray *)carQueue;
 
 @end

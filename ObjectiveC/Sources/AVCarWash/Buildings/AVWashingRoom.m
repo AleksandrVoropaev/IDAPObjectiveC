@@ -14,19 +14,20 @@
 @end
 
 @implementation AVWashingRoom
+
 @dynamic cars;
+
+- (void)dealloc {
+    self.mutableCars = nil;
+    
+    [super dealloc];
+}
 
 - (instancetype)init {
     self = [super init];
     self.mutableCars = [NSMutableArray array];
     
     return self;
-}
-
-- (void)dealloc {
-    self.mutableCars = nil;
-    
-    [super dealloc];
 }
 
 - (NSArray *)cars {

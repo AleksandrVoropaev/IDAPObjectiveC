@@ -10,11 +10,10 @@
 
 @implementation AVBookkeeper
 
-- (void)processObject:(id)object withValue:(NSUInteger)value {
-    [object decreaseMoney:value];
-    [self increaseMoney:value];
+- (void)processObject:(id)object {
+    [self takeMoneyFromObject:object];
     
-    NSLog(@"I've counted to %lu", value);
+    NSLog(@"I've counted money");
 }
 
 @end

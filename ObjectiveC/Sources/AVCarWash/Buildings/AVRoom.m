@@ -42,14 +42,14 @@
     [self.mutableEmployees removeObject:employee];
 }
 
-- (AVEmployee *)findFreeEmployeeWithClass:(Class)cls {
-    for (AVEmployee *employee in self.employees) {
-        if (employee.isFree == YES && [employee isKindOfClass:cls]) {
-            return employee;
-        }
-    }
-    
-    return nil;
-}
+//- (AVEmployee *)findFreeEmployeeWithClass:(Class)cls {
+//    for (AVEmployee *employee in self.employees) {
+//        if (employee.isFree == YES && [employee isKindOfClass:cls]) {
+//            return employee;
+//        }
+//    }
+//    
+//    return nil;
+//}
 
 @end

@@ -16,6 +16,6 @@
 
 - (void)addEmployee:(NSObject *)employee;
 - (void)removeEmployee:(NSObject *)employee;
-- (AVEmployee *)findFreeEmployeeWithClass:(Class)cls;
+- (NSArray *)employees;
 
 @end

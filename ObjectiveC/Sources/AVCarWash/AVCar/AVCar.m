@@ -9,7 +9,7 @@
 #import "AVCar.h"
 
 @interface AVCar()
-@property (nonatomic, assign, readwrite) NSUInteger money;
+@property (nonatomic, assign) NSUInteger money;
 
 @end
 

@@ -15,6 +15,6 @@
 @property (nonatomic, assign)                   NSUInteger  yearsOfExperience;
 @property (nonatomic, assign, getter=isFree)    BOOL        free;
 
-- (void)processObject:(id)object withValue:(NSUInteger)value;
+- (void)processObject:(id)object;
 
 @end

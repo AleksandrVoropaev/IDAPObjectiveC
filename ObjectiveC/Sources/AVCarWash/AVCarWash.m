@@ -15,107 +15,105 @@
 #import "AVRoom.h"
 #import "AVWashingRoom.h"
 #import "AVBuilding.h"
+#import "AVQueue.h"
 
-#import "NSObject+AVExtentions.h"
+#import "NSObject+AVExtensions.h"
 
 @interface AVCarWash()
 @property (nonatomic, retain) AVRoom            *room;
 @property (nonatomic, retain) AVWashingRoom     *carWashRoom;
 @property (nonatomic, retain) AVBuilding        *administrationBuilding;
 @property (nonatomic, retain) AVBuilding        *carWashBuilding;
-@property (nonatomic, retain) NSMutableArray    *mutableCarsQueue;
+@property (nonatomic, retain) NSMutableArray    *mutableEmployees;
 
 @end
 
 @implementation AVCarWash
 
-@dynamic carsQueue;
+@dynamic employees;
 
 - (void)dealloc {
     self.room = nil;
     self.carWashRoom = nil;
     self.administrationBuilding = nil;
     self.carWashBuilding = nil;
-    
-    self.mutableCarsQueue = nil;
+    self.mutableEmployees = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
+    [self makeCarWashInfrastructure];
+    
+    return self;
+}
+
+- (instancetype)makeCarWashInfrastructure {
     AVRoom *room = [AVRoom object];
     AVWashingRoom *carWashRoom = [AVWashingRoom object];
     AVBuilding *administrationBuilding = [AVBuilding object];
     AVBuilding *carWashBuilding =[AVBuilding object];
     
-    AVDirector *director = [AVDirector object];
-    AVBookkeeper *firstBookkeeper = [AVBookkeeper object];
-    AVBookkeeper *secondBookkeeper = [AVBookkeeper object];
-    AVBookkeeper *thirdBookkeeper = [AVBookkeeper object];
-    AVWasher *firstWasher = [AVWasher object];
-    AVWasher *secondWasher = [AVWasher object];
-    AVWasher *thirdWasher = [AVWasher object];
+    NSArray *directors = [NSArray arrayOfObjectsWithClass:[AVDirector class] quantity:1];
+    for (AVDirector *director in directors) {
+        [room addEmployee:director];
+    }
     
-    director.free = YES;
-    firstBookkeeper.free = YES;
-    secondBookkeeper.free = YES;
-    thirdBookkeeper.free = YES;
-    firstWasher.free = YES;
-    secondWasher.free = YES;
-    thirdWasher.free = YES;
+    NSArray *bookkeepers = [NSArray arrayOfObjectsWithClass:[AVBookkeeper class] quantity:3];
+    for (AVBookkeeper *bookkeeper in bookkeepers) {
+        [room addEmployee:bookkeeper];
+    }
     
-    [room addEmployee:director];
-    [room addEmployee:firstBookkeeper];
-    [room addEmployee:secondBookkeeper];
-    [room addEmployee:thirdBookkeeper];
-    [carWashRoom addEmployee:firstWasher];
-    [carWashRoom addEmployee:secondWasher];
-    [carWashRoom addEmployee:thirdWasher];
+    NSArray *washers = [NSArray arrayOfObjectsWithClass:[AVWasher class] quantity:3];
+    for (AVWasher *washer in washers) {
+        [carWashRoom addEmployee:washer];
+    }
+    
+    [administrationBuilding addRoom:room];
+    [carWashBuilding addRoom:carWashRoom];
     
     self.room = room;
     self.carWashRoom = carWashRoom;
     self.administrationBuilding = administrationBuilding;
     self.carWashBuilding = carWashBuilding;
     
-    [self.administrationBuilding addRoom:self.room];
-    [self.carWashBuilding addRoom:self.carWashRoom];
-    
-    self.mutableCarsQueue = [NSMutableArray array];
-    
     return self;
 }
 
-- (void)addCarToQueue:(AVCar *)car {
-    [self.mutableCarsQueue addObject:car];
+- (NSArray *)employees {
+    NSMutableArray *employees = [NSMutableArray array];
+    [employees addObjectsFromArray:[self.administrationBuilding employees]];
+    [employees addObjectsFromArray:[self.carWashBuilding employees]];
+    self.mutableEmployees = employees;
+    
+    return [[self.mutableEmployees copy] autorelease];
 }
 
-- (void)removeCarFromQueue:(AVCar *)car {
-    [self.mutableCarsQueue removeObject:car];
-}
-
-- (NSMutableArray *)carQueue {
-    return [[self.mutableCarsQueue copy] autorelease];
-}
-
-- (AVCar *)firstCarInQueue {
-    return [self.mutableCarsQueue firstObject];
+- (NSArray *)findFreeEmployeeWithClass:(Class)cls {
+    NSArray *employees = [self employees];
+    NSMutableArray *freeEmployeesOfClass = [NSMutableArray array];
+    for (AVEmployee *employee in employees) {
+        if ([employee isKindOfClass:cls] && [employee isFree]) {
+            [freeEmployeesOfClass addObject:employee];
+        }
+    }
+    
+    return [[freeEmployeesOfClass copy] autorelease];
 }
 
 - (void)washCar:(AVCar *)car {
     NSUInteger carWashCost = 100;
-    [car increaseMoney:(carWashCost * 3)];
+    [car increaseMoney:(carWashCost)];
+    AVQueue *carQueue = [AVQueue object];
+    [carQueue enqueueObject:car];
     
-//    AVWasher *washer = (AVWasher *)[self.carWashBuilding.rooms[0] findFreeEmployeeWithClass:washer.class];
-//    AVBookkeeper *bookkeeper = (AVBookkeeper *)[self.administrationBuilding.rooms[0] findFreeEmployeeWithClass:bookkeeper.class];
-//    AVDirector *director = (AVDirector *)[self.administrationBuilding.rooms[0] findFreeEmployeeWithClass:director.class];
+    AVWasher *washer = [[self findFreeEmployeeWithClass:[AVWasher class]] firstObject];
+    AVWasher *bookkeeper = [[self findFreeEmployeeWithClass:[AVBookkeeper class]] firstObject];
+    AVWasher *director = [[self findFreeEmployeeWithClass:[AVDirector class]] firstObject];
 
-    AVWasher *washer = [self.carWashRoom findFreeEmployeeWithClass:washer.class];
-    AVBookkeeper *bookkeeper = (AVBookkeeper *)[self.room findFreeEmployeeWithClass:bookkeeper.class];
-    AVDirector *director = (AVDirector *)[self.room findFreeEmployeeWithClass:director.class];
-
-    [washer processObject:car withValue:carWashCost];
-    [bookkeeper processObject:washer withValue:carWashCost];
-    [director processObject:bookkeeper withValue:carWashCost];
+    [washer processObject:[carQueue getFirstObjectInQueue]];
+    [bookkeeper processObject:washer];
+    [director processObject:bookkeeper];
 }
 
 @end

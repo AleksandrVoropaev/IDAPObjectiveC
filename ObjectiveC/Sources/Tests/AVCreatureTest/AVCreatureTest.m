@@ -12,7 +12,7 @@
 #import "AVFemaleCreature.h"
 #import "AVMaleCreature.h"
 
-#import "NSObject+AVExtentions.h"
+#import "NSObject+AVExtensions.h"
 
 @implementation AVCreatureTest
 

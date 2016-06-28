@@ -10,14 +10,13 @@
 
 @implementation AVWasher
 
-- (void)processObject:(id)object withValue:(NSUInteger)value {
+- (void)processObject:(id)object {
     AVCar *car = object;
     
-    [car decreaseMoney:value];
-    [self increaseMoney:value];
+    [self takeMoneyFromObject:car];
     
     car.clean = YES;
-    NSLog(@"I've cleaned a car for %lu$", value);
+    NSLog(@"I've cleaned a car");
 }
 
 @end

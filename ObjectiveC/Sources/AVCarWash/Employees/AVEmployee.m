@@ -15,7 +15,12 @@
 
 @implementation AVEmployee
 
-@synthesize money = _money;
+- (instancetype)init {
+    self = [super init];
+    self.free = YES;
+    
+    return self;
+}
 
 - (void)increaseMoney:(NSUInteger)value {
     self.money += value;
@@ -25,9 +30,14 @@
     self.money -= value;
 }
 
-- (void)processObject:(id)object withValue:(NSUInteger)value {
-    [object decreaseMoney:value];
-    [self increaseMoney:value];
+- (void)takeMoneyFromObject:(AVEmployee *)object {
+    NSUInteger cost = object.money;
+    [object decreaseMoney:cost];
+    [self increaseMoney:cost];
+}
+
+- (void)processObject:(id)object {
+
 }
 
 @end

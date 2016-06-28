@@ -11,10 +11,11 @@
 @implementation NSMutableString (AVExtensions)
 
 + (NSString*)generateStringWithLength:(NSUInteger)length {
-    NSMutableString* string = [NSMutableString stringWithCapacity:length];
+    NSMutableString *string = [NSMutableString stringWithCapacity:length];
     for (NSUInteger index = 0; index < length; index++) {
         [string appendFormat:@"%C", (unichar)('a' + arc4random_uniform(25))];
     }
+    
     return string;
 }
 

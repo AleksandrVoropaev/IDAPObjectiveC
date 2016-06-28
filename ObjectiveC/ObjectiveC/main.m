@@ -17,11 +17,11 @@ int main(int argc, const char * argv[]) {
 //        AVCreatureTest *test = [[AVCreatureTest new] autorelease];
 //        [test startTest];
         NSString *string = [NSMutableString generateStringWithLength:5];
-        NSLog(@"Your string is - \"%@\"", string);
-//        AVCar *car = [[AVCar new] autorelease];
-//        AVCarWash *testCarWash = [[AVCarWash new] autorelease];
-//        [testCarWash addCarToQueue:car];
-//        [testCarWash washCar:[testCarWash firstCarInQueue]];
+        NSLog(@"Your string is - \"%@\"\n\n", string);
+        
+        AVCar *car = [[AVCar new] autorelease];
+        AVCarWash *testCarWash = [[AVCarWash new] autorelease];
+        [testCarWash washCar:car];
     }
     
     return 0;
