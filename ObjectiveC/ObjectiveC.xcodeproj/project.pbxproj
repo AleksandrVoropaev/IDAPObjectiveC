@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F3C58DE1D21770E0083753B /* NSString+AVExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C58DD1D21770E0083753B /* NSString+AVExtentions.m */; };
-		1F3C58E11D217A2F0083753B /* NSMutableString+AVExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C58E01D217A2F0083753B /* NSMutableString+AVExtentions.m */; };
+		1F3C58E11D217A2F0083753B /* NSMutableString+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C58E01D217A2F0083753B /* NSMutableString+AVExtensions.m */; };
 		1F96B8491D100DE50018B3CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8481D100DE50018B3CB /* main.m */; };
 		1F96B8561D100FC50018B3CB /* AVCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8551D100FC50018B3CB /* AVCreature.m */; };
 		1F96B85D1D1057BC0018B3CB /* AVMaleCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B85C1D1057BC0018B3CB /* AVMaleCreature.m */; };
@@ -39,10 +38,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1F3C58DC1D21770E0083753B /* NSString+AVExtentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AVExtentions.h"; sourceTree = "<group>"; };
-		1F3C58DD1D21770E0083753B /* NSString+AVExtentions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AVExtentions.m"; sourceTree = "<group>"; };
-		1F3C58DF1D217A2F0083753B /* NSMutableString+AVExtentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+AVExtentions.h"; sourceTree = "<group>"; };
-		1F3C58E01D217A2F0083753B /* NSMutableString+AVExtentions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+AVExtentions.m"; sourceTree = "<group>"; };
+		1F3C58DF1D217A2F0083753B /* NSMutableString+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+AVExtensions.h"; sourceTree = "<group>"; };
+		1F3C58E01D217A2F0083753B /* NSMutableString+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+AVExtensions.m"; sourceTree = "<group>"; };
 		1F96B8451D100DE50018B3CB /* ObjectiveC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectiveC; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F96B8481D100DE50018B3CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1F96B8541D100FC50018B3CB /* AVCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCreature.h; sourceTree = "<group>"; };
@@ -90,10 +87,8 @@
 		1F3C58D81D2176940083753B /* NSString+AVExtentions */ = {
 			isa = PBXGroup;
 			children = (
-				1F3C58DC1D21770E0083753B /* NSString+AVExtentions.h */,
-				1F3C58DD1D21770E0083753B /* NSString+AVExtentions.m */,
-				1F3C58DF1D217A2F0083753B /* NSMutableString+AVExtentions.h */,
-				1F3C58E01D217A2F0083753B /* NSMutableString+AVExtentions.m */,
+				1F3C58DF1D217A2F0083753B /* NSMutableString+AVExtensions.h */,
+				1F3C58E01D217A2F0083753B /* NSMutableString+AVExtensions.m */,
 			);
 			path = "NSString+AVExtentions";
 			sourceTree = "<group>";
@@ -294,7 +289,7 @@
 				1F96B8A41D1444C40018B3CB /* AVCar.m in Sources */,
 				1F96B89D1D14446A0018B3CB /* AVBookkeeper.m in Sources */,
 				1F96B8AA1D144BC40018B3CB /* AVCarWash.m in Sources */,
-				1F3C58E11D217A2F0083753B /* NSMutableString+AVExtentions.m in Sources */,
+				1F3C58E11D217A2F0083753B /* NSMutableString+AVExtensions.m in Sources */,
 				1F96B8971D14440E0018B3CB /* AVEmployee.m in Sources */,
 				1F96B8A01D14447D0018B3CB /* AVDirector.m in Sources */,
 				1F96B85D1D1057BC0018B3CB /* AVMaleCreature.m in Sources */,
@@ -302,7 +297,6 @@
 				1F96B8561D100FC50018B3CB /* AVCreature.m in Sources */,
 				1F96B88C1D1443470018B3CB /* AVBuilding.m in Sources */,
 				1F96B8B71D194FC50018B3CB /* NSObject+AVExtentions.m in Sources */,
-				1F3C58DE1D21770E0083753B /* NSString+AVExtentions.m in Sources */,
 				1F96B88D1D1443470018B3CB /* AVRoom.m in Sources */,
 				1F96B8B01D18437F0018B3CB /* AVWashingRoom.m in Sources */,
 			);

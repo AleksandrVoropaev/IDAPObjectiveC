@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSMutableString (AVExtentions)
+@interface NSMutableString (AVExtensions)
+
++ (NSString*)generateStringWithLength:(NSUInteger)length;
 
 @end
