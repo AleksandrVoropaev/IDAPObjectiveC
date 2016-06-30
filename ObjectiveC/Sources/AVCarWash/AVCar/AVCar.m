@@ -15,6 +15,13 @@
 
 @implementation AVCar
 
+- (instancetype)init {
+    self = [super init];
+    self.money = 100;
+    
+    return self;
+}
+
 - (void)decreaseMoney:(NSUInteger)value {
     self.money -= value;
 }

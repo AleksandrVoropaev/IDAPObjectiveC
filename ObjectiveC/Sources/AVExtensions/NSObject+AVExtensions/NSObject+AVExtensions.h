@@ -11,6 +11,6 @@
 @interface NSObject (AVExtentions)
 
 + (instancetype)object;
-+ (NSArray *)arrayOfObjectsWithClass:(Class)cls quantity:(NSUInteger)quantity;
++ (NSArray *)objectsWithQuantity:(NSUInteger)quantity;
 
 @end

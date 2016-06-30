@@ -17,5 +17,6 @@
 - (void)addEmployee:(NSObject *)employee;
 - (void)removeEmployee:(NSObject *)employee;
 - (NSArray *)employees;
+- (void)addEmployees:(NSArray *)employees;
 
 @end

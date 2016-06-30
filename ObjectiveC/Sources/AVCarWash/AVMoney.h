@@ -15,6 +15,6 @@
 - (void)increaseMoney:(NSUInteger)value;
 
 @optional
-- (void)takeMoneyFromObject:(id)object;
+- (void)takeMoneyFromObject:(id<AVMoney>)object;
 
 @end

@@ -38,11 +38,11 @@
     return [[self.mutableRooms copy] autorelease];
 }
 
-- (void)addRoom:(NSObject *)room {
+- (void)addRoom:(AVRoom *)room {
     [self.mutableRooms addObject:room];
 }
 
-- (void)removeRoom:(NSObject *)room {
+- (void)removeRoom:(AVRoom *)room {
     [self.mutableRooms removeObject:room];
 }
 

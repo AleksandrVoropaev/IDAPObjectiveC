@@ -42,6 +42,10 @@
     [self.mutableEmployees removeObject:employee];
 }
 
+- (void)addEmployees:(NSArray *)employees {
+    [self.mutableEmployees addObjectsFromArray:employees];
+}
+
 //- (AVEmployee *)findFreeEmployeeWithClass:(Class)cls {
 //    for (AVEmployee *employee in self.employees) {
 //        if (employee.isFree == YES && [employee isKindOfClass:cls]) {

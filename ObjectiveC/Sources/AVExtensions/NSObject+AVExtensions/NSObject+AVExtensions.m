@@ -14,10 +14,10 @@
     return [[[self alloc] init] autorelease];
 }
 
-+ (NSArray *)arrayOfObjectsWithClass:(Class)cls quantity:(NSUInteger)quantity {
++ (NSArray *)objectsWithQuantity:(NSUInteger)quantity {
     NSMutableArray *arrayOfObjects = [NSMutableArray array];
     for (NSUInteger count = 0; count < quantity; count++) {
-        NSObject *object = [cls object];
+        NSObject *object = [NSObject object];
         [arrayOfObjects addObject:object];
     }
     

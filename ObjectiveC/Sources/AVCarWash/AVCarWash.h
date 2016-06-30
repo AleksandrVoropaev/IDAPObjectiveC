@@ -18,7 +18,6 @@
 #import "AVQueue.h"
 
 @interface AVCarWash : NSObject
-@property (nonatomic, readonly) NSArray *employees;
 
 - (void)washCar:(AVCar *)car;
 
