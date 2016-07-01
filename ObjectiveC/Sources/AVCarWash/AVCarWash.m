@@ -87,15 +87,12 @@
     AVBookkeeper *bookkeeper = [[self findFreeEmployees:[self employeesWithClass:[AVBookkeeper class]]] firstObject];
     AVDirector *director = [[self findFreeEmployees:[self employeesWithClass:[AVDirector class]]] firstObject];
     
-    [[self carQueue] enqueueObject:car];
+    [self.carQueue enqueueObject:car];
     
-    for (AVCar *car in self.carQueue.queue) {
-        [washer processObject:car];
-        [bookkeeper processObject:washer];
-        [director processObject:bookkeeper];
-    }
-    
-    [[self carQueue] dequeueObject:car];
+    AVCar *carToWash = [self.carQueue dequeueObject];
+    [washer processObject:carToWash];
+    [bookkeeper processObject:washer];
+    [director processObject:bookkeeper];
 }
 
 @end

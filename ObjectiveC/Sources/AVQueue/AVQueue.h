@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AVCar.h"
+
 #import "NSObject+AVExtensions.h"
 
-@interface AVQueue : NSObject
-@property (nonatomic, readonly) NSArray *queue;
-
+@interface AVQueue : NSMutableArray
 - (void)enqueueObject:(id)object;
-- (void)dequeueObject:(id)object;
-- (id)getFirstObjectInQueue;
+- (AVCar *)dequeueObject;
 
 @end

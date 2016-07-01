@@ -8,6 +8,8 @@
 
 #import "AVQueue.h"
 
+#import "AVCar.h"
+
 @interface AVQueue()
 @property (nonatomic, retain) NSMutableArray *mutableQueue;
 
@@ -15,7 +17,7 @@
 
 @implementation AVQueue
 
-@dynamic queue;
+//@dynamic queue;
 
 - (void)dealloc
 {
@@ -35,16 +37,15 @@
     [self.mutableQueue addObject:object];
 }
 
-- (void)dequeueObject:(id)object {
-    [self.mutableQueue removeObject:object];
+- (AVCar *)dequeueObject {
+    AVCar *car = [self.mutableQueue firstObject];
+    [self.mutableQueue removeObject:car];
+    
+    return car;
 }
 
-- (NSArray *)queue {
-    return [[self.mutableQueue copy] autorelease];
-}
-
-- (id)getFirstObjectInQueue {
-    return [self.mutableQueue firstObject];
-}
+//- (NSArray *)queue {
+//    return [[self.mutableQueue copy] autorelease];
+//}
 
 @end
