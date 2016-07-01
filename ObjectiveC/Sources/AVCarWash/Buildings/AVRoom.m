@@ -8,6 +8,8 @@
 
 #import "AVRoom.h"
 
+#import "AVEmployee.h"
+
 @interface AVRoom()
 @property (nonatomic, retain) NSMutableArray *mutableEmployees;
 
@@ -34,6 +36,18 @@
     return [[self.mutableEmployees copy] autorelease];
 }
 
+- (NSArray *)employeesWithClass:(Class)cls {
+    NSArray *employees = [NSArray arrayWithArray:[self employees]];
+    NSMutableArray *result = [NSMutableArray array];
+    for (AVEmployee *employee in employees) {
+        if ([employee isKindOfClass:cls]) {
+            [result addObject:employee];
+        }
+    }
+    
+    return [[result copy] autorelease];
+}
+
 - (void)addEmployee:(NSObject *)employee {
     [self.mutableEmployees addObject:employee];
 }
@@ -45,15 +59,5 @@
 - (void)addEmployees:(NSArray *)employees {
     [self.mutableEmployees addObjectsFromArray:employees];
 }
-
-//- (AVEmployee *)findFreeEmployeeWithClass:(Class)cls {
-//    for (AVEmployee *employee in self.employees) {
-//        if (employee.isFree == YES && [employee isKindOfClass:cls]) {
-//            return employee;
-//        }
-//    }
-//    
-//    return nil;
-//}
 
 @end

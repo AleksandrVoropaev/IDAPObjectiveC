@@ -8,6 +8,8 @@
 
 #import "AVBuilding.h"
 
+#import "AVEmployee.h"
+
 @interface AVBuilding()
 @property (nonatomic, retain) NSMutableArray *mutableRooms;
 @property (nonatomic, retain) NSMutableArray *mutableEmployees;
@@ -47,13 +49,18 @@
 }
 
 - (NSArray *)employees {
-    NSMutableArray *employees = [NSMutableArray array];
-    for (AVRoom *room in self.rooms) {
-        [employees addObjectsFromArray:[room employees]];
-    }
-    self.mutableEmployees = employees;
+    self.mutableEmployees = [[[self employeesWithClass:[AVEmployee class]] mutableCopy] autorelease];
     
     return [[self.mutableEmployees copy] autorelease];
+}
+
+- (NSArray *)employeesWithClass:(Class)cls {
+    NSMutableArray *result= [NSMutableArray array];
+    for (AVRoom *room in self.rooms) {
+        [result addObjectsFromArray:[room employeesWithClass:cls]];
+    }
+    
+    return [[result copy] autorelease];
 }
 
 @end

@@ -48,14 +48,9 @@
     AVBuilding *administrationBuilding = [AVBuilding object];
     AVBuilding *carWashBuilding =[AVBuilding object];
     
-    NSArray *directors = [NSArray objectsWithQuantity:1];
-    [room addEmployees:directors];
-    
-    NSArray *bookkeepers = [NSArray objectsWithQuantity:3];
-    [room addEmployees:bookkeepers];
-    
-    NSArray *washers = [NSArray objectsWithQuantity:3];
-    [carWashRoom addEmployees:washers];
+    [room addEmployee:[AVDirector object]];
+    [room addEmployees:[AVBookkeeper objectsWithCount:3]];
+    [carWashRoom addEmployees:[AVWasher objectsWithCount:3]];
     
     [administrationBuilding addRoom:room];
     [carWashBuilding addRoom:carWashRoom];
@@ -65,11 +60,15 @@
 }
 
 - (NSArray *)employees {
-    NSMutableArray *employees = [NSMutableArray array];
-    [employees addObjectsFromArray:[self.administrationBuilding employees]];
-    [employees addObjectsFromArray:[self.carWashBuilding employees]];
+    return [[[self employeesWithClass:[AVEmployee class]] copy] autorelease];
+}
+
+- (NSArray *)employeesWithClass:(Class)cls {
+    NSMutableArray *result = [NSMutableArray array];
+    [result addObjectsFromArray:[self.administrationBuilding employeesWithClass:cls]];
+    [result addObjectsFromArray:[self.carWashBuilding employeesWithClass:cls]];
     
-    return [[employees copy] autorelease];
+    return [[result copy] autorelease];
 }
 
 - (NSArray *)findFreeEmployees:(NSArray *)employees {
@@ -84,18 +83,19 @@
 }
 
 - (void)washCar:(AVCar *)car {
-//    AVWasher *washer = [[self findFreeEmployees:(AVRoom *)(self.carWashBuilding.).employees] firstObject];
-    AVRoom *carWashRoom = self.carWashBuilding.rooms[0];
-    AVWasher *washer = [[self findFreeEmployees:carWashRoom.employees] firstObject];
-    AVRoom *room = self.administrationBuilding.rooms[0];
-    AVWasher *bookkeeper = [[self findFreeEmployees:room.employees] firstObject];
-    AVWasher *director = [[self findFreeEmployees:room.employees] firstObject];
+    AVWasher *washer = [[self findFreeEmployees:[self employeesWithClass:[AVWasher class]]] firstObject];
+    AVBookkeeper *bookkeeper = [[self findFreeEmployees:[self employeesWithClass:[AVBookkeeper class]]] firstObject];
+    AVDirector *director = [[self findFreeEmployees:[self employeesWithClass:[AVDirector class]]] firstObject];
+    
+    [[self carQueue] enqueueObject:car];
     
     for (AVCar *car in self.carQueue.queue) {
         [washer processObject:car];
-        [bookkeeper processObject:car];
-        [director processObject:car];
+        [bookkeeper processObject:washer];
+        [director processObject:bookkeeper];
     }
+    
+    [[self carQueue] dequeueObject:car];
 }
 
 @end

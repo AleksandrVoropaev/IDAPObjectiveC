@@ -14,5 +14,7 @@
 
 - (void)addRoom:(NSObject *)room;
 - (void)removeRoom:(NSObject *)room;
+- (NSArray *)employees;
+- (NSArray *)employeesWithClass:(Class)cls;
 
 @end
