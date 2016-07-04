@@ -10,7 +10,6 @@
 
 @interface AVBuilding : NSObject
 @property (nonatomic, readonly) NSArray *rooms;
-@property (nonatomic, readonly) NSArray *employees;
 
 - (void)addRoom:(NSObject *)room;
 - (void)removeRoom:(NSObject *)room;

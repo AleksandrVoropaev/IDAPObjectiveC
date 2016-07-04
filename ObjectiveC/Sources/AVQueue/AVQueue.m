@@ -17,10 +17,7 @@
 
 @implementation AVQueue
 
-//@dynamic queue;
-
-- (void)dealloc
-{
+- (void)dealloc {
     self.mutableQueue = nil;
     
     [super dealloc];
@@ -43,9 +40,5 @@
     
     return car;
 }
-
-//- (NSArray *)queue {
-//    return [[self.mutableQueue copy] autorelease];
-//}
 
 @end

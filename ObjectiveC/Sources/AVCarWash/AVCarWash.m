@@ -36,7 +36,7 @@
 }
 
 - (instancetype)init {
-    [super init];
+    self = [super init];
     [self initInfrastructure];
     
     return self;
@@ -59,16 +59,12 @@
     self.carWashBuilding = carWashBuilding;
 }
 
-- (NSArray *)employees {
-    return [[[self employeesWithClass:[AVEmployee class]] copy] autorelease];
+- (AVBuilding *)buildingWithEmployeeClass:(Class)employeeClass {
+    return employeeClass == [AVWasher class] ? self.carWashBuilding : self.administrationBuilding;
 }
 
 - (NSArray *)employeesWithClass:(Class)cls {
-    NSMutableArray *result = [NSMutableArray array];
-    [result addObjectsFromArray:[self.administrationBuilding employeesWithClass:cls]];
-    [result addObjectsFromArray:[self.carWashBuilding employeesWithClass:cls]];
-    
-    return [[result copy] autorelease];
+    return [[[[self buildingWithEmployeeClass:cls] employeesWithClass:cls] copy] autorelease];
 }
 
 - (NSArray *)findFreeEmployees:(NSArray *)employees {
@@ -82,17 +78,46 @@
     return [[freeEmployees copy] autorelease];
 }
 
+- (AVWasher *)freeWasher {
+    return [self freeEmployeeWithClass:[AVWasher class]];
+}
+
+- (AVBookkeeper *)freeBookkeeper {
+    return [self freeEmployeeWithClass:[AVBookkeeper class]];
+}
+
+- (AVDirector *)freeDitrector {
+    return [self freeEmployeeWithClass:[AVDirector class]];
+}
+
+- (id)freeEmployeeWithClass:(Class)cls {
+    return [[self findFreeEmployees:[self employeesWithClass:cls]] firstObject];
+}
+
+- (void)enqueueCars {
+    AVCar *car = [AVCar object];
+    AVQueue *carQueue = self.carQueue;
+    for (NSUInteger index = 0; index < 9; index++) {
+        [carQueue enqueueObject:car];
+    }
+}
+
 - (void)washCar:(AVCar *)car {
-    AVWasher *washer = [[self findFreeEmployees:[self employeesWithClass:[AVWasher class]]] firstObject];
-    AVBookkeeper *bookkeeper = [[self findFreeEmployees:[self employeesWithClass:[AVBookkeeper class]]] firstObject];
-    AVDirector *director = [[self findFreeEmployees:[self employeesWithClass:[AVDirector class]]] firstObject];
-    
+    [self enqueueCars];
     [self.carQueue enqueueObject:car];
     
-    AVCar *carToWash = [self.carQueue dequeueObject];
-    [washer processObject:carToWash];
-    [bookkeeper processObject:washer];
-    [director processObject:bookkeeper];
+    NSUInteger count = [self.carQueue count] + 1;
+    for (NSUInteger index = 0; index < count; index++) {
+        AVCar *carToWash = [self.carQueue dequeueObject];
+
+        AVWasher *washer = [self freeWasher];
+        AVBookkeeper *bookkeeper = [self freeBookkeeper];
+        AVDirector *director = [self freeDitrector];
+        
+        [washer processObject:carToWash];
+        [bookkeeper processObject:washer];
+        [director processObject:bookkeeper];
+    }
 }
 
 @end

@@ -13,6 +13,7 @@
 #import "NSObject+AVExtensions.h"
 
 @interface AVQueue : NSMutableArray
+
 - (void)enqueueObject:(id)object;
 - (AVCar *)dequeueObject;
 

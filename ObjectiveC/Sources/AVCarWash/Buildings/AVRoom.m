@@ -37,10 +37,9 @@
 }
 
 - (NSArray *)employeesWithClass:(Class)cls {
-    NSArray *employees = [NSArray arrayWithArray:[self employees]];
     NSMutableArray *result = [NSMutableArray array];
-    for (AVEmployee *employee in employees) {
-        if ([employee isKindOfClass:cls]) {
+    for (AVEmployee *employee in self.mutableEmployees) {
+        if ([employee isMemberOfClass:cls]) {
             [result addObject:employee];
         }
     }
