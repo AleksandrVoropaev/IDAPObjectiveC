@@ -8,12 +8,14 @@
 
 #import "NSMutableString+AVExtensions.h"
 
+#import "AVRandom.h"
+
 @implementation NSMutableString (AVExtensions)
 
 + (NSString *)generateStringWithLength:(NSUInteger)length {
     NSMutableString *string = [NSMutableString stringWithCapacity:length];
     for (NSUInteger index = 0; index < length; index++) {
-        [string appendFormat:@"%C", (unichar)('a' + arc4random_uniform(25))];
+        [string appendFormat:@"%C", (unichar)('a' + randomWithValue(25))];
     }
     
     return string;

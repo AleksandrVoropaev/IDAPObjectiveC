@@ -23,6 +23,7 @@
 		1F3C59231D22CCD20083753B /* NSMutableString+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C590D1D22CCD20083753B /* NSMutableString+AVExtensions.m */; };
 		1F3C59241D22CCD20083753B /* AVQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C59101D22CCD20083753B /* AVQueue.m */; };
 		1F3C59251D22CCD20083753B /* AVCreatureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C59151D22CCD20083753B /* AVCreatureTest.m */; };
+		1F64B3BD1D2AC46000905099 /* AVRandom.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3BB1D2AC45F00905099 /* AVRandom.c */; };
 		1F96B8491D100DE50018B3CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8481D100DE50018B3CB /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,8 @@
 		1F3C59111D22CCD20083753B /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
 		1F3C59141D22CCD20083753B /* AVCreatureTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCreatureTest.h; sourceTree = "<group>"; };
 		1F3C59151D22CCD20083753B /* AVCreatureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCreatureTest.m; sourceTree = "<group>"; };
+		1F64B3BB1D2AC45F00905099 /* AVRandom.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AVRandom.c; sourceTree = "<group>"; };
+		1F64B3BC1D2AC45F00905099 /* AVRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVRandom.h; sourceTree = "<group>"; };
 		1F96B8451D100DE50018B3CB /* ObjectiveC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectiveC; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F96B8481D100DE50018B3CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +100,8 @@
 				1F3C59071D22CCD20083753B /* AVExtensions */,
 				1F3C59121D22CCD20083753B /* Tests */,
 				1F3C59111D22CCD20083753B /* iOS Study Plan.txt */,
+				1F64B3BC1D2AC45F00905099 /* AVRandom.h */,
+				1F64B3BB1D2AC45F00905099 /* AVRandom.c */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 				1F3C59161D22CCD20083753B /* AVCar.m in Sources */,
 				1F3C591B1D22CCD20083753B /* AVBookkeeper.m in Sources */,
 				1F3C59171D22CCD20083753B /* AVCarWash.m in Sources */,
+				1F64B3BD1D2AC46000905099 /* AVRandom.c in Sources */,
 				1F3C59201D22CCD20083753B /* AVFemaleCreature.m in Sources */,
 				1F3C59231D22CCD20083753B /* NSMutableString+AVExtensions.m in Sources */,
 				1F3C59211D22CCD20083753B /* AVMaleCreature.m in Sources */,
