@@ -24,6 +24,7 @@
 		1F3C59241D22CCD20083753B /* AVQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C59101D22CCD20083753B /* AVQueue.m */; };
 		1F3C59251D22CCD20083753B /* AVCreatureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C59151D22CCD20083753B /* AVCreatureTest.m */; };
 		1F64B3BD1D2AC46000905099 /* AVRandom.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3BB1D2AC45F00905099 /* AVRandom.c */; };
+		1F64B3C41D2E90AE00905099 /* NSArray+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3C31D2E90AE00905099 /* NSArray+AVExtensions.m */; };
 		1F96B8491D100DE50018B3CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8481D100DE50018B3CB /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,8 @@
 		1F3C59151D22CCD20083753B /* AVCreatureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCreatureTest.m; sourceTree = "<group>"; };
 		1F64B3BB1D2AC45F00905099 /* AVRandom.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AVRandom.c; sourceTree = "<group>"; };
 		1F64B3BC1D2AC45F00905099 /* AVRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVRandom.h; sourceTree = "<group>"; };
+		1F64B3C21D2E90AE00905099 /* NSArray+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AVExtensions.h"; sourceTree = "<group>"; };
+		1F64B3C31D2E90AE00905099 /* NSArray+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AVExtensions.m"; sourceTree = "<group>"; };
 		1F96B8451D100DE50018B3CB /* ObjectiveC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectiveC; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F96B8481D100DE50018B3CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +191,7 @@
 		1F3C59071D22CCD20083753B /* AVExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				1F64B3C11D2E90AD00905099 /* NSArray+AVExtensions */,
 				1F3C59081D22CCD20083753B /* NSObject+AVExtensions */,
 				1F3C590B1D22CCD20083753B /* NSString+AVExtensions */,
 			);
@@ -236,6 +240,15 @@
 				1F3C59151D22CCD20083753B /* AVCreatureTest.m */,
 			);
 			path = AVCreatureTest;
+			sourceTree = "<group>";
+		};
+		1F64B3C11D2E90AD00905099 /* NSArray+AVExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				1F64B3C21D2E90AE00905099 /* NSArray+AVExtensions.h */,
+				1F64B3C31D2E90AE00905099 /* NSArray+AVExtensions.m */,
+			);
+			path = "NSArray+AVExtensions";
 			sourceTree = "<group>";
 		};
 		1F96B83C1D100DE50018B3CB = {
@@ -331,6 +344,7 @@
 				1F3C591B1D22CCD20083753B /* AVBookkeeper.m in Sources */,
 				1F3C59171D22CCD20083753B /* AVCarWash.m in Sources */,
 				1F64B3BD1D2AC46000905099 /* AVRandom.c in Sources */,
+				1F64B3C41D2E90AE00905099 /* NSArray+AVExtensions.m in Sources */,
 				1F3C59201D22CCD20083753B /* AVFemaleCreature.m in Sources */,
 				1F3C59231D22CCD20083753B /* NSMutableString+AVExtensions.m in Sources */,
 				1F3C59211D22CCD20083753B /* AVMaleCreature.m in Sources */,

@@ -20,5 +20,6 @@
 @interface AVCarWash : NSObject
 
 - (void)washCar:(AVCar *)car;
+- (void)enqueueCars:(NSArray *)cars;
 
 @end

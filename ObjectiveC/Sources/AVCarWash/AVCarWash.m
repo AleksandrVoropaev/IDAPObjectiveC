@@ -31,6 +31,7 @@
 - (void)dealloc {
     self.administrationBuilding = nil;
     self.carWashBuilding = nil;
+    self.carQueue = nil;
     
     [super dealloc];
 }
@@ -38,6 +39,7 @@
 - (instancetype)init {
     self = [super init];
     [self initInfrastructure];
+    self.carQueue = [AVQueue object];
     
     return self;
 }
@@ -67,17 +69,6 @@
     return [[[[self buildingWithEmployeeClass:cls] employeesWithClass:cls] copy] autorelease];
 }
 
-- (NSArray *)findFreeEmployees:(NSArray *)employees {
-    NSMutableArray *freeEmployees = [NSMutableArray array];
-    for (AVEmployee *employee in employees) {
-        if ([employee isFree]) {
-            [freeEmployees addObject:employee];
-        }
-    }
-    
-    return [[freeEmployees copy] autorelease];
-}
-
 - (AVWasher *)freeWasher {
     return [self freeEmployeeWithClass:[AVWasher class]];
 }
@@ -91,19 +82,24 @@
 }
 
 - (id)freeEmployeeWithClass:(Class)cls {
-    return [[self findFreeEmployees:[self employeesWithClass:cls]] firstObject];
+    return [[self freeEmployeesWithClass:cls] firstObject];
 }
 
-- (void)enqueueCars {
-    AVCar *car = [AVCar object];
-    AVQueue *carQueue = self.carQueue;
-    for (NSUInteger index = 0; index < 9; index++) {
-        [carQueue enqueueObject:car];
+- (id)freeEmployeesWithClass:(Class)cls {
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(AVEmployee *employee, NSDictionary *bindings) {
+        return employee.free;
+    }];
+    
+    return [[self employeesWithClass:cls] filteredArrayUsingPredicate:predicate];
+}
+
+- (void)enqueueCars:(NSArray *)cars {
+    for (AVCar *car in cars) {
+        [self.carQueue enqueueObject:car];
     }
 }
 
 - (void)washCar:(AVCar *)car {
-    [self enqueueCars];
     [self.carQueue enqueueObject:car];
     
     NSUInteger count = [self.carQueue count] + 1;
@@ -121,3 +117,4 @@
 }
 
 @end
+

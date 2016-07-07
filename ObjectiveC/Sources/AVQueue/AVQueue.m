@@ -10,7 +10,7 @@
 
 #import "AVCar.h"
 
-@interface AVQueue()
+@interface AVQueue ()
 @property (nonatomic, retain) NSMutableArray *mutableQueue;
 
 @end
@@ -39,6 +39,10 @@
     [self.mutableQueue removeObject:car];
     
     return car;
+}
+
+- (NSUInteger)count {
+    return [self.mutableQueue count];
 }
 
 @end

@@ -16,5 +16,6 @@
 
 - (void)enqueueObject:(id)object;
 - (AVCar *)dequeueObject;
+- (NSUInteger)count;
 
 @end
