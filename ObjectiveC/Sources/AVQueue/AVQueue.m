@@ -35,10 +35,11 @@
 }
 
 - (AVCar *)dequeueObject {
-    AVCar *car = [self.mutableQueue firstObject];
-    [self.mutableQueue removeObject:car];
+    NSMutableArray *mutableQueue = self.mutableQueue;
+    id firstObject = [mutableQueue firstObject];
+    [mutableQueue removeObject:firstObject];
     
-    return car;
+    return firstObject;
 }
 
 - (NSUInteger)count {

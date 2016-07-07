@@ -17,8 +17,8 @@ int main(int argc, const char * argv[]) {
 //        AVCreatureTest *test = [[AVCreatureTest new] autorelease];
 //        [test startTest];
         
-//        NSString *string = [NSMutableString generateStringWithLength:5];
-//        NSLog(@"Your string is - \"%@\"\n\n", string);
+        NSString *string = [NSMutableString generateStringWithLength:5];
+        NSLog(@"Your string is - \"%@\"\n\n", string);
         
         AVCarWash *testCarWash = [[AVCarWash new] autorelease];
         NSMutableArray *cars = [NSMutableArray array];

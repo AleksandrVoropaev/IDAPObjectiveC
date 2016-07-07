@@ -10,4 +10,16 @@
 
 @implementation NSArray (AVExtensions)
 
+- (NSArray *)filteredArrayWithBlock:(AVArrayFilterBlock)block {
+    if (!block) {
+        return self;
+    }
+
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return block(evaluatedObject);
+    }];
+
+    return [self filteredArrayUsingPredicate:predicate];
+}
+
 @end

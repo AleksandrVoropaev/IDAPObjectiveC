@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef BOOL(^AVArrayFilterBlock)(id object);
+
 @interface NSArray (AVExtensions)
+
+- (NSArray *)filteredArrayWithBlock:(AVArrayFilterBlock)block;
 
 @end

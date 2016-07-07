@@ -15,7 +15,7 @@
 + (NSString *)generateStringWithLength:(NSUInteger)length {
     NSMutableString *string = [NSMutableString stringWithCapacity:length];
     for (NSUInteger index = 0; index < length; index++) {
-        [string appendFormat:@"%C", (unichar)('a' + randomWithValue(25))];
+        [string appendFormat:@"%C", (unichar)(AVRandomWithRange('a', 'z'))];
     }
     
     return string;

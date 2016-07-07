@@ -18,6 +18,7 @@
 #import "AVQueue.h"
 
 #import "NSObject+AVExtensions.h"
+#import "NSArray+AVExtensions.h"
 
 @interface AVCarWash()
 @property (nonatomic, retain) AVBuilding        *administrationBuilding;
@@ -86,11 +87,13 @@
 }
 
 - (id)freeEmployeesWithClass:(Class)cls {
-    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(AVEmployee *employee, NSDictionary *bindings) {
-        return employee.free;
-    }];
+//    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(AVEmployee *employee, NSDictionary *bindings) {
+//        return employee.free;
+//    }];
+//    
+//    return [[self employeesWithClass:cls] filteredArrayUsingPredicate:predicate];
     
-    return [[self employeesWithClass:cls] filteredArrayUsingPredicate:predicate];
+    return [[self employeesWithClass:cls] filteredArrayWithBlock:^BOOL(AVEmployee *employee) {return employee.free;}];
 }
 
 - (void)enqueueCars:(NSArray *)cars {
