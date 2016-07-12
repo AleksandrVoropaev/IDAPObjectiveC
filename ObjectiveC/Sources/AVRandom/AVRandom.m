@@ -7,6 +7,7 @@
 //
 
 #include <stdlib.h>
+#include <Foundation/Foundation.h>
 
 #include "AVRandom.h"
 
@@ -18,5 +19,5 @@ uint32_t AVRandomWithRange(uint32_t firstValue, uint32_t secondValue) {
 }
 
 uint32_t AVRandomWithValue(uint32_t value) {
-    return AVRandomWithRange(value, 0);
+    return AVRandomWithRange(0, value);
 }

@@ -12,6 +12,6 @@ typedef BOOL(^AVArrayFilterBlock)(id object);
 
 @interface NSArray (AVExtensions)
 
-- (NSArray *)filteredArrayWithBlock:(AVArrayFilterBlock)block;
+- (NSArray *)filteredArrayUsingBlock:(AVArrayFilterBlock)block;
 
 @end

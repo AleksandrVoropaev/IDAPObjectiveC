@@ -39,8 +39,8 @@
 
 - (instancetype)init {
     self = [super init];
-    [self initInfrastructure];
     self.carQueue = [AVQueue object];
+    [self initInfrastructure];
     
     return self;
 }
@@ -78,7 +78,7 @@
     return [self freeEmployeeWithClass:[AVBookkeeper class]];
 }
 
-- (AVDirector *)freeDitrector {
+- (AVDirector *)freeDirector {
     return [self freeEmployeeWithClass:[AVDirector class]];
 }
 
@@ -87,13 +87,7 @@
 }
 
 - (id)freeEmployeesWithClass:(Class)cls {
-//    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(AVEmployee *employee, NSDictionary *bindings) {
-//        return employee.free;
-//    }];
-//    
-//    return [[self employeesWithClass:cls] filteredArrayUsingPredicate:predicate];
-    
-    return [[self employeesWithClass:cls] filteredArrayWithBlock:^BOOL(AVEmployee *employee) {return employee.free;}];
+    return [[self employeesWithClass:cls] filteredArrayUsingBlock:^BOOL(AVEmployee *employee) { return employee.free; }];
 }
 
 - (void)enqueueCars:(NSArray *)cars {
@@ -105,15 +99,12 @@
 - (void)washCar:(AVCar *)car {
     [self.carQueue enqueueObject:car];
     
-    NSUInteger count = [self.carQueue count] + 1;
-    for (NSUInteger index = 0; index < count; index++) {
-        AVCar *carToWash = [self.carQueue dequeueObject];
-
+    while ((car = [self.carQueue dequeueObject])) {
         AVWasher *washer = [self freeWasher];
         AVBookkeeper *bookkeeper = [self freeBookkeeper];
-        AVDirector *director = [self freeDitrector];
+        AVDirector *director = [self freeDirector];
         
-        [washer processObject:carToWash];
+        [washer processObject:car];
         [bookkeeper processObject:washer];
         [director processObject:bookkeeper];
     }

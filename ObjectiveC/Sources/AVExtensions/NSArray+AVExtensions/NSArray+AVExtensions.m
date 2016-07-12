@@ -10,7 +10,7 @@
 
 @implementation NSArray (AVExtensions)
 
-- (NSArray *)filteredArrayWithBlock:(AVArrayFilterBlock)block {
+- (NSArray *)filteredArrayUsingBlock:(AVArrayFilterBlock)block {
     if (!block) {
         return self;
     }

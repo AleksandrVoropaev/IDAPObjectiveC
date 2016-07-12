@@ -10,6 +10,16 @@
 
 @interface NSMutableString (AVExtensions)
 
-+ (NSString*)generateStringWithLength:(NSUInteger)length;
++ (id)alphanumericAlphabet;
++ (id)numericAlphabet;
++ (id)lowercaseAlphabet;
++ (id)uppercaseAlphabet;
++ (id)letterAlphabet;
+
++ (id)alphabetWithUnicodeRange:(NSRange)range;
+
++ (id)randomString;
++ (id)randomStringWithLength:(NSUInteger)length;
++ (id)randomStringWithLength:(NSUInteger)length alphabet:(NSString *)alphabet;
 
 @end

@@ -13,6 +13,7 @@
 #import "NSObject+AVExtensions.h"
 
 @interface AVQueue : NSMutableArray
+//@property (nonatomic, assign) NSUInteger count;
 
 - (void)enqueueObject:(id)object;
 - (AVCar *)dequeueObject;

@@ -17,6 +17,8 @@
 
 @implementation AVQueue
 
+//@synthesize count;
+
 - (void)dealloc {
     self.mutableQueue = nil;
     
@@ -34,12 +36,12 @@
     [self.mutableQueue addObject:object];
 }
 
-- (AVCar *)dequeueObject {
+- (id)dequeueObject {
     NSMutableArray *mutableQueue = self.mutableQueue;
-    id firstObject = [mutableQueue firstObject];
-    [mutableQueue removeObject:firstObject];
+    id object = [mutableQueue firstObject];
+    [mutableQueue removeObject:object];
     
-    return firstObject;
+    return object;
 }
 
 - (NSUInteger)count {
