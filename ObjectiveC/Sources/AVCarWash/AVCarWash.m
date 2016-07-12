@@ -98,6 +98,7 @@
 
 - (void)washCar:(AVCar *)car {
     [self.carQueue enqueueObject:car];
+    car = nil;
     
     while ((car = [self.carQueue dequeueObject])) {
         AVWasher *washer = [self freeWasher];

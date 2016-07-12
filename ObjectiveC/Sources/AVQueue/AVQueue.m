@@ -20,32 +20,40 @@
 //@synthesize count;
 
 - (void)dealloc {
-    self.mutableQueue = nil;
+//    self.mutableQueue = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
-    self.mutableQueue = [NSMutableArray array];
-    
+//    self.mutableQueue = [NSMutableArray array];
+    self = [NSMutableArray array];
     return self;
 }
 
 - (void)enqueueObject:(id)object {
-    [self.mutableQueue addObject:object];
+//    [self.mutableQueue addObject:object];
+    [self addObject:object];
 }
 
 - (id)dequeueObject {
-    NSMutableArray *mutableQueue = self.mutableQueue;
-    id object = [mutableQueue firstObject];
-    [mutableQueue removeObject:object];
+    id object = [self firstObject];
+    [self removeObject:object];
     
     return object;
 }
 
-- (NSUInteger)count {
-    return [self.mutableQueue count];
-}
+//- (id)dequeueObject {
+//    NSMutableArray *mutableQueue = self.mutableQueue;
+//    id object = [mutableQueue firstObject];
+//    [mutableQueue removeObject:object];
+//    
+//    return object;
+//}
+
+//- (NSUInteger)count {
+//    return [self.mutableQueue count];
+//}
 
 @end
