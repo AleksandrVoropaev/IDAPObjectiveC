@@ -90,9 +90,9 @@
     return [[self employeesWithClass:cls] filteredArrayUsingBlock:^BOOL(AVEmployee *employee) { return employee.free; }];
 }
 
-- (void)enqueueCars:(NSArray *)cars {
+- (void)washCars:(NSArray *)cars {
     for (AVCar *car in cars) {
-        [self.carQueue enqueueObject:car];
+        [self washCar:car];
     }
 }
 

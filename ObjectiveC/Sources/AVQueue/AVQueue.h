@@ -8,15 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AVCar.h"
-
-#import "NSObject+AVExtensions.h"
-
-@interface AVQueue : NSMutableArray
-@property (nonatomic, assign) NSUInteger count;
+@interface AVQueue : NSObject
+@property (nonatomic, readonly) NSUInteger count;
 
 - (void)enqueueObject:(id)object;
-- (AVCar *)dequeueObject;
-//- (NSUInteger)count;
+- (id)dequeueObject;
 
 @end

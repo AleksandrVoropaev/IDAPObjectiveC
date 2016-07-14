@@ -25,6 +25,10 @@
 		1F3C59251D22CCD20083753B /* AVCreatureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C59151D22CCD20083753B /* AVCreatureTest.m */; };
 		1F64B3C41D2E90AE00905099 /* NSArray+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3C31D2E90AE00905099 /* NSArray+AVExtensions.m */; };
 		1F64B3C81D2E988C00905099 /* AVRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3C71D2E988C00905099 /* AVRandom.m */; };
+		1F64B3CD1D37A95E00905099 /* AVAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3CC1D37A95E00905099 /* AVAlphabet.m */; };
+		1F64B3D01D37AA7200905099 /* AVRangeAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3CF1D37AA7200905099 /* AVRangeAlphabet.m */; };
+		1F64B3D31D37AAAC00905099 /* AVClusterAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3D21D37AAAC00905099 /* AVClusterAlphabet.m */; };
+		1F64B3D61D37AD7500905099 /* AVStringsAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3D51D37AD7500905099 /* AVStringsAlphabet.m */; };
 		1F96B8491D100DE50018B3CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8481D100DE50018B3CB /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +83,14 @@
 		1F64B3C31D2E90AE00905099 /* NSArray+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AVExtensions.m"; sourceTree = "<group>"; };
 		1F64B3C61D2E988C00905099 /* AVRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVRandom.h; sourceTree = "<group>"; };
 		1F64B3C71D2E988C00905099 /* AVRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVRandom.m; sourceTree = "<group>"; };
+		1F64B3CB1D37A95E00905099 /* AVAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAlphabet.h; sourceTree = "<group>"; };
+		1F64B3CC1D37A95E00905099 /* AVAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAlphabet.m; sourceTree = "<group>"; };
+		1F64B3CE1D37AA7200905099 /* AVRangeAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVRangeAlphabet.h; sourceTree = "<group>"; };
+		1F64B3CF1D37AA7200905099 /* AVRangeAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVRangeAlphabet.m; sourceTree = "<group>"; };
+		1F64B3D11D37AAAC00905099 /* AVClusterAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVClusterAlphabet.h; sourceTree = "<group>"; };
+		1F64B3D21D37AAAC00905099 /* AVClusterAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVClusterAlphabet.m; sourceTree = "<group>"; };
+		1F64B3D41D37AD7500905099 /* AVStringsAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVStringsAlphabet.h; sourceTree = "<group>"; };
+		1F64B3D51D37AD7500905099 /* AVStringsAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVStringsAlphabet.m; sourceTree = "<group>"; };
 		1F96B8451D100DE50018B3CB /* ObjectiveC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectiveC; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F96B8481D100DE50018B3CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +109,7 @@
 		1F3C58E61D22CCD20083753B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1F64B3C91D37A93600905099 /* AVAlphabet */,
 				1F3C58E71D22CCD20083753B /* AVCarWash */,
 				1F3C58FE1D22CCD20083753B /* AVCreature */,
 				1F3C590E1D22CCD20083753B /* AVQueue */,
@@ -259,6 +272,29 @@
 			path = AVRandom;
 			sourceTree = "<group>";
 		};
+		1F64B3C91D37A93600905099 /* AVAlphabet */ = {
+			isa = PBXGroup;
+			children = (
+				1F64B3CA1D37A93600905099 /* Private */,
+				1F64B3CB1D37A95E00905099 /* AVAlphabet.h */,
+				1F64B3CC1D37A95E00905099 /* AVAlphabet.m */,
+			);
+			path = AVAlphabet;
+			sourceTree = "<group>";
+		};
+		1F64B3CA1D37A93600905099 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				1F64B3CE1D37AA7200905099 /* AVRangeAlphabet.h */,
+				1F64B3CF1D37AA7200905099 /* AVRangeAlphabet.m */,
+				1F64B3D41D37AD7500905099 /* AVStringsAlphabet.h */,
+				1F64B3D51D37AD7500905099 /* AVStringsAlphabet.m */,
+				1F64B3D11D37AAAC00905099 /* AVClusterAlphabet.h */,
+				1F64B3D21D37AAAC00905099 /* AVClusterAlphabet.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
 		1F96B83C1D100DE50018B3CB = {
 			isa = PBXGroup;
 			children = (
@@ -342,12 +378,16 @@
 			files = (
 				1F3C59241D22CCD20083753B /* AVQueue.m in Sources */,
 				1F3C59181D22CCD20083753B /* AVBuilding.m in Sources */,
+				1F64B3D61D37AD7500905099 /* AVStringsAlphabet.m in Sources */,
+				1F64B3D31D37AAAC00905099 /* AVClusterAlphabet.m in Sources */,
 				1F3C591A1D22CCD20083753B /* AVWashingRoom.m in Sources */,
+				1F64B3CD1D37A95E00905099 /* AVAlphabet.m in Sources */,
 				1F64B3C81D2E988C00905099 /* AVRandom.m in Sources */,
 				1F3C591C1D22CCD20083753B /* AVDirector.m in Sources */,
 				1F3C591F1D22CCD20083753B /* AVCreature.m in Sources */,
 				1F96B8491D100DE50018B3CB /* main.m in Sources */,
 				1F3C591E1D22CCD20083753B /* AVWasher.m in Sources */,
+				1F64B3D01D37AA7200905099 /* AVRangeAlphabet.m in Sources */,
 				1F3C59221D22CCD20083753B /* NSObject+AVExtensions.m in Sources */,
 				1F3C59161D22CCD20083753B /* AVCar.m in Sources */,
 				1F3C591B1D22CCD20083753B /* AVBookkeeper.m in Sources */,

@@ -10,16 +10,18 @@
 
 @interface NSMutableString (AVExtensions)
 
-+ (id)alphanumericAlphabet;
-+ (id)numericAlphabet;
-+ (id)lowercaseAlphabet;
-+ (id)uppercaseAlphabet;
-+ (id)letterAlphabet;
++ (instancetype)alphanumericAlphabet;
++ (instancetype)numericAlphabet;
++ (instancetype)lowercaseAlphabet;
++ (instancetype)uppercaseAlphabet;
++ (instancetype)letterAlphabet;
 
-+ (id)alphabetWithUnicodeRange:(NSRange)range;
++ (instancetype)alphabetWithUnicodeRange:(NSRange)range;
 
-+ (id)randomString;
-+ (id)randomStringWithLength:(NSUInteger)length;
-+ (id)randomStringWithLength:(NSUInteger)length alphabet:(NSString *)alphabet;
++ (instancetype)randomString;
++ (instancetype)randomStringWithLength:(NSUInteger)length;
++ (instancetype)randomStringWithLength:(NSUInteger)length alphabet:(NSString *)alphabet;
+
+- (NSArray *)symbols;
 
 @end

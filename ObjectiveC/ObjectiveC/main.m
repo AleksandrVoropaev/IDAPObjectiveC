@@ -10,26 +10,39 @@
 
 #import "AVCreatureTest.h"
 #import "AVCarWash.h"
+
 #import "NSMutableString+AVExtensions.h"
+#import "NSObject+AVExtensions.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 //        AVCreatureTest *test = [[AVCreatureTest new] autorelease];
 //        [test startTest];
         
-        NSString *string = [NSMutableString randomString];
-        NSLog(@"Your string is - \"%@\"\n\n", string);
+//        NSMutableString *string = [NSMutableString alphanumericAlphabet];
+//        NSLog(@"Your string is - \"%@\"\n\n", string);
+//        string = [NSMutableString numericAlphabet];
+//        NSLog(@"Your string is - \"%@\"\n\n", string);
+//        string = [NSMutableString lowercaseAlphabet];
+//        NSLog(@"Your string is - \"%@\"\n\n", string);
+//        string = [NSMutableString uppercaseAlphabet];
+//        NSLog(@"Your string is - \"%@\"\n\n", string);
+//        string = [NSMutableString alphabetWithUnicodeRange:NSMakeRange('!', '@'-'!'+1)];
+//        NSLog(@"Your string is - \"%@\"\n\n", string);
+//        string = [NSMutableString randomString];
+//        NSLog(@"Your string is - \"%@\"\n\n", string);
+//        string = [NSMutableString randomStringWithLength:10];
+//        NSLog(@"Your string is - \"%@\"\n\n", string);
+//        string = [NSMutableString randomStringWithLength:5 alphabet:string];
+//        NSLog(@"Your string is - \"%@\"\n\n", string);
         
-        AVCarWash *testCarWash = [[AVCarWash new] autorelease];
-        NSMutableArray *cars = [NSMutableArray array];
-        AVCar *car = [AVCar object];
-        
-        for (NSUInteger index = 0; index < 9; index++) {
-            [cars addObject:car];
-        }
-        
-        [testCarWash enqueueCars:cars];
-        [testCarWash washCar:car];
+//        AVCarWash *testCarWash = [AVCarWash object];
+//        NSMutableArray *cars = [NSMutableArray array];
+//        NSUInteger carsCount = 10;
+//        for (NSUInteger index = 0; index < carsCount; index++) {
+//            [cars addObject:[AVCar object]];
+//        }
+//        [testCarWash washCars:cars];
     }
     
     return 0;

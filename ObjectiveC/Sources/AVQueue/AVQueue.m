@@ -17,43 +17,35 @@
 
 @implementation AVQueue
 
-//@synthesize count;
+@dynamic count;
 
 - (void)dealloc {
-//    self.mutableQueue = nil;
+    self.mutableQueue = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
-//    self.mutableQueue = [NSMutableArray array];
-    self = [NSMutableArray array];
+    self.mutableQueue = [NSMutableArray array];
+    
     return self;
 }
 
 - (void)enqueueObject:(id)object {
-//    [self.mutableQueue addObject:object];
-    [self addObject:object];
+    [self.mutableQueue addObject:object];
 }
 
 - (id)dequeueObject {
-    id object = [self firstObject];
-    [self removeObject:object];
+    NSMutableArray *mutableQueue = self.mutableQueue;
+    id object = [mutableQueue firstObject];
+    [mutableQueue removeObject:object];
     
     return object;
 }
 
-//- (id)dequeueObject {
-//    NSMutableArray *mutableQueue = self.mutableQueue;
-//    id object = [mutableQueue firstObject];
-//    [mutableQueue removeObject:object];
-//    
-//    return object;
-//}
-
-//- (NSUInteger)count {
-//    return [self.mutableQueue count];
-//}
+- (NSUInteger)count {
+    return [self.mutableQueue count];
+}
 
 @end
