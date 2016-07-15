@@ -8,19 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AVAlphabet.h"
+
 @interface NSString (AVExtensions)
-
-+ (instancetype)alphanumericAlphabet;
-+ (instancetype)numericAlphabet;
-+ (instancetype)lowercaseAlphabet;
-+ (instancetype)uppercaseAlphabet;
-+ (instancetype)letterAlphabet;
-
-+ (instancetype)alphabetWithUnicodeRange:(NSRange)range;
 
 + (instancetype)randomString;
 + (instancetype)randomStringWithLength:(NSUInteger)length;
-+ (instancetype)randomStringWithLength:(NSUInteger)length alphabet:(NSString *)alphabet;
++ (instancetype)randomStringWithLength:(NSUInteger)length alphabet:(AVAlphabet *)alphabet;
 
 - (NSArray *)symbols;
 

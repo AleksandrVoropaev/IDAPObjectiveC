@@ -18,6 +18,12 @@ NSRange AVMakeAlphabetRange(unichar firstChar, unichar secondChar);
 + (instancetype)alphabetWithStrings:(NSArray *)strings;
 + (instancetype)alphabetWithAlphabets:(NSArray *)alphabets;
 
++ (instancetype)alphanumericAlphabet;
++ (instancetype)numericAlphabet;
++ (instancetype)lowercaseAlphabet;
++ (instancetype)uppercaseAlphabet;
++ (instancetype)letterAlphabet;
+
 - (instancetype)initWithRange:(NSRange)range;
 - (instancetype)initWithSymbols:(NSString *)symbols;
 - (instancetype)initWithStrings:(NSArray *)strings;

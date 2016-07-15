@@ -6,6 +6,8 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
+#import "AVAlphabet.h"
+
 #import "NSString+AVExtensions.h"
 
 #import "AVRandom.h"
@@ -14,55 +16,19 @@ static const NSUInteger kNSStringRandomStringDefaultMaxLength = 30;
 
 @implementation NSMutableString (AVExtensions)
 
-+ (instancetype)alphanumericAlphabet {
-    NSMutableString *alphanumericAlphabet = [NSMutableString stringWithString:[self letterAlphabet]];
-    [alphanumericAlphabet appendString:[self numericAlphabet]];
-    
-    return [self stringWithString: alphanumericAlphabet];
- }
-
-+ (instancetype)numericAlphabet {
-    return [self alphabetWithUnicodeRange:NSMakeRange('0', 10)];
-}
-
-+ (instancetype)lowercaseAlphabet {
-    return [self alphabetWithUnicodeRange:NSMakeRange('a', 'z' - 'a')];
-}
-
-+ (instancetype)uppercaseAlphabet {
-    return [self alphabetWithUnicodeRange:NSMakeRange('A', 'Z' - 'A')];
-}
-
-+ (instancetype)letterAlphabet {
-    NSMutableString *letterAlphabet = [NSMutableString stringWithString:[self lowercaseAlphabet]];
-    [letterAlphabet appendString:[self uppercaseAlphabet]];
-    
-    return [self stringWithString: letterAlphabet];
-}
-
-
-+ (instancetype)alphabetWithUnicodeRange:(NSRange)range {
-    NSMutableString *string = [NSMutableString string];
-    for (NSUInteger count = range.location; count < range.location + range.length; count++) {
-        [string appendFormat:@"%c", (unichar)(count)];
-    }
-    
-    return [self stringWithString:string];
-}
-
-
 + (instancetype)randomString {
     return [self randomStringWithLength:arc4random_uniform(kNSStringRandomStringDefaultMaxLength)];
 }
 
 + (instancetype)randomStringWithLength:(NSUInteger)length {
-    return [self randomStringWithLength:length alphabet:[self alphanumericAlphabet]];
+    AVAlphabet *alphanumericAlphabet = [AVAlphabet alphanumericAlphabet];
+    return [self randomStringWithLength:length alphabet:alphanumericAlphabet];
 }
 
-+ (instancetype)randomStringWithLength:(NSUInteger)length alphabet:(NSString *)alphabet {
++ (instancetype)randomStringWithLength:(NSUInteger)length alphabet:(AVAlphabet *)alphabet {
     NSMutableString *string = [NSMutableString stringWithCapacity:length];
     for (NSUInteger index = 0; index < length; index++) {
-        [string appendFormat:@"%C", [alphabet characterAtIndex:(AVRandomWithValue((uint32_t)[alphabet length]))]];
+        [string appendFormat:@"%@", [alphabet stringAtIndex:(AVRandomWithValue((uint32_t)[alphabet count]))]];
     }
 
     return [self stringWithString:string];

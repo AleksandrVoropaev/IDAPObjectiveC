@@ -42,6 +42,32 @@ NSRange AVMakeAlphabetRange(unichar firstChar, unichar secondChar) {
     return [[[AVClusterAlphabet alloc] initWithAlphabets:alphabets] autorelease];
 }
 
++ (instancetype)alphanumericAlphabet {
+    NSMutableString *alphanumericAlphabet = [NSMutableString stringWithString:[self letterAlphabet]];
+    [alphanumericAlphabet appendString:[self numericAlphabet]];
+    
+    return [self alphabetWithSymbols:alphanumericAlphabet];
+}
+
++ (instancetype)numericAlphabet {
+    return [self alphabetWithRange:NSMakeRange('0', 10)];
+}
+
++ (instancetype)lowercaseAlphabet {
+    return [self alphabetWithRange:NSMakeRange('a', 'z' - 'a')];
+}
+
++ (instancetype)uppercaseAlphabet {
+    return [self alphabetWithRange:NSMakeRange('A', 'Z' - 'A')];
+}
+
++ (instancetype)letterAlphabet {
+    NSMutableString *letterAlphabet = [NSMutableString stringWithString:[self lowercaseAlphabet]];
+    [letterAlphabet appendString:[self uppercaseAlphabet]];
+    
+    return [self alphabetWithSymbols:letterAlphabet];
+}
+
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
