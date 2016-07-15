@@ -14,7 +14,7 @@
 #import "AVClusterAlphabet.h"
 #import "AVStringsAlphabet.h"
 
-#import "NSMutableString+AVExtensions.h"
+#import "NSString+AVExtensions.h"
 
 NSRange AVMakeAlphabetRange(unichar firstChar, unichar secondChar) {
     return NSMakeRange(MIN(firstChar, secondChar),
@@ -84,7 +84,7 @@ NSRange AVMakeAlphabetRange(unichar firstChar, unichar secondChar) {
     return nil;
 }
 
-- (NSString *)objectAtIndexedSubscript:(NSUInteger)index {
+- (id)objectAtIndexedSubscript:(NSUInteger)index {
     return [self stringAtIndex:index];
 }
 
@@ -110,8 +110,8 @@ NSRange AVMakeAlphabetRange(unichar firstChar, unichar secondChar) {
     len = length - state->state;
     
     if (0 != len) {
-        for (NSUInteger index = state->state; index < length; index++) {
-            stackbuf[index] = self[index];
+        for (NSUInteger index = 0; index < len; index++) {
+            stackbuf[index] = self[index + state->state];
         }
     }
     

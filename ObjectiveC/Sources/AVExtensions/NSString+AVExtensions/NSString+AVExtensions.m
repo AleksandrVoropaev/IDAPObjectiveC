@@ -6,11 +6,11 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
-#import "NSMutableString+AVExtensions.h"
+#import "NSString+AVExtensions.h"
 
 #import "AVRandom.h"
 
-static const NSUInteger kNSStringRandomStringDefaultLength = 30;
+static const NSUInteger kNSStringRandomStringDefaultMaxLength = 30;
 
 @implementation NSMutableString (AVExtensions)
 
@@ -52,7 +52,7 @@ static const NSUInteger kNSStringRandomStringDefaultLength = 30;
 
 
 + (instancetype)randomString {
-    return [self randomStringWithLength:arc4random_uniform(kNSStringRandomStringDefaultLength)];
+    return [self randomStringWithLength:arc4random_uniform(kNSStringRandomStringDefaultMaxLength)];
 }
 
 + (instancetype)randomStringWithLength:(NSUInteger)length {

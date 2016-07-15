@@ -20,7 +20,6 @@
 		1F3C59201D22CCD20083753B /* AVFemaleCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C59031D22CCD20083753B /* AVFemaleCreature.m */; };
 		1F3C59211D22CCD20083753B /* AVMaleCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C59061D22CCD20083753B /* AVMaleCreature.m */; };
 		1F3C59221D22CCD20083753B /* NSObject+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C590A1D22CCD20083753B /* NSObject+AVExtensions.m */; };
-		1F3C59231D22CCD20083753B /* NSMutableString+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C590D1D22CCD20083753B /* NSMutableString+AVExtensions.m */; };
 		1F3C59241D22CCD20083753B /* AVQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C59101D22CCD20083753B /* AVQueue.m */; };
 		1F3C59251D22CCD20083753B /* AVCreatureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C59151D22CCD20083753B /* AVCreatureTest.m */; };
 		1F64B3C41D2E90AE00905099 /* NSArray+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3C31D2E90AE00905099 /* NSArray+AVExtensions.m */; };
@@ -29,6 +28,7 @@
 		1F64B3D01D37AA7200905099 /* AVRangeAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3CF1D37AA7200905099 /* AVRangeAlphabet.m */; };
 		1F64B3D31D37AAAC00905099 /* AVClusterAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3D21D37AAAC00905099 /* AVClusterAlphabet.m */; };
 		1F64B3D61D37AD7500905099 /* AVStringsAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3D51D37AD7500905099 /* AVStringsAlphabet.m */; };
+		1F64B3D91D38D6EB00905099 /* NSString+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3D81D38D6EB00905099 /* NSString+AVExtensions.m */; };
 		1F96B8491D100DE50018B3CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8481D100DE50018B3CB /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -72,8 +72,6 @@
 		1F3C59061D22CCD20083753B /* AVMaleCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVMaleCreature.m; sourceTree = "<group>"; };
 		1F3C59091D22CCD20083753B /* NSObject+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AVExtensions.h"; sourceTree = "<group>"; };
 		1F3C590A1D22CCD20083753B /* NSObject+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AVExtensions.m"; sourceTree = "<group>"; };
-		1F3C590C1D22CCD20083753B /* NSMutableString+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+AVExtensions.h"; sourceTree = "<group>"; };
-		1F3C590D1D22CCD20083753B /* NSMutableString+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+AVExtensions.m"; sourceTree = "<group>"; };
 		1F3C590F1D22CCD20083753B /* AVQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVQueue.h; sourceTree = "<group>"; };
 		1F3C59101D22CCD20083753B /* AVQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVQueue.m; sourceTree = "<group>"; };
 		1F3C59111D22CCD20083753B /* iOS Study Plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Study Plan.txt"; sourceTree = "<group>"; };
@@ -91,6 +89,8 @@
 		1F64B3D21D37AAAC00905099 /* AVClusterAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVClusterAlphabet.m; sourceTree = "<group>"; };
 		1F64B3D41D37AD7500905099 /* AVStringsAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVStringsAlphabet.h; sourceTree = "<group>"; };
 		1F64B3D51D37AD7500905099 /* AVStringsAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVStringsAlphabet.m; sourceTree = "<group>"; };
+		1F64B3D71D38D6EB00905099 /* NSString+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AVExtensions.h"; sourceTree = "<group>"; };
+		1F64B3D81D38D6EB00905099 /* NSString+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AVExtensions.m"; sourceTree = "<group>"; };
 		1F96B8451D100DE50018B3CB /* ObjectiveC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectiveC; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F96B8481D100DE50018B3CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -222,8 +222,8 @@
 		1F3C590B1D22CCD20083753B /* NSString+AVExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				1F3C590C1D22CCD20083753B /* NSMutableString+AVExtensions.h */,
-				1F3C590D1D22CCD20083753B /* NSMutableString+AVExtensions.m */,
+				1F64B3D71D38D6EB00905099 /* NSString+AVExtensions.h */,
+				1F64B3D81D38D6EB00905099 /* NSString+AVExtensions.m */,
 			);
 			path = "NSString+AVExtensions";
 			sourceTree = "<group>";
@@ -394,8 +394,8 @@
 				1F3C59171D22CCD20083753B /* AVCarWash.m in Sources */,
 				1F64B3C41D2E90AE00905099 /* NSArray+AVExtensions.m in Sources */,
 				1F3C59201D22CCD20083753B /* AVFemaleCreature.m in Sources */,
-				1F3C59231D22CCD20083753B /* NSMutableString+AVExtensions.m in Sources */,
 				1F3C59211D22CCD20083753B /* AVMaleCreature.m in Sources */,
+				1F64B3D91D38D6EB00905099 /* NSString+AVExtensions.m in Sources */,
 				1F3C591D1D22CCD20083753B /* AVEmployee.m in Sources */,
 				1F3C59191D22CCD20083753B /* AVRoom.m in Sources */,
 				1F3C59251D22CCD20083753B /* AVCreatureTest.m in Sources */,

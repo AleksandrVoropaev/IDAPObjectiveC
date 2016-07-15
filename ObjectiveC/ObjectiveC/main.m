@@ -11,7 +11,7 @@
 #import "AVCreatureTest.h"
 #import "AVCarWash.h"
 
-#import "NSMutableString+AVExtensions.h"
+#import "NSString+AVExtensions.h"
 #import "NSObject+AVExtensions.h"
 
 int main(int argc, const char * argv[]) {

@@ -38,7 +38,7 @@
 
 - (id)dequeueObject {
     NSMutableArray *mutableQueue = self.mutableQueue;
-    id object = [mutableQueue firstObject];
+    id object = [[[mutableQueue firstObject] retain] autorelease];
     [mutableQueue removeObject:object];
     
     return object;
