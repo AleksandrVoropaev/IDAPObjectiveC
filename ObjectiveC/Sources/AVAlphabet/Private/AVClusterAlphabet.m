@@ -48,8 +48,7 @@
     for (AVAlphabet *alphabet in self.alphabets) {
         if (index <= alphabet.count) {
             return alphabet[index];
-        }
-        else {
+        } else {
             index -= alphabet.count;
         }
     }
@@ -76,18 +75,6 @@
     }
     
     return count;
-}
-
-#pragma mark -
-#pragma mark NSFastEnumeration
-
-- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-                                  objects:(id _Nonnull [])stackbuf
-                                    count:(NSUInteger)len
-{
-    return [self.alphabets countByEnumeratingWithState:state
-                                             objects:stackbuf
-                                               count:len];
 }
 
 @end

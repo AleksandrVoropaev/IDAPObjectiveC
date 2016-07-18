@@ -22,6 +22,7 @@ static const NSUInteger kNSStringRandomStringDefaultMaxLength = 30;
 
 + (instancetype)randomStringWithLength:(NSUInteger)length {
     AVAlphabet *alphanumericAlphabet = [AVAlphabet alphanumericAlphabet];
+    
     return [self randomStringWithLength:length alphabet:alphanumericAlphabet];
 }
 
