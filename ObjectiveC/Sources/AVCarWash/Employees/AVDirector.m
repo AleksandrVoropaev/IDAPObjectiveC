@@ -11,9 +11,13 @@
 @implementation AVDirector
 
 - (void)processObject:(id)object {
+    self.state = AVEmployeeIsBusy;
+    
     [self takeMoneyFromObject:object];
     
     NSLog(@"I've earned money");
+    
+    self.state = AVEmployeeIsFree;
 }
 
 @end

@@ -29,6 +29,7 @@
 		1F64B3D31D37AAAC00905099 /* AVClusterAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3D21D37AAAC00905099 /* AVClusterAlphabet.m */; };
 		1F64B3D61D37AD7500905099 /* AVStringsAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3D51D37AD7500905099 /* AVStringsAlphabet.m */; };
 		1F64B3D91D38D6EB00905099 /* NSString+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3D81D38D6EB00905099 /* NSString+AVExtensions.m */; };
+		1F64B3DD1D3CE76100905099 /* AVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3DC1D3CE76100905099 /* AVObservableObject.m */; };
 		1F96B8491D100DE50018B3CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8481D100DE50018B3CB /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,8 @@
 		1F64B3D51D37AD7500905099 /* AVStringsAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVStringsAlphabet.m; sourceTree = "<group>"; };
 		1F64B3D71D38D6EB00905099 /* NSString+AVExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AVExtensions.h"; sourceTree = "<group>"; };
 		1F64B3D81D38D6EB00905099 /* NSString+AVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AVExtensions.m"; sourceTree = "<group>"; };
+		1F64B3DB1D3CE76100905099 /* AVObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVObservableObject.h; sourceTree = "<group>"; };
+		1F64B3DC1D3CE76100905099 /* AVObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVObservableObject.m; sourceTree = "<group>"; };
 		1F96B8451D100DE50018B3CB /* ObjectiveC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectiveC; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F96B8481D100DE50018B3CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +129,7 @@
 			children = (
 				1F3C58EB1D22CCD20083753B /* AVCarWash.h */,
 				1F3C58EC1D22CCD20083753B /* AVCarWash.m */,
+				1F64B3DA1D3CE74000905099 /* AVObservableObject */,
 				1F3C58E81D22CCD20083753B /* AVCar */,
 				1F3C58EE1D22CCD20083753B /* Buildings */,
 				1F3C58F51D22CCD20083753B /* Employees */,
@@ -295,6 +299,15 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		1F64B3DA1D3CE74000905099 /* AVObservableObject */ = {
+			isa = PBXGroup;
+			children = (
+				1F64B3DB1D3CE76100905099 /* AVObservableObject.h */,
+				1F64B3DC1D3CE76100905099 /* AVObservableObject.m */,
+			);
+			path = AVObservableObject;
+			sourceTree = "<group>";
+		};
 		1F96B83C1D100DE50018B3CB = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +407,7 @@
 				1F3C59171D22CCD20083753B /* AVCarWash.m in Sources */,
 				1F64B3C41D2E90AE00905099 /* NSArray+AVExtensions.m in Sources */,
 				1F3C59201D22CCD20083753B /* AVFemaleCreature.m in Sources */,
+				1F64B3DD1D3CE76100905099 /* AVObservableObject.m in Sources */,
 				1F3C59211D22CCD20083753B /* AVMaleCreature.m in Sources */,
 				1F64B3D91D38D6EB00905099 /* NSString+AVExtensions.m in Sources */,
 				1F3C591D1D22CCD20083753B /* AVEmployee.m in Sources */,

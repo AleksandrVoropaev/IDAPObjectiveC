@@ -9,8 +9,24 @@
 #import <Foundation/Foundation.h>
 
 #import "AVMoney.h"
+#import "AVObservableObject.h"
 
-@interface AVEmployee : NSObject <AVMoney>
+@class AVEmployee;
+
+typedef NS_ENUM(NSInteger, AVEmployeeState) {
+    AVEmployeeIsFree,
+    AVEmployeeIsBusy
+};
+
+@protocol AVEmployeeObserver <NSObject>
+
+@optional
+- (void)employeeDidBecomeFree:(AVEmployee *)emplloyee;
+- (void)employeeDidBecomeBusy:(AVEmployee *)emplloyee;
+
+@end
+
+@interface AVEmployee : AVObservableObject <AVMoney, AVEmployeeObserver>
 @property (nonatomic, assign)                   NSUInteger  salary;
 @property (nonatomic, assign)                   NSUInteger  yearsOfExperience;
 @property (nonatomic, assign, getter=isFree)    BOOL        free;

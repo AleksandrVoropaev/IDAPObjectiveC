@@ -40,4 +40,30 @@
 
 }
 
+#pragma mark -
+#pragma mark Overload methods
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case AVEmployeeIsBusy:
+            return @selector(employeeDidBecomeBusy:);
+        case AVEmployeeIsFree:
+            return @selector(employeeDidBecomeFree:);
+            
+        default:
+            return [super selectorForState:state];
+    }
+}
+
+#pragma mark -
+#pragma mark Overload methods for AVEmployeeObserver protocol
+
+- (void)employeeDidBecomeFree:(AVEmployee *)emplloyee {
+    NSLog(@"Employee %@ did become free", emplloyee);
+}
+
+- (void)employeeDidBecomeBusy:(AVEmployee *)emplloyee {
+    NSLog(@"Employee %@ did become busy", emplloyee);
+}
+
 @end
