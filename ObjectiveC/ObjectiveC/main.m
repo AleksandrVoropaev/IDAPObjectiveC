@@ -36,13 +36,14 @@ int main(int argc, const char * argv[]) {
 //        string = [NSMutableString randomStringWithLength:5 alphabet:string];
 //        NSLog(@"Your string is - \"%@\"\n\n", string);
         
-//        AVCarWash *testCarWash = [AVCarWash object];
-//        NSMutableArray *cars = [NSMutableArray array];
-//        NSUInteger carsCount = 10;
-//        for (NSUInteger index = 0; index < carsCount; index++) {
-//            [cars addObject:[AVCar object]];
-//        }
-//        [testCarWash washCars:cars];
+        AVCarWash *testCarWash = [AVCarWash object];
+        NSMutableArray *cars = [NSMutableArray array];
+        NSUInteger carsCount = 10;
+        for (NSUInteger index = 0; index < carsCount; index++) {
+            [cars addObject:[AVCar object]];
+        }
+        
+        [testCarWash washCars:cars];
     }
     
     return 0;

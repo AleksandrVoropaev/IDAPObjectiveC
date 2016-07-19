@@ -104,10 +104,13 @@
         AVWasher *washer = [self freeWasher];
         AVBookkeeper *bookkeeper = [self freeBookkeeper];
         AVDirector *director = [self freeDirector];
+        [washer addObserver:bookkeeper];
+        [bookkeeper addObserver:director];
         
         [washer processObject:car];
-        [bookkeeper processObject:washer];
-        [director processObject:bookkeeper];
+        
+        [washer removeObserver:bookkeeper];
+        [bookkeeper removeObserver:director];
     }
 }
 

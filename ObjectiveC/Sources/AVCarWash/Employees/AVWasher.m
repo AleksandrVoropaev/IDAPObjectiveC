@@ -10,17 +10,13 @@
 
 @implementation AVWasher
 
-- (void)processObject:(id)object {
-    self.state = AVEmployeeIsBusy;
-    
+- (void)performWorkWhithObject:(id)object {
     AVCar *car = object;
     
     [self takeMoneyFromObject:car];
     
     car.clean = YES;
     NSLog(@"I've cleaned a car");
-    
-    self.state = AVEmployeeIsFree;
 }
 
 @end

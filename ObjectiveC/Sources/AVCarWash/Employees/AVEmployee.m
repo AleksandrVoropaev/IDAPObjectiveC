@@ -37,7 +37,15 @@
 }
 
 - (void)processObject:(id)object {
+    self.state = AVEmployeeIsBusy;
+    
+    [self performWorkWhithObject:object];
 
+    self.state = AVEmployeeIsFree;
+}
+
+- (void)performWorkWhithObject:(id)object {
+    
 }
 
 #pragma mark -
@@ -60,6 +68,9 @@
 
 - (void)employeeDidBecomeFree:(AVEmployee *)emplloyee {
     NSLog(@"Employee %@ did become free", emplloyee);
+    for (AVEmployee *observer in emplloyee.observerSet) {
+        [observer processObject:emplloyee];
+    }
 }
 
 - (void)employeeDidBecomeBusy:(AVEmployee *)emplloyee {

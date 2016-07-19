@@ -62,19 +62,13 @@
 }
 
 - (BOOL)isObservedByObject:(id)observer {
-    if ([self.mutableObserverSet containsObject:observer]) {
-        return YES;
-    }
-    
-    return NO;
+    return [self.mutableObserverSet containsObject:observer];
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (SEL)selectorForState:(NSUInteger)state {
-    [self doesNotRecognizeSelector:_cmd];
-    
+- (SEL)selectorForState:(NSUInteger)state {    
     return NULL;
 }
 

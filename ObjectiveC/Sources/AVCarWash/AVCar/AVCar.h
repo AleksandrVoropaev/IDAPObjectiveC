@@ -11,22 +11,7 @@
 #import "AVMoney.h"
 #import "AVObservableObject.h"
 
-@class AVCar;
-
-typedef NS_ENUM(NSUInteger, AVCarState) {
-    AVCarIsClean,
-    AVCarIsDirty
-};
-
-@protocol AVCarObserver <NSObject>
-
-@optional
-- (void)carDidBecomeClean:(AVCar *)car;
-- (void)carDidBecomeDirty:(AVCar *)car;
-
-@end
-
-@interface AVCar : AVObservableObject <AVMoney>
+@interface AVCar : NSObject <AVMoney>
 @property (nonatomic, assign, getter=isClean) BOOL clean;
 
 @end

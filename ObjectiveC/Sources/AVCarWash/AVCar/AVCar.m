@@ -30,19 +30,4 @@
     self.money += value;
 }
 
-#pragma mark -
-#pragma mark Overload methods
-
-- (SEL)selectorForState:(NSUInteger)state {
-    switch (state) {
-        case AVCarIsClean:
-            return @selector(carDidBecomeClean:);
-        case AVCarIsDirty:
-            return @selector(carDidBecomeDirty:);
-            
-        default:
-            return [super selectorForState:state];
-    }
-}
-
 @end

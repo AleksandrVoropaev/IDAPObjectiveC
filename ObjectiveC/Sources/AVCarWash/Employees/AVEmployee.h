@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, AVEmployeeState) {
 @property (nonatomic, assign)                   NSUInteger  yearsOfExperience;
 @property (nonatomic, assign, getter=isFree)    BOOL        free;
 
+- (void)performWorkWhithObject:(id)object;
 - (void)processObject:(id)object;
 
 @end

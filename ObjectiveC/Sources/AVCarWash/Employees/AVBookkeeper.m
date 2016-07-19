@@ -10,14 +10,10 @@
 
 @implementation AVBookkeeper
 
-- (void)processObject:(id)object {
-    self.state = AVEmployeeIsBusy;
-
+- (void)performWorkWhithObject:(id)object {
     [self takeMoneyFromObject:object];
     
     NSLog(@"I've counted money");
-
-    self.state = AVEmployeeIsFree;
 }
 
 @end
