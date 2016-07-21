@@ -14,6 +14,8 @@
 #import "NSString+AVExtensions.h"
 #import "NSObject+AVExtensions.h"
 
+NSUInteger const kAVCarsCount = 10;
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 //        AVCreatureTest *test = [[AVCreatureTest new] autorelease];
@@ -37,13 +39,9 @@ int main(int argc, const char * argv[]) {
 //        NSLog(@"Your string is - \"%@\"\n\n", string);
         
         AVCarWash *testCarWash = [AVCarWash object];
-        NSMutableArray *cars = [NSMutableArray array];
-        NSUInteger carsCount = 10;
-        for (NSUInteger index = 0; index < carsCount; index++) {
-            [cars addObject:[AVCar object]];
+        for (NSUInteger index = 0; index < kAVCarsCount; index++) {
+            [testCarWash washCar:[AVCar object]];
         }
-        
-        [testCarWash washCars:cars];
     }
     
     return 0;

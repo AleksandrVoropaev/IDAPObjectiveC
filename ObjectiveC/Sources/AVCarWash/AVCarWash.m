@@ -96,6 +96,22 @@
     }
 }
 
+- (void)addObserversForWasher:(AVWasher *)washer
+                andBookkeeper:(AVBookkeeper *)bookkeeper
+                 withDirector:(AVDirector *)director
+{
+    [washer addObserver:bookkeeper];
+    [bookkeeper addObserver:director];
+}
+
+- (void)removeObserversForWasher:(AVWasher *)washer
+                   andBookkeeper:(AVBookkeeper *)bookkeeper
+                    withDirector:(AVDirector *)director
+{
+    [washer removeObserver:bookkeeper];
+    [bookkeeper removeObserver:director];
+}
+
 - (void)washCar:(AVCar *)car {
     [self.carQueue enqueueObject:car];
     car = nil;
@@ -104,13 +120,11 @@
         AVWasher *washer = [self freeWasher];
         AVBookkeeper *bookkeeper = [self freeBookkeeper];
         AVDirector *director = [self freeDirector];
-        [washer addObserver:bookkeeper];
-        [bookkeeper addObserver:director];
+        [self addObserversForWasher:washer andBookkeeper:bookkeeper withDirector:director];
         
         [washer processObject:car];
         
-        [washer removeObserver:bookkeeper];
-        [bookkeeper removeObserver:director];
+        [self removeObserversForWasher:washer andBookkeeper:bookkeeper withDirector:director];
     }
 }
 
