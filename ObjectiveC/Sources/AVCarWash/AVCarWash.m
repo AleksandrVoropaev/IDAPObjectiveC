@@ -122,7 +122,9 @@
         AVDirector *director = [self freeDirector];
         [self addObserversForWasher:washer andBookkeeper:bookkeeper withDirector:director];
         
-        [washer processObject:car];
+        @synchronized (car) {
+            [washer processObject:car];
+        }
         
         [self removeObserversForWasher:washer andBookkeeper:bookkeeper withDirector:director];
     }

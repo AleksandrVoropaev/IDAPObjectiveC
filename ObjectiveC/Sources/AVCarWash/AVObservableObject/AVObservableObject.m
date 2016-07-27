@@ -39,14 +39,18 @@
 #pragma mark Accessors
 
 - (NSSet *)observerSet {
-    return [[self.mutableObserverSet copy] autorelease];
+    @synchronized (self) {
+        return [[self.mutableObserverSet copy] autorelease];
+    }
 }
 
 - (void)setState:(NSUInteger)state {
-    if (state != _state) {
-        _state = state;
-        
-        [self notifyOfStateChangewithSelector:[self selectorForState:state]];
+    @synchronized (self) {
+        if (state != _state) {
+            _state = state;
+            
+            [self notifyOfStateChangewithSelector:[self selectorForState:state]];
+        }
     }
 }
 
@@ -54,11 +58,15 @@
 #pragma mark Public
 
 - (void)addObserver:(id)observer {
-    [self.mutableObserverSet addObject:observer];
+    @synchronized (self) {
+        [self.mutableObserverSet addObject:observer];
+    }
 }
 
 - (void)removeObserver:(id)observer {
-    [self.mutableObserverSet removeObject:observer];
+    @synchronized (self) {
+        [self.mutableObserverSet removeObject:observer];
+    }
 }
 
 - (BOOL)isObservedByObject:(id)observer {

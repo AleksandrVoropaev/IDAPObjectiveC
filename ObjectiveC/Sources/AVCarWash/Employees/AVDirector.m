@@ -11,9 +11,12 @@
 @implementation AVDirector
 
 - (void)performWorkWhithObject:(id)object {
-    [self takeMoneyFromObject:object];
-    
-    NSLog(@"I've earned money");
+    @synchronized (self) {
+        [self takeMoneyFromObject:object];
+        
+        NSLog(@"I've earned money");
+    }
+    [self performSelectorOnMainThread:@selector(finishProcessing) withObject:nil waitUntilDone:NO];
 }
 
 @end

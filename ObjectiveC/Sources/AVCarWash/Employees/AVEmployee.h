@@ -10,12 +10,16 @@
 
 #import "AVMoney.h"
 #import "AVObservableObject.h"
+#import "AVQueue.h"
+
+#import "NSObject+AVExtensions.h"
 
 @class AVEmployee;
 
 typedef NS_ENUM(NSInteger, AVEmployeeState) {
     AVEmployeeIsFree,
-    AVEmployeeIsBusy
+    AVEmployeeIsBusy,
+    AVEmployeeIsPending
 };
 
 @protocol AVEmployeeObserver <NSObject>
@@ -33,5 +37,6 @@ typedef NS_ENUM(NSInteger, AVEmployeeState) {
 
 - (void)performWorkWhithObject:(id)object;
 - (void)processObject:(id)object;
+- (void)finishProcessing;
 
 @end

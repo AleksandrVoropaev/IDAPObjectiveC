@@ -11,12 +11,15 @@
 @implementation AVWasher
 
 - (void)performWorkWhithObject:(id)object {
-    AVCar *car = object;
-    
-    [self takeMoneyFromObject:car];
-    
-    car.clean = YES;
-    NSLog(@"I've cleaned a car");
+    @synchronized (self) {
+        AVCar *car = object;
+        
+        [self takeMoneyFromObject:car];
+        
+        car.clean = YES;
+        NSLog(@"I've cleaned a car");
+        [self performSelectorOnMainThread:@selector(finishProcessing) withObject:nil waitUntilDone:NO];
+    }
 }
 
 @end
