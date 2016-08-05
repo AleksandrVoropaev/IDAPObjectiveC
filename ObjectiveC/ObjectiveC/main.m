@@ -40,9 +40,12 @@ int main(int argc, const char * argv[]) {
         
         AVCarWash *testCarWash = [AVCarWash object];
         for (NSUInteger index = 0; index < kAVCarsCount; index++) {
+            NSLog(@"\n\n number of run is - %lu \n", (unsigned long)index);
             [testCarWash washCar:[AVCar object]];
         }
     }
+    
+    [[NSRunLoop mainRunLoop] run];
     
     return 0;
 }

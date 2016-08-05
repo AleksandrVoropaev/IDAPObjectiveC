@@ -24,6 +24,7 @@
 @property (nonatomic, retain) AVBuilding        *administrationBuilding;
 @property (nonatomic, retain) AVBuilding        *carWashBuilding;
 @property (nonatomic, retain) AVQueue           *carQueue;
+@property (nonatomic, retain) NSMutableArray    *washers;
 
 @end
 
@@ -33,6 +34,16 @@
     self.administrationBuilding = nil;
     self.carWashBuilding = nil;
     self.carQueue = nil;
+    self.washers = nil;
+    
+    for (AVWasher *washer in [self employeesWithClass:[AVWasher class]]) {
+        [self removeObserversForWasher:washer
+              withCarWashAndBookkeeper:[self employeesWithClass:[AVEmployee class]].firstObject];
+    }
+    
+    [self removeObserverForBookkeeper:[self employeesWithClass:[AVEmployee class]].firstObject
+                         withDirector:[self employeesWithClass:[AVDirector class]].firstObject];
+
     
     [super dealloc];
 }
@@ -40,6 +51,7 @@
 - (instancetype)init {
     self = [super init];
     self.carQueue = [AVQueue object];
+    self.washers = [NSMutableArray array];
     [self initInfrastructure];
     
     return self;
@@ -51,12 +63,22 @@
     AVBuilding *administrationBuilding = [AVBuilding object];
     AVBuilding *carWashBuilding =[AVBuilding object];
     
-    [room addEmployee:[AVDirector object]];
-    [room addEmployees:[AVBookkeeper objectsWithCount:3]];
-    [carWashRoom addEmployees:[AVWasher objectsWithCount:3]];
+    AVDirector *director = [AVDirector object];
+    AVBookkeeper *bookkeeper = [AVBookkeeper object];
+    NSArray *washers = [NSArray arrayWithArray:[AVWasher objectsWithCount:3]];
+    [room addEmployee:director];
+    [room addEmployee:bookkeeper];
+    [carWashRoom addEmployees:washers];
     
+    for (AVWasher *washer in washers) {
+        [self addObserversForWasher:washer withCarWashAndBookkeeper:bookkeeper];
+    }
+    
+    [self addObserverForBookkeeper:bookkeeper withDirector:director];
     [administrationBuilding addRoom:room];
     [carWashBuilding addRoom:carWashRoom];
+    
+    [self.washers addObjectsFromArray:washers];
 
     self.administrationBuilding = administrationBuilding;
     self.carWashBuilding = carWashBuilding;
@@ -96,38 +118,70 @@
     }
 }
 
-- (void)addObserversForWasher:(AVWasher *)washer
-                andBookkeeper:(AVBookkeeper *)bookkeeper
-                 withDirector:(AVDirector *)director
-{
+- (void)addObserversForWasher:(AVWasher *)washer withCarWashAndBookkeeper:(AVBookkeeper *)bookkeeper {
     [washer addObserver:bookkeeper];
+    [washer addObserver:self];
+}
+
+- (void)removeObserversForWasher:(AVWasher *)washer withCarWashAndBookkeeper:(AVBookkeeper *)bookkeeper {
+    [washer removeObserver:bookkeeper];
+    [washer removeObserver:self];
+}
+
+- (void)addObserverForBookkeeper:(AVBookkeeper *)bookkeeper withDirector:(AVDirector *)director {
     [bookkeeper addObserver:director];
 }
 
-- (void)removeObserversForWasher:(AVWasher *)washer
-                   andBookkeeper:(AVBookkeeper *)bookkeeper
-                    withDirector:(AVDirector *)director
-{
-    [washer removeObserver:bookkeeper];
-    [bookkeeper removeObserver:director];
+- (void)removeObserverForBookkeeper:(AVBookkeeper *)bookkeeper withDirector:(AVDirector *)director {
+    [bookkeeper addObserver:director];
+}
+
+//- (void)addObserversForWasher:(AVWasher *)washer
+//                andBookkeeper:(AVBookkeeper *)bookkeeper
+//                 withDirector:(AVDirector *)director
+//{
+//    [washer addObserver:bookkeeper];
+//    [bookkeeper addObserver:director];
+//}
+//
+//- (void)removeObserversForWasher:(AVWasher *)washer
+//                   andBookkeeper:(AVBookkeeper *)bookkeeper
+//                    withDirector:(AVDirector *)director
+//{
+//    [washer removeObserver:bookkeeper];
+//    [bookkeeper removeObserver:director];
+//}
+
+- (AVWasher *)reservedFreeWasher {
+    AVWasher *washer = [self freeWasher];
+    washer.state = AVEmployeeBusy;
+    
+    return washer;
 }
 
 - (void)washCar:(AVCar *)car {
-    [self.carQueue enqueueObject:car];
-    car = nil;
-    
-    while ((car = [self.carQueue dequeueObject])) {
-        AVWasher *washer = [self freeWasher];
-        AVBookkeeper *bookkeeper = [self freeBookkeeper];
-        AVDirector *director = [self freeDirector];
-        [self addObserversForWasher:washer andBookkeeper:bookkeeper withDirector:director];
+    @synchronized (self.washers) {
+        [self.carQueue enqueueObject:car];
+        AVWasher *washer = [self.washers firstObject];
+//        AVWasher *washer = [self freeWasher];
+//        AVWasher *washer = [self reservedFreeWasher];
         
-        @synchronized (car) {
+        if (washer) {
+            [washer processObject:[self.carQueue dequeueObject]];
+        } else {
+            [self.carQueue enqueueObject:car];
+        }
+    }
+}
+
+- (void)employeeDidBecomeFree:(AVWasher *)washer {
+//    @synchronized (washer) {
+        AVCar *car = [self.carQueue dequeueObject];
+        
+        if (car) {
             [washer processObject:car];
         }
-        
-        [self removeObserversForWasher:washer andBookkeeper:bookkeeper withDirector:director];
-    }
+//    }
 }
 
 @end

@@ -7,6 +7,9 @@
 //
 
 #import "AVEmployee.h"
+#import "AVQueue.h"
+
+#import "NSObject+AVExtensions.h"
 
 @interface AVEmployee()
 @property (nonatomic, assign)   NSUInteger  money;
@@ -31,48 +34,73 @@
 }
 
 - (void)increaseMoney:(NSUInteger)value {
-    self.money += value;
+    @synchronized (self) {
+        self.money += value;
+    }
 }
 
 - (void)decreaseMoney:(NSUInteger)value {
-    self.money -= value;
+    @synchronized (self) {
+        self.money -= value;
+    }
 }
 
 - (void)takeMoneyFromObject:(AVEmployee *)object {
-    @synchronized (self) {
-        NSUInteger cost = object.money;
-        [object decreaseMoney:cost];
-        [self increaseMoney:cost];
-    }
+    NSUInteger cost = object.money;
+    [object decreaseMoney:cost];
+    [self increaseMoney:cost];
 }
 
 - (void)processObject:(id)object {
     @synchronized (self) {
-        self.state = AVEmployeeIsBusy;
+        if (self.state == AVEmployeeFree) {
+            self.state = AVEmployeeBusy;
+            [self performSelectorInBackground:@selector(performWorkOnBackgroundWithObject:) withObject:object];
+        } else {
+            [self.processingQueue enqueueObject:object];
+        }
         
-        [self.processingQueue enqueueObject:object];
-        
-        id processingObject = nil;
-        while ((processingObject = [self.processingQueue dequeueObject])) {
-            [self performWorkOnBackgroundWhithObject:processingObject];
+//        self.state = AVEmployeeBusy;
+//        
+//        [self.processingQueue enqueueObject:object];
+//        
+//        id processingObject = nil;
+//        while ((processingObject = [self.processingQueue dequeueObject])) {
+//            [self performWorkOnBackgroundWithObject:processingObject];
+//        }
+        }
+}
+
+- (void)performWorkOnBackgroundWithObject:(id)object {
+    @synchronized (self) {
+        [self performWorkWithObject:object];
+        [self performSelectorOnMainThread:@selector(performWorkOnMainThreadWithObject:)
+                               withObject:object waitUntilDone:NO];
+    }
+}
+
+- (void)performWorkWithObject:(id)object {
+    //переписываю у всех
+}
+
+- (void)performWorkOnMainThreadWithObject:(id)object {
+    [self finishProcessingObject:object];
+    
+    @synchronized (self) {
+        if ([self.processingQueue count]) {
+            [self performWorkOnBackgroundWithObject:[self.processingQueue dequeueObject]];
+        } else {
+            [self finishProcessing];
         }
     }
 }
 
-- (void)performWorkWhithObject:(id)object {
-    
-}
-
-- (void)performWorkOnBackgroundWhithObject:(id)object {
-    @synchronized (self) {
-        [self performSelectorInBackground:@selector(performWorkWhithObject:) withObject:object];
-    }
+- (void)finishProcessingObject:(AVEmployee *)employee {
+    employee.state = AVEmployeeFree; // для машины переписываю метод в Вошере, для директора - у директора
 }
 
 - (void)finishProcessing {
-    @synchronized (self) {
-        self.state = AVEmployeeIsPending;
-    }
+    self.state = AVEmployeePending;
 }
 
 #pragma mark -
@@ -80,11 +108,11 @@
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        case AVEmployeeIsBusy:
+        case AVEmployeeBusy:
             return @selector(employeeDidBecomeBusy:);
-        case AVEmployeeIsFree:
+        case AVEmployeeFree:
             return @selector(employeeDidBecomeFree:);
-        case AVEmployeeIsPending:
+        case AVEmployeePending:
             return @selector(employeeDidBecomePending:);
             
         default:
@@ -104,13 +132,7 @@
 }
 
 - (void)employeeDidBecomePending:(AVEmployee *)employee {
-    @synchronized (employee) {
-        for (AVEmployee *observer in employee.observerSet) {
-            [observer processObject:employee];
-        }
-        
-        self.state = AVEmployeeIsFree;
-    }
+    [self processObject:employee];
 }
 
 @end

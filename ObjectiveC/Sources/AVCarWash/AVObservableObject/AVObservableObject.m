@@ -54,6 +54,26 @@
     }
 }
 
+- (void)setState:(NSUInteger)state withObject:(id)object {
+    @synchronized (self) {
+        if (state != _state) {
+            _state = state;
+            
+            [self notifyOfState:state withObject:object];
+        }
+    }
+}
+
+- (void)notifyOfState:(NSUInteger)state {
+    [self notifyOfState:state withObject:nil];
+}
+
+- (void)notifyOfState:(NSUInteger)state withObject:(id)object {
+    @synchronized (self) {
+        [self notifyOfStateChangewithSelector:[self selectorForState:state] object:object];
+    }
+}
+
 #pragma mark -
 #pragma mark Public
 
@@ -70,7 +90,9 @@
 }
 
 - (BOOL)isObservedByObject:(id)observer {
-    return [self.mutableObserverSet containsObject:observer];
+    @synchronized (self) {
+        return [self.mutableObserverSet containsObject:observer];
+    }
 }
 
 #pragma mark -
@@ -85,6 +107,15 @@
     for (id observer in observerSet) {
         if ([observer respondsToSelector:selector]) {
             [observer performSelector:selector withObject:self];
+        }
+    }
+}
+
+- (void)notifyOfStateChangewithSelector:(SEL)selector object:(id)object {
+    NSMutableSet *observerSet = self.mutableObserverSet;
+    for (id observer in observerSet) {
+        if ([observer respondsToSelector:selector]) {
+            [observer performSelector:selector withObject:self withObject:object];
         }
     }
 }

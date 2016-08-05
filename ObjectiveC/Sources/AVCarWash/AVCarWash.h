@@ -17,7 +17,7 @@
 #import "AVDirector.h"
 #import "AVQueue.h"
 
-@interface AVCarWash : NSObject
+@interface AVCarWash : NSObject <AVEmployeeObserver>
 
 - (void)washCar:(AVCar *)car;
 - (void)washCars:(NSArray *)cars;

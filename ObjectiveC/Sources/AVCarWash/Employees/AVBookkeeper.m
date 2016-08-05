@@ -10,12 +10,11 @@
 
 @implementation AVBookkeeper
 
-- (void)performWorkWhithObject:(id)object {
+- (void)performWorkWithObject:(id)object {
     @synchronized (self) {
         [self takeMoneyFromObject:object];
         
         NSLog(@"I've counted money");
-        [self performSelectorOnMainThread:@selector(finishProcessing) withObject:nil waitUntilDone:NO];
     }
 }
 
