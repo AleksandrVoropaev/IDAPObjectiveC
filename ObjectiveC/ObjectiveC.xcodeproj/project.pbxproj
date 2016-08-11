@@ -31,6 +31,7 @@
 		1F64B3D91D38D6EB00905099 /* NSString+AVExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3D81D38D6EB00905099 /* NSString+AVExtensions.m */; };
 		1F64B3DD1D3CE76100905099 /* AVObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64B3DC1D3CE76100905099 /* AVObservableObject.m */; };
 		1F96B8491D100DE50018B3CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F96B8481D100DE50018B3CB /* main.m */; };
+		1FBAB5901D5C9788003F2B29 /* AVEmployeesDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBAB58F1D5C9788003F2B29 /* AVEmployeesDispatcher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,6 +97,8 @@
 		1F64B3DC1D3CE76100905099 /* AVObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVObservableObject.m; sourceTree = "<group>"; };
 		1F96B8451D100DE50018B3CB /* ObjectiveC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectiveC; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F96B8481D100DE50018B3CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1FBAB58E1D5C9788003F2B29 /* AVEmployeesDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVEmployeesDispatcher.h; sourceTree = "<group>"; };
+		1FBAB58F1D5C9788003F2B29 /* AVEmployeesDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVEmployeesDispatcher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,7 @@
 				1F3C58E81D22CCD20083753B /* AVCar */,
 				1F3C58EE1D22CCD20083753B /* Buildings */,
 				1F3C58F51D22CCD20083753B /* Employees */,
+				1FBAB58D1D5C973B003F2B29 /* Dispatchers */,
 				1F3C58ED1D22CCD20083753B /* AVMoney.h */,
 			);
 			path = AVCarWash;
@@ -333,6 +337,15 @@
 			path = ObjectiveC;
 			sourceTree = "<group>";
 		};
+		1FBAB58D1D5C973B003F2B29 /* Dispatchers */ = {
+			isa = PBXGroup;
+			children = (
+				1FBAB58E1D5C9788003F2B29 /* AVEmployeesDispatcher.h */,
+				1FBAB58F1D5C9788003F2B29 /* AVEmployeesDispatcher.m */,
+			);
+			path = Dispatchers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -395,6 +408,7 @@
 				1F64B3D31D37AAAC00905099 /* AVClusterAlphabet.m in Sources */,
 				1F3C591A1D22CCD20083753B /* AVWashingRoom.m in Sources */,
 				1F64B3CD1D37A95E00905099 /* AVAlphabet.m in Sources */,
+				1FBAB5901D5C9788003F2B29 /* AVEmployeesDispatcher.m in Sources */,
 				1F64B3C81D2E988C00905099 /* AVRandom.m in Sources */,
 				1F3C591C1D22CCD20083753B /* AVDirector.m in Sources */,
 				1F3C591F1D22CCD20083753B /* AVCreature.m in Sources */,

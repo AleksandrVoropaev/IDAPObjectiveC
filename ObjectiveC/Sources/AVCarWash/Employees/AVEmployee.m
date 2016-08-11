@@ -53,22 +53,16 @@
 
 - (void)processObject:(id)object {
     @synchronized (self) {
+        [self.processingQueue enqueueObject:object];
+        
         if (self.state == AVEmployeeFree) {
             self.state = AVEmployeeBusy;
-            [self performSelectorInBackground:@selector(performWorkOnBackgroundWithObject:) withObject:object];
+            [self performSelectorInBackground:@selector(performWorkOnBackgroundWithObject:)
+                                   withObject:[self.processingQueue dequeueObject]];
         } else {
             [self.processingQueue enqueueObject:object];
         }
-        
-//        self.state = AVEmployeeBusy;
-//        
-//        [self.processingQueue enqueueObject:object];
-//        
-//        id processingObject = nil;
-//        while ((processingObject = [self.processingQueue dequeueObject])) {
-//            [self performWorkOnBackgroundWithObject:processingObject];
-//        }
-        }
+    }
 }
 
 - (void)performWorkOnBackgroundWithObject:(id)object {
