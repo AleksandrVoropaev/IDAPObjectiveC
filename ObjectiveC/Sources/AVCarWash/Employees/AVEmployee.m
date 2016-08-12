@@ -97,6 +97,12 @@
     self.state = AVEmployeePending;
 }
 
+- (void)removeObservers {
+    for (id observer in self.observerSet) {
+        [self removeObserver:observer];
+    }
+}
+
 #pragma mark -
 #pragma mark Overload methods
 

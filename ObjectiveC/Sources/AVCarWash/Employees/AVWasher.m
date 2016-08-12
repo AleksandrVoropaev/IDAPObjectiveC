@@ -11,12 +11,8 @@
 @implementation AVWasher
 
 - (void)performWorkWithObject:(id)object {
-    @synchronized (self) {
-        AVCar *car = object;
-        
-        [self takeMoneyFromObject:car];
-        [self finishProcessingObject:car];
-    }
+    AVCar *car = object;        
+    [self takeMoneyFromObject:car];
 }
 
 - (void)finishProcessingObject:(AVCar *)car {

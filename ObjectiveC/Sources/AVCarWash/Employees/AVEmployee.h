@@ -34,8 +34,11 @@ typedef NS_ENUM(NSInteger, AVEmployeeState) {
 @property (nonatomic, assign, getter=isFree)    BOOL        free;
 
 - (void)performWorkWithObject:(id)object;
+
 - (void)processObject:(id)object;
 - (void)finishProcessing;
 - (void)finishProcessingObject:(id)object;
+
+- (void)removeObservers;
 
 @end
