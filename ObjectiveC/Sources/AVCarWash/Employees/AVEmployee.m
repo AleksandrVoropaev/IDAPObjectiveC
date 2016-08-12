@@ -7,6 +7,7 @@
 //
 
 #import "AVEmployee.h"
+
 #import "AVQueue.h"
 
 #import "NSObject+AVExtensions.h"
@@ -28,7 +29,6 @@
 - (instancetype)init {
     self = [super init];
     self.processingQueue = [AVQueue object];
-    self.free = YES;
     
     return self;
 }
@@ -46,8 +46,13 @@
 }
 
 - (void)takeMoneyFromObject:(AVEmployee *)object {
-    NSUInteger cost = object.money;
-    [object decreaseMoney:cost];
+    NSUInteger cost = 0;
+    
+    @synchronized (object) {
+        cost = object.money;
+        [object decreaseMoney:cost];
+    }
+    
     [self increaseMoney:cost];
 }
 
@@ -59,8 +64,6 @@
             self.state = AVEmployeeBusy;
             [self performSelectorInBackground:@selector(performWorkOnBackgroundWithObject:)
                                    withObject:[self.processingQueue dequeueObject]];
-        } else {
-            [self.processingQueue enqueueObject:object];
         }
     }
 }
@@ -69,12 +72,13 @@
     @synchronized (self) {
         [self performWorkWithObject:object];
         [self performSelectorOnMainThread:@selector(performWorkOnMainThreadWithObject:)
-                               withObject:object waitUntilDone:NO];
+                               withObject:object
+                            waitUntilDone:NO];
     }
 }
 
 - (void)performWorkWithObject:(id)object {
-    //переписываю у всех
+    //rewrote in all employees
 }
 
 - (void)performWorkOnMainThreadWithObject:(id)object {
@@ -90,7 +94,8 @@
 }
 
 - (void)finishProcessingObject:(AVEmployee *)employee {
-    employee.state = AVEmployeeFree; // для машины переписываю метод в Вошере, для директора - у директора
+    employee.state = AVEmployeeFree;
+    // This method for bookkeeper&washers. For washer&car rewrote in washer, for director - in director
 }
 
 - (void)finishProcessing {
@@ -98,8 +103,10 @@
 }
 
 - (void)removeObservers {
-    for (id observer in self.observerSet) {
-        [self removeObserver:observer];
+    @synchronized (self) {
+        for (id observer in self.observerSet) {
+            [self removeObserver:observer];
+        }
     }
 }
 
@@ -124,14 +131,22 @@
 #pragma mark Overload methods for AVEmployeeObserver protocol
 
 - (void)employeeDidBecomeFree:(AVEmployee *)employee {
-    NSLog(@"Employee %@ did become free", employee);
+    NSLog(@"%@ did become free", employee);
+    
+    @synchronized (employee) {
+        if ([employee.processingQueue count]) {
+            [employee processObject:[employee.processingQueue dequeueObject]];
+        }
+    }
 }
 
 - (void)employeeDidBecomeBusy:(AVEmployee *)employee {
-    NSLog(@"Employee %@ did become busy", employee);
+    NSLog(@"%@ did become busy", employee);
 }
 
 - (void)employeeDidBecomePending:(AVEmployee *)employee {
+    NSLog(@"%@ did become pending", employee);
+
     [self processObject:employee];
 }
 

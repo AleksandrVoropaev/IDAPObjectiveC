@@ -13,8 +13,9 @@
 - (void)performWorkWithObject:(id)object {
     @synchronized (self) {
         [self takeMoneyFromObject:object];
+        NSUInteger performedObjectsCount = ++self.performedObjectsCount;
         
-        NSLog(@"I've counted money");
+        NSLog(@"Bookkeeper %@ counted money @%lu times", self, performedObjectsCount);
     }
 }
 

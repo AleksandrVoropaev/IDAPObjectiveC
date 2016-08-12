@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, AVEmployeeState) {
 @interface AVEmployee : AVObservableObject <AVMoney, AVEmployeeObserver>
 @property (nonatomic, assign)                   NSUInteger  salary;
 @property (nonatomic, assign)                   NSUInteger  yearsOfExperience;
-@property (nonatomic, assign, getter=isFree)    BOOL        free;
+@property (nonatomic, assign)                   NSUInteger  performedObjectsCount;
 
 - (void)performWorkWithObject:(id)object;
 

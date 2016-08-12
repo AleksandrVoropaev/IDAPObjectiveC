@@ -9,17 +9,10 @@
 #import <Foundation/Foundation.h>
 
 #import "AVCar.h"
-#import "AVRoom.h"
-#import "AVWashingRoom.h"
-#import "AVBuilding.h"
-#import "AVWasher.h"
-#import "AVBookkeeper.h"
-#import "AVDirector.h"
-#import "AVQueue.h"
+#import "AVEmployee.h"
 
 @interface AVCarWash : NSObject <AVEmployeeObserver>
 
 - (void)washCar:(AVCar *)car;
-- (void)washCars:(NSArray *)cars;
 
 @end

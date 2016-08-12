@@ -8,8 +8,6 @@
 
 #import "AVEmployee.h"
 
-#import "AVCar.h"
-
 @interface AVWasher : AVEmployee
 
 @end

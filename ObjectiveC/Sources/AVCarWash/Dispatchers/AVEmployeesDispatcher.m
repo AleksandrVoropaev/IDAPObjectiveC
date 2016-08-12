@@ -8,6 +8,7 @@
 
 #import "AVEmployeesDispatcher.h"
 
+#import "AVWasher.h"
 #import "AVQueue.h"
 #import "AVCarWash.h"
 

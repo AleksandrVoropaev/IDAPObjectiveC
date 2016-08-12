@@ -8,16 +8,21 @@
 
 #import "AVWasher.h"
 
+#import "AVCar.h"
+
 @implementation AVWasher
 
-- (void)performWorkWithObject:(id)object {
-    AVCar *car = object;        
+- (void)performWorkWithObject:(AVCar *)car {
     [self takeMoneyFromObject:car];
 }
 
 - (void)finishProcessingObject:(AVCar *)car {
-    car.clean = YES;
-    NSLog(@"Washer %@ cleaned a car %@", self, car);
+    @synchronized (self) {
+        car.clean = YES;
+        NSUInteger performedObjectsCount = ++self.performedObjectsCount;
+        
+        NSLog(@"Washer %@ cleaned a car %@. I's %lu", self, car, performedObjectsCount);
+    }
 }
 
 @end
