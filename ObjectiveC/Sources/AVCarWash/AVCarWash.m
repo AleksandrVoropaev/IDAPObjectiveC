@@ -13,6 +13,7 @@
 #import "AVDirector.h"
 #import "AVQueue.h"
 #import "AVEmployeesDispatcher.h"
+#import "AVRandom.h"
 
 #import "NSObject+AVExtensions.h"
 #import "NSArray+AVExtensions.h"
@@ -61,22 +62,22 @@ static NSUInteger const kAVCarWashDirectorsCount    = 3;
 }
 
 - (void)initInfrastructure {
-    for (NSUInteger index = 0; index < kAVCarWashWashersCount; index++) {
-        AVWasher *washer = [AVWasher object];
-        [washer addObserver:self.mutableBookkeepers[index % kAVCarWashBookkeepersCount]];
-        [washer addObserver:self];
-        [self.mutableWashers addObject:washer];
-    }
-    
-    for (NSUInteger index = 0; index < kAVCarWashBookkeepersCount; index++) {
-        AVBookkeeper *bookkeeper = [AVBookkeeper object];
-        [bookkeeper addObserver:self.mutableDirectors[index % kAVCarWashDirectorsCount]];
-        [self.mutableBookkeepers addObject:bookkeeper];
-    }
-    
     for (NSUInteger index = 0; index < kAVCarWashDirectorsCount; index++) {
         AVDirector *director = [AVDirector object];
         [self.mutableDirectors addObject:director];
+    }
+    
+    for (NSUInteger index = 1; index < kAVCarWashBookkeepersCount + 1; index++) {
+        AVBookkeeper *bookkeeper = [AVBookkeeper object];
+        [bookkeeper addObserver:self.mutableDirectors[AVRandomWithValue(kAVCarWashDirectorsCount)]];
+        [self.mutableBookkeepers addObject:bookkeeper];
+    }
+    
+    for (NSUInteger index = 0; index < kAVCarWashWashersCount; index++) {
+        AVWasher *washer = [AVWasher object];
+        [washer addObserver:self.mutableBookkeepers[AVRandomWithValue(kAVCarWashBookkeepersCount)]];
+        [washer addObserver:self];
+        [self.mutableWashers addObject:washer];
     }
     
     AVEmployeesDispatcher *washersDispatcher = [AVEmployeesDispatcher object];
