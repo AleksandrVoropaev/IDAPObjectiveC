@@ -12,5 +12,7 @@
 @property (nonatomic, readonly) NSArray *employees;
 
 - (void)washCar;
+- (void)addEmployees:(NSArray *)employees;
+- (void)processObject:(id)object;
 
 @end

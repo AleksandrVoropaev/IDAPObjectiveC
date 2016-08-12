@@ -130,15 +130,15 @@
 #pragma mark -
 #pragma mark Overload methods for AVEmployeeObserver protocol
 
-- (void)employeeDidBecomeFree:(AVEmployee *)employee {
-    NSLog(@"%@ did become free", employee);
-    
-    @synchronized (employee) {
-        if ([employee.processingQueue count]) {
-            [employee processObject:[employee.processingQueue dequeueObject]];
-        }
-    }
-}
+//- (void)employeeDidBecomeFree:(AVEmployee *)employee {
+//    NSLog(@"%@ did become free", employee);
+//    
+//    @synchronized (employee) {
+//        if ([employee.processingQueue count]) {
+//            [employee processObject:[employee.processingQueue dequeueObject]];
+//        }
+//    }
+//}
 
 - (void)employeeDidBecomeBusy:(AVEmployee *)employee {
     NSLog(@"%@ did become busy", employee);
