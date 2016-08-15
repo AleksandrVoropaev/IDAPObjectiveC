@@ -82,24 +82,47 @@
     AVEmployee *employee = [self.freeEmployees dequeueObject];
     
     if (employee) {
+        employee.state = AVEmployeeBusy;
         [employee processObject:object];
+        if (![self.objects count]) {
+            [employee finishProcessing];
+        }
     } else {
         [self.objects enqueueObject:object];
     }
 }
 
 - (void)objectDidBecomeReadyForProcessing:(id)object {
+    NSLog(@"%@ did become ready for processing", object);
+
     [self processObject:object];
 }
 
 - (void)employeeDidBecomeFree:(AVEmployee *)employee {
+//    id object = [self.objects dequeueObject];
+//    
+//    if (object) {
+//        [employee processObject:object];
+//    } else {
+//        [self.freeEmployees enqueueObject:employee];
+//    }
+    NSLog(@"%@ did become free", employee);
+
+    [self.freeEmployees enqueueObject:employee];
     id object = [self.objects dequeueObject];
-    
     if (object) {
-        [employee processObject:object];
-    } else {
-        [self.freeEmployees enqueueObject:employee];
+        [self processObject:object];
     }
+}
+
+- (void)employeeDidBecomeBusy:(AVEmployee *)employee {
+    NSLog(@"%@ did become busy", employee);
+}
+
+- (void)employeeDidBecomePending:(AVEmployee *)employee {
+    NSLog(@"%@ did become pending", employee);
+    [employee notifyOfState:AVEmployeeReadyForProcessing withObject:employee];
+//    [self processObject:employee];
 }
 
 @end

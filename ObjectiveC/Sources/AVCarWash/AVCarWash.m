@@ -19,7 +19,7 @@
 #import "NSArray+AVExtensions.h"
 
 static NSUInteger const kAVCarWashWashersCount      = 3;
-static NSUInteger const kAVCarWashBookkeepersCount  = 3;
+static NSUInteger const kAVCarWashBookkeepersCount  = 2;
 
 @interface AVCarWash()
 @property (nonatomic, retain)   NSMutableArray          *mutableWashers;
@@ -71,15 +71,22 @@ static NSUInteger const kAVCarWashBookkeepersCount  = 3;
     AVEmployeesDispatcher *washersDispatcher        = self.washersDispatcher        = [AVEmployeesDispatcher object];
 
     AVDirector *director = self.director = [AVDirector object];
-    [director addObserver:directorsDispatcher];
+//    [director addObserver:directorsDispatcher];
     
+//    [self createEmployeesWithClass:[AVBookkeeper class]
+//                             count:kAVCarWashBookkeepersCount
+//                         observers:@[bookkeepersDispatcher,directorsDispatcher]];
+//    [self createEmployeesWithClass:[AVWasher class]
+//                             count:kAVCarWashWashersCount
+//                         observers:@[washersDispatcher,bookkeepersDispatcher]];
+
     [self createEmployeesWithClass:[AVBookkeeper class]
                              count:kAVCarWashBookkeepersCount
-                         observers:@[bookkeepersDispatcher,directorsDispatcher]];
+                         observers:@[directorsDispatcher]];
     [self createEmployeesWithClass:[AVWasher class]
                              count:kAVCarWashWashersCount
-                         observers:@[washersDispatcher,bookkeepersDispatcher]];
-    
+                         observers:@[bookkeepersDispatcher]];
+
     [washersDispatcher addEmployees:self.mutableWashers];
     [bookkeepersDispatcher addEmployees:self.mutableBookkeepers];
     [directorsDispatcher addEmployee:director];

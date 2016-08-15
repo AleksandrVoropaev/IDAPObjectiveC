@@ -13,17 +13,13 @@
 @implementation AVDirector
 
 - (void)performWorkWithObject:(id)object {
-    @synchronized (self) {
-        [self takeMoneyFromObject:object];
-        NSUInteger performedObjectsCount = ++self.performedObjectsCount;
+    [self takeMoneyFromObject:object];
 
-        NSLog(@"Director %@ earned money %lu times. I's %lu now!", self, performedObjectsCount, self.money);
-    }
+    NSLog(@"Director %@ earned money %lu times. I's %lu now!", self, self.performedObjectsCount, self.money);
 }
 
 - (void)finishProcessingObject:(AVEmployee *)employee {
     employee.state = AVEmployeeFree;
-    self.state = AVEmployeeFree;
 }
 
 - (void)finishProcessing {

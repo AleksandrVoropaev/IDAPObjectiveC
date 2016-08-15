@@ -7,16 +7,14 @@
 //
 
 #import "AVBookkeeper.h"
+#import "AVWasher.h"
 
 @implementation AVBookkeeper
 
-- (void)performWorkWithObject:(id)object {
-    @synchronized (self) {
-        [self takeMoneyFromObject:object];
-        NSUInteger performedObjectsCount = ++self.performedObjectsCount;
-        
-        NSLog(@"Bookkeeper %@ counted money @%lu times", self, performedObjectsCount);
-    }
+- (void)performWorkWithObject:(AVWasher *)washer {
+    [self takeMoneyFromObject:washer];
+    
+    NSLog(@"Bookkeeper %@ counted money @%lu times", self, self.performedObjectsCount);
 }
 
 @end

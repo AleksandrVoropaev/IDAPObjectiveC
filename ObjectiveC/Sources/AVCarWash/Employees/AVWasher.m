@@ -17,12 +17,9 @@
 }
 
 - (void)finishProcessingObject:(AVCar *)car {
-    @synchronized (self) {
-        car.clean = YES;
-        NSUInteger performedObjectsCount = ++self.performedObjectsCount;
-        
-        NSLog(@"Washer %@ cleaned a car %@. I's %lu", self, car, performedObjectsCount);
-    }
+//    car.clean = YES;
+    
+    NSLog(@"Washer %@ cleaned a car %@. I's %lu", self, car, self.performedObjectsCount);
 }
 
 @end

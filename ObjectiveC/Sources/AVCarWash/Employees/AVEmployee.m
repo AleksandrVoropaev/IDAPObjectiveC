@@ -61,15 +61,16 @@
 //        [self.processingQueue enqueueObject:object];
         
 //        if (self.state == AVEmployeeFree) {
-            self.state = AVEmployeeBusy;
+//            self.state = AVEmployeeBusy;
             [self performSelectorInBackground:@selector(performWorkOnBackgroundWithObject:)
-                                   withObject:[self.processingQueue dequeueObject]];
+                                   withObject:object];
 //        }
     }
 }
 
 - (void)performWorkOnBackgroundWithObject:(id)object {
     @synchronized (self) {
+        ++self.performedObjectsCount;
         [self performWorkWithObject:object];
         [self performSelectorOnMainThread:@selector(performWorkOnMainThreadWithObject:)
                                withObject:object
@@ -84,13 +85,13 @@
 - (void)performWorkOnMainThreadWithObject:(id)object {
     [self finishProcessingObject:object];
     
-    @synchronized (self) {
-        if ([self.processingQueue count]) {
-            [self performWorkOnBackgroundWithObject:[self.processingQueue dequeueObject]];
-        } else {
-            [self finishProcessing];
-        }
-    }
+//    @synchronized (self) {
+//        if ([self.processingQueue count]) {
+//            [self performWorkOnBackgroundWithObject:[self.processingQueue dequeueObject]];
+//        } else {
+//            [self finishProcessing];
+//        }
+//    }
 }
 
 - (void)finishProcessingObject:(AVEmployee *)employee {
@@ -121,6 +122,8 @@
             return @selector(employeeDidBecomeFree:);
         case AVEmployeePending:
             return @selector(employeeDidBecomePending:);
+        case AVEmployeeReadyForProcessing:
+            return @selector(objectDidBecomeReadyForProcessing:);
             
         default:
             return [super selectorForState:state];
@@ -140,14 +143,14 @@
 //    }
 //}
 
-- (void)employeeDidBecomeBusy:(AVEmployee *)employee {
-    NSLog(@"%@ did become busy", employee);
-}
-
-- (void)employeeDidBecomePending:(AVEmployee *)employee {
-    NSLog(@"%@ did become pending", employee);
-
-    [self processObject:employee];
-}
+//- (void)employeeDidBecomeBusy:(AVEmployee *)employee {
+//    NSLog(@"%@ did become busy", employee);
+//}
+//
+//- (void)employeeDidBecomePending:(AVEmployee *)employee {
+//    NSLog(@"%@ did become pending", employee);
+//
+//    [self processObject:employee];
+//}
 
 @end
