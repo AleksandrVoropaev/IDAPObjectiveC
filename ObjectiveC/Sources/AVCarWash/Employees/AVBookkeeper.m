@@ -11,12 +11,9 @@
 @implementation AVBookkeeper
 
 - (void)performWorkWithObject:(id)object {
-    @synchronized (self) {
-        [self takeMoneyFromObject:object];
-        NSUInteger performedObjectsCount = ++self.performedObjectsCount;
-        
-        NSLog(@"Bookkeeper %@ counted money @%lu times", self, performedObjectsCount);
-    }
+    [self takeMoneyFromObject:object];
+    
+    NSLog(@"Bookkeeper %@ counted money @%lu times", self, self.performedObjectsCount);
 }
 
 @end

@@ -39,6 +39,6 @@ typedef NS_ENUM(NSInteger, AVEmployeeState) {
 - (void)finishProcessing;
 - (void)finishProcessingObject:(id)object;
 
-- (void)removeObservers;
+- (void)removeAllObservers;
 
 @end

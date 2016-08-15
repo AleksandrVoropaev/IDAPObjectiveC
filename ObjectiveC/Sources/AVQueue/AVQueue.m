@@ -33,13 +33,19 @@
 }
 
 - (void)enqueueObject:(id)object {
-    [self.mutableQueue addObject:object];
+    @synchronized (self) {
+        [self.mutableQueue addObject:object];
+    }
 }
 
 - (id)dequeueObject {
-    NSMutableArray *mutableQueue = self.mutableQueue;
-    id object = [[[mutableQueue firstObject] retain] autorelease];
-    [mutableQueue removeObject:object];
+    id object = nil;
+    
+    @synchronized (self) {
+        NSMutableArray *mutableQueue = self.mutableQueue;
+        object = [[[mutableQueue firstObject] retain] autorelease];
+        [mutableQueue removeObject:object];
+    }
     
     return object;
 }

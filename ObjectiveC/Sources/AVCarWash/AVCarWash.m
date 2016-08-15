@@ -34,10 +34,10 @@ static NSUInteger const kMaxWashersCount = 3;
     self.washersQueue = nil;
     
     for (AVWasher *washer in self.mutableWashers) {
-        [washer removeObservers];
+        [washer removeObservers:@[self.bookkeeper,self]];
     }
     
-    [self.bookkeeper removeObservers];
+    [self.bookkeeper removeObserver:self.director];
     
     self.mutableWashers = nil;
     self.bookkeeper = nil;
@@ -65,8 +65,7 @@ static NSUInteger const kMaxWashersCount = 3;
     
     for (NSUInteger index = 0; index < kMaxWashersCount; index++) {
         AVWasher *washer = [AVWasher object];
-        [washer addObserver:bookkeeper];
-        [washer addObserver:self];
+        [washer addObservers:@[bookkeeper,self]];
         [self.mutableWashers addObject:washer];
         [self.washersQueue enqueueObject:washer];
     }
@@ -77,22 +76,29 @@ static NSUInteger const kMaxWashersCount = 3;
 
 - (void)washCar:(AVCar *)car {
     [self.carQueue enqueueObject:car];
+    
     AVWasher *washer = [self.washersQueue dequeueObject];
-
-    if (washer) {
-        [washer processObject:[self.carQueue dequeueObject]];
+    car = [self.carQueue dequeueObject];
+    
+    if (car) {
+        if (washer) {
+            [washer processObject:car];
+        } else {
+            [self.carQueue enqueueObject:car];
+        }
+    } else {
+        [self.washersQueue enqueueObject:washer];
     }
+
 }
 
 - (void)employeeDidBecomeFree:(AVWasher *)washer {
-    @synchronized (self) {
-        AVCar *car = [self.carQueue dequeueObject];
-        
-        if (car) {
-            [washer processObject:car];
-        } else {
-            [self.washersQueue enqueueObject:washer];
-        }
+    AVCar *car = [self.carQueue dequeueObject];
+    
+    if (car) {
+        [washer processObject:car];
+    } else {
+        [self.washersQueue enqueueObject:washer];
     }
 }
 

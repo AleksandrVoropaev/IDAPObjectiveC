@@ -13,12 +13,15 @@
 #import "NSObject+AVExtensions.h"
 
 @interface AVEmployee()
+//@property (nonatomic, assign)   NSUInteger  state;
 @property (nonatomic, assign)   NSUInteger  money;
 @property (nonatomic, retain)   AVQueue     *processingQueue;
 
 @end
 
 @implementation AVEmployee
+
+//@dynamic state;
 
 - (void)dealloc {
     self.processingQueue = nil;
@@ -70,6 +73,7 @@
 
 - (void)performWorkOnBackgroundWithObject:(id)object {
     @synchronized (self) {
+        ++self.performedObjectsCount;
         [self performWorkWithObject:object];
         [self performSelectorOnMainThread:@selector(performWorkOnMainThreadWithObject:)
                                withObject:object
@@ -102,7 +106,7 @@
     self.state = AVEmployeePending;
 }
 
-- (void)removeObservers {
+- (void)removeAllObservers {
     @synchronized (self) {
         for (id observer in self.observerSet) {
             [self removeObserver:observer];
@@ -128,7 +132,27 @@
 }
 
 #pragma mark -
-#pragma mark Overload methods for AVEmployeeObserver protocol
+#pragma mark AVObservableObject
+
+//- (void)setState:(NSUInteger)state {
+//    @synchronized (self) {
+//        if (state != _state) {
+//            _state = state;
+//            
+//            [self notifyOfStateChangewithSelector:[self selectorForState:state]];
+//            
+//            if (state == AVEmployeeFree) {
+//                if ([self.processingQueue count]) {
+//                    [self processObject:[self.processingQueue dequeueObject]];
+//                }
+//            }
+//        }
+//    }
+//}
+
+#pragma mark -
+#pragma mark AVEmployeeObserver 
+/* Overload methods for AVEmployeeObserver protocol */
 
 - (void)employeeDidBecomeFree:(AVEmployee *)employee {
     NSLog(@"%@ did become free", employee);
