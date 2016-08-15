@@ -14,21 +14,21 @@
 
 @interface AVEmployee()
 @property (nonatomic, assign)   NSUInteger  money;
-@property (nonatomic, retain)   AVQueue     *processingQueue;
+//@property (nonatomic, retain)   AVQueue     *processingQueue;
 
 @end
 
 @implementation AVEmployee
 
 - (void)dealloc {
-    self.processingQueue = nil;
+//    self.processingQueue = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
-    self.processingQueue = [AVQueue object];
+//    self.processingQueue = [AVQueue object];
     
     return self;
 }
@@ -58,13 +58,13 @@
 
 - (void)processObject:(id)object {
     @synchronized (self) {
-        [self.processingQueue enqueueObject:object];
+//        [self.processingQueue enqueueObject:object];
         
-        if (self.state == AVEmployeeFree) {
+//        if (self.state == AVEmployeeFree) {
             self.state = AVEmployeeBusy;
             [self performSelectorInBackground:@selector(performWorkOnBackgroundWithObject:)
                                    withObject:[self.processingQueue dequeueObject]];
-        }
+//        }
     }
 }
 

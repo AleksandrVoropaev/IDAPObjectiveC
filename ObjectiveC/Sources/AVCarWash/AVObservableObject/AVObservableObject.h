@@ -13,7 +13,9 @@
 @property (nonatomic, readonly) NSSet       *observerSet;
 
 - (void)addObserver:(id)observer;
+- (void)addObservers:(NSArray *)observers;
 - (void)removeObserver:(id)observer;
+- (void)removeObservers:(NSArray *)observers;
 - (BOOL)isObservedByObject:(id)observer;
 
 - (void)setState:(NSUInteger)state withObject:(id)object;

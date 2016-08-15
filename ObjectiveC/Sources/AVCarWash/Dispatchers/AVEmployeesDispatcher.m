@@ -49,30 +49,26 @@
     @synchronized (self) {
         [self.mutableEmployees addObject:employee];
         [self.freeEmployees enqueueObject:employee];
-        [employee addObserver:self];
+//        [employee addObserver:self];
     }
 }
 
 - (void)addEmployees:(NSArray *)employees {
-    @synchronized (self) {
-        for (AVEmployee *employee in employees) {
-            [self addEmployee:employee];
-        }
+    for (AVEmployee *employee in employees) {
+        [self addEmployee:employee];
     }
 }
 
 - (void)removeEmployee:(AVEmployee *)employee {
     @synchronized (self) {
         [self.mutableEmployees removeObject:employee];
-        [employee removeObserver:self];
+//        [employee removeObserver:self];
     }
 }
 
 - (void)removeEmployees:(NSArray *)employees {
-    @synchronized (self) {
-        for (AVEmployee *employee in employees) {
-            [self removeEmployee:employee];
-        }
+    for (AVEmployee *employee in employees) {
+        [self removeEmployee:employee];
     }
 }
 
@@ -92,15 +88,17 @@
     }
 }
 
+- (void)objectDidBecomeReadyForProcessing:(id)object {
+    [self processObject:object];
+}
+
 - (void)employeeDidBecomeFree:(AVEmployee *)employee {
-    @synchronized (self) {
-        id object = [self.objects dequeueObject];
-        
-        if (object) {
-            [employee processObject:object];
-        } else {
-            [self.objects enqueueObject:object];
-        }
+    id object = [self.objects dequeueObject];
+    
+    if (object) {
+        [employee processObject:object];
+    } else {
+        [self.freeEmployees enqueueObject:employee];
     }
 }
 

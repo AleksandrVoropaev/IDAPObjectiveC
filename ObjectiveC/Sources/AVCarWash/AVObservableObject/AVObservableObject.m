@@ -83,9 +83,21 @@
     }
 }
 
+- (void)addObservers:(NSArray *)observers {
+    for (id observer in observers) {
+        [self addObserver:observer];
+    }
+}
+
 - (void)removeObserver:(id)observer {
     @synchronized (self) {
         [self.mutableObserverSet removeObject:observer];
+    }
+}
+
+- (void)removeObservers:(NSArray *)observers {
+    for (id observer in observers) {
+        [self addObserver:observer];
     }
 }
 

@@ -20,12 +20,11 @@
 
 static NSUInteger const kAVCarWashWashersCount      = 3;
 static NSUInteger const kAVCarWashBookkeepersCount  = 3;
-static NSUInteger const kAVCarWashDirectorsCount    = 3;
 
 @interface AVCarWash()
 @property (nonatomic, retain)   NSMutableArray          *mutableWashers;
 @property (nonatomic, retain)   NSMutableArray          *mutableBookkeepers;
-@property (nonatomic, retain)   NSMutableArray          *mutableDirectors;
+@property (nonatomic, retain)   AVDirector              *director;
 @property (nonatomic, retain)   AVEmployeesDispatcher   *washersDispatcher;
 @property (nonatomic, retain)   AVEmployeesDispatcher   *bookkeepersDispatcher;
 @property (nonatomic, retain)   AVEmployeesDispatcher   *directorsDispatcher;
@@ -35,13 +34,19 @@ static NSUInteger const kAVCarWashDirectorsCount    = 3;
 @implementation AVCarWash
 
 - (void)dealloc {
-    for (AVEmployee *employee in [self employees]) {
-        [employee removeObservers];
+    for (AVWasher *washer in self.mutableWashers) {
+        [washer removeObservers:@[self.washersDispatcher,self.bookkeepersDispatcher]];
     }
+    
+    for (AVBookkeeper *bookkeeper in self.mutableBookkeepers) {
+        [bookkeeper removeObservers:@[self.bookkeepersDispatcher, self.directorsDispatcher]];
+    }
+    
+    [self.director removeObserver:self.directorsDispatcher];
     
     self.mutableWashers = nil;
     self.mutableBookkeepers = nil;
-    self.mutableDirectors = nil;
+    self.director = nil;
     self.washersDispatcher = nil;
     self.bookkeepersDispatcher = nil;
     self.directorsDispatcher = nil;
@@ -54,7 +59,6 @@ static NSUInteger const kAVCarWashDirectorsCount    = 3;
     
     self.mutableWashers = [NSMutableArray array];
     self.mutableBookkeepers = [NSMutableArray array];
-    self.mutableDirectors = [NSMutableArray array];
 
     [self initInfrastructure];
     
@@ -62,48 +66,48 @@ static NSUInteger const kAVCarWashDirectorsCount    = 3;
 }
 
 - (void)initInfrastructure {
-    for (NSUInteger index = 0; index < kAVCarWashDirectorsCount; index++) {
-        AVDirector *director = [AVDirector object];
-        [self.mutableDirectors addObject:director];
-    }
+    AVEmployeesDispatcher *directorsDispatcher      = self.directorsDispatcher      = [AVEmployeesDispatcher object];
+    AVEmployeesDispatcher *bookkeepersDispatcher    = self.bookkeepersDispatcher    = [AVEmployeesDispatcher object];
+    AVEmployeesDispatcher *washersDispatcher        = self.washersDispatcher        = [AVEmployeesDispatcher object];
+
+    AVDirector *director = self.director = [AVDirector object];
+    [director addObserver:directorsDispatcher];
     
-    for (NSUInteger index = 1; index < kAVCarWashBookkeepersCount + 1; index++) {
-        AVBookkeeper *bookkeeper = [AVBookkeeper object];
-        [bookkeeper addObserver:self.mutableDirectors[AVRandomWithValue(kAVCarWashDirectorsCount)]];
-        [self.mutableBookkeepers addObject:bookkeeper];
-    }
+    [self createEmployeesWithClass:[AVBookkeeper class]
+                             count:kAVCarWashBookkeepersCount
+                         observers:@[bookkeepersDispatcher,directorsDispatcher]];
+    [self createEmployeesWithClass:[AVWasher class]
+                             count:kAVCarWashWashersCount
+                         observers:@[washersDispatcher,bookkeepersDispatcher]];
     
-    for (NSUInteger index = 0; index < kAVCarWashWashersCount; index++) {
-        AVWasher *washer = [AVWasher object];
-        [washer addObserver:self.mutableBookkeepers[AVRandomWithValue(kAVCarWashBookkeepersCount)]];
-        [washer addObserver:self];
-        [self.mutableWashers addObject:washer];
-    }
-    
-    AVEmployeesDispatcher *washersDispatcher = [AVEmployeesDispatcher object];
     [washersDispatcher addEmployees:self.mutableWashers];
-    self.washersDispatcher = washersDispatcher;
-    
-    AVEmployeesDispatcher *bookkeepersDispatcher = [AVEmployeesDispatcher object];
     [bookkeepersDispatcher addEmployees:self.mutableBookkeepers];
-    self.bookkeepersDispatcher = bookkeepersDispatcher;
-    
-    AVEmployeesDispatcher *directorsDispatcher = [AVEmployeesDispatcher object];
-    [directorsDispatcher addEmployees:self.mutableDirectors];
-    self.directorsDispatcher = directorsDispatcher;
+    [directorsDispatcher addEmployee:director];
 }
 
-- (NSArray *)employees {
-    NSMutableArray *employees = [NSMutableArray array];
-    
-    @synchronized (self) {
-        [employees addObjectsFromArray:self.mutableWashers];
-        [employees addObjectsFromArray:self.mutableBookkeepers];
-        [employees addObjectsFromArray:self.mutableDirectors];
+- (void)createEmployeesWithClass:(Class)cls count:(NSUInteger)count observers:(NSArray *)observers {
+    for (NSUInteger index = 0; index < count; index++) {
+        id employee = [cls object];
+        [employee addObservers:observers];
+        if (cls == [AVBookkeeper class]) {
+            [self.mutableBookkeepers addObject:employee];
+        } else if (cls == [AVWasher class]) {
+            [self.mutableWashers addObject:employee];
+        }
     }
-    
-    return [[employees copy] autorelease];
 }
+
+//- (NSArray *)employees {
+//    NSMutableArray *employees = [NSMutableArray array];
+//    
+//    @synchronized (self) {
+//        [employees addObjectsFromArray:self.mutableWashers];
+//        [employees addObjectsFromArray:self.mutableBookkeepers];
+//        [employees addObject:self.director];
+//    }
+//    
+//    return [[employees copy] autorelease];
+//}
 
 - (void)washCar:(AVCar *)car {
     [self.washersDispatcher processObject:car];

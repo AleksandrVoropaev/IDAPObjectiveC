@@ -11,8 +11,10 @@
 @interface AVEmployeesDispatcher : NSObject <AVEmployeeObserver>
 @property (nonatomic, readonly) NSArray *employees;
 
-- (void)washCar;
+- (void)addEmployee:(AVEmployee *)employee;
 - (void)addEmployees:(NSArray *)employees;
+- (void)removeEmployee:(AVEmployee *)employee;
+- (void)removeEmployees:(NSArray *)employees;
 - (void)processObject:(id)object;
 
 @end
