@@ -16,8 +16,7 @@
 typedef NS_ENUM(NSInteger, AVEmployeeState) {
     AVEmployeeFree,
     AVEmployeeBusy,
-    AVEmployeePending,
-    AVEmployeeReadyForProcessing
+    AVEmployeePending
 };
 
 @protocol AVEmployeeObserver <NSObject>
@@ -26,7 +25,6 @@ typedef NS_ENUM(NSInteger, AVEmployeeState) {
 - (void)employeeDidBecomeFree:(AVEmployee *)emplloyee;
 - (void)employeeDidBecomeBusy:(AVEmployee *)emplloyee;
 - (void)employeeDidBecomePending:(AVEmployee *)emplloyee;
-- (void)objectDidBecomeReadyForProcessing:(id)object;
 
 @end
 

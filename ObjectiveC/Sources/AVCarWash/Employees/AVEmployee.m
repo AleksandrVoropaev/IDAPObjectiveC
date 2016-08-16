@@ -122,8 +122,6 @@
             return @selector(employeeDidBecomeFree:);
         case AVEmployeePending:
             return @selector(employeeDidBecomePending:);
-        case AVEmployeeReadyForProcessing:
-            return @selector(objectDidBecomeReadyForProcessing:);
             
         default:
             return [super selectorForState:state];

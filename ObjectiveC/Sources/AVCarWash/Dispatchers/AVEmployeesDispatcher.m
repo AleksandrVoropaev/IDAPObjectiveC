@@ -49,7 +49,7 @@
     @synchronized (self) {
         [self.mutableEmployees addObject:employee];
         [self.freeEmployees enqueueObject:employee];
-//        [employee addObserver:self];
+        [employee addObserver:self];
     }
 }
 
@@ -62,7 +62,7 @@
 - (void)removeEmployee:(AVEmployee *)employee {
     @synchronized (self) {
         [self.mutableEmployees removeObject:employee];
-//        [employee removeObserver:self];
+        [employee removeObserver:self];
     }
 }
 
@@ -76,6 +76,10 @@
     @synchronized (self) {
         return [[self.mutableEmployees copy] autorelease];
     }
+}
+
+- (BOOL)containsEmployee:(AVEmployee *)employee {
+    return [[self mutableEmployees] containsObject:employee];
 }
 
 - (void)processObject:(id)object {
@@ -92,26 +96,15 @@
     }
 }
 
-- (void)objectDidBecomeReadyForProcessing:(id)object {
-    NSLog(@"%@ did become ready for processing", object);
-
-    [self processObject:object];
-}
-
 - (void)employeeDidBecomeFree:(AVEmployee *)employee {
-//    id object = [self.objects dequeueObject];
-//    
-//    if (object) {
-//        [employee processObject:object];
-//    } else {
-//        [self.freeEmployees enqueueObject:employee];
-//    }
-    NSLog(@"%@ did become free", employee);
-
-    [self.freeEmployees enqueueObject:employee];
-    id object = [self.objects dequeueObject];
-    if (object) {
-        [self processObject:object];
+    if ([self containsEmployee:employee]) {
+        NSLog(@"%@ did become free", employee);
+        
+        [self.freeEmployees enqueueObject:employee];
+        id object = [self.objects dequeueObject];
+        if (object) {
+            [self processObject:object];
+        }
     }
 }
 
@@ -120,9 +113,10 @@
 }
 
 - (void)employeeDidBecomePending:(AVEmployee *)employee {
-    NSLog(@"%@ did become pending", employee);
-    [employee notifyOfState:AVEmployeeReadyForProcessing withObject:employee];
-//    [self processObject:employee];
+    if (![self containsEmployee:employee]) {
+        NSLog(@"%@ did become pending", employee);
+        [self processObject:employee];
+    }
 }
 
 @end

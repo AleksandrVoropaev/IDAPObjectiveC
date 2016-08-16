@@ -17,7 +17,7 @@
 }
 
 - (void)finishProcessingObject:(AVCar *)car {
-//    car.clean = YES;
+    car.clean = YES;
     
     NSLog(@"Washer %@ cleaned a car %@. I's %lu", self, car, self.performedObjectsCount);
 }
