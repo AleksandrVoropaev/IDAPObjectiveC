@@ -134,24 +134,21 @@
 #pragma mark -
 #pragma mark AVObservableObject
 
-//- (void)setState:(NSUInteger)state {
-//    @synchronized (self) {
-//        if (state != _state) {
-//            _state = state;
-//            
-//            [self notifyOfStateChangewithSelector:[self selectorForState:state]];
-//            
-//            if (state == AVEmployeeFree) {
-//                if ([self.processingQueue count]) {
-//                    [self processObject:[self.processingQueue dequeueObject]];
-//                }
-//            }
-//        }
-//    }
-//}
+- (void)setState:(NSUInteger)state {
+    @synchronized (self) {
+        AVQueue *processingQueue = self.processingQueue;
+        if (state == AVEmployeeFree && processingQueue.count) {
+            [self processObject:[processingQueue dequeueObject]];
+            
+            return;
+        }
+        
+        [super setState:state];
+    }
+}
 
 #pragma mark -
-#pragma mark AVEmployeeObserver 
+#pragma mark AVEmployeeObserver
 /* Overload methods for AVEmployeeObserver protocol */
 
 - (void)employeeDidBecomeFree:(AVEmployee *)employee {

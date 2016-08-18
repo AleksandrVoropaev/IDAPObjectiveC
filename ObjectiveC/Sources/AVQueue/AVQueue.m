@@ -39,19 +39,19 @@
 }
 
 - (id)dequeueObject {
-    id object = nil;
-    
     @synchronized (self) {
         NSMutableArray *mutableQueue = self.mutableQueue;
-        object = [[[mutableQueue firstObject] retain] autorelease];
+        id object = [[[mutableQueue firstObject] retain] autorelease];
         [mutableQueue removeObject:object];
+        
+        return object;
     }
-    
-    return object;
 }
 
 - (NSUInteger)count {
-    return [self.mutableQueue count];
+    @synchronized (self) {
+        return [self.mutableQueue count];
+    }
 }
 
 @end
