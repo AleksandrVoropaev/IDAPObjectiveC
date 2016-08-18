@@ -10,6 +10,18 @@
 
 @implementation NSArray (AVExtensions)
 
++ (NSArray *)arrayWithCount:(NSUInteger)count usingBlock:(id (^)(void))objectsParameters {
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:count];
+    
+    for (NSUInteger index = 0; index < count; index++) {
+        id object = objectsParameters();
+        [result addObject:object];
+    }
+    
+//    return [[result copy] autorelease];
+    return [self arrayWithArray:result];
+}
+
 - (NSArray *)filteredArrayUsingBlock:(AVArrayFilterBlock)block {
     if (!block) {
         return self;

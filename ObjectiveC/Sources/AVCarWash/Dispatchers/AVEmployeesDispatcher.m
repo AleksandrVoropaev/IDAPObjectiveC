@@ -79,20 +79,23 @@
 }
 
 - (BOOL)containsEmployee:(AVEmployee *)employee {
-    return [[self mutableEmployees] containsObject:employee];
+    return [self.mutableEmployees containsObject:employee];
 }
 
 - (void)processObject:(id)object {
+    [self.objects enqueueObject:object];
     AVEmployee *employee = [self.freeEmployees dequeueObject];
     
-    if (employee) {
-        employee.state = AVEmployeeBusy;
-        [employee processObject:object];
-        if (![self.objects count]) {
-            [employee finishProcessing];
+    @synchronized (employee) {
+        if (employee) {
+            id object = [self.objects dequeueObject];
+            if (object) {
+                employee.state = AVEmployeeBusy;
+                [employee processObject:object];
+            } else {
+                [employee finishProcessing];
+            }
         }
-    } else {
-        [self.objects enqueueObject:object];
     }
 }
 
@@ -109,7 +112,9 @@
 }
 
 - (void)employeeDidBecomeBusy:(AVEmployee *)employee {
-    NSLog(@"%@ did become busy", employee);
+    if ([self containsEmployee:employee]) {
+        NSLog(@"%@ did become busy", employee);
+    }
 }
 
 - (void)employeeDidBecomePending:(AVEmployee *)employee {
