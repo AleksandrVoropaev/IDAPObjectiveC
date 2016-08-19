@@ -13,6 +13,7 @@
 #import "AVDirector.h"
 #import "AVQueue.h"
 #import "AVEmployeesDispatcher.h"
+#import "AVCarWashDispatcher.h"
 #import "AVRandom.h"
 
 #import "NSObject+AVExtensions.h"
@@ -29,8 +30,7 @@ static NSUInteger const kAVCarWashDirectorsCount    = 1;
 @property (nonatomic, retain)   NSMutableArray          *mutableWashers;
 @property (nonatomic, retain)   NSMutableArray          *mutableBookkeepers;
 @property (nonatomic, retain)   NSMutableArray          *mutableDirectors;
-@property (nonatomic, retain)   AVEmployeesDispatcher   *washersDispatcher;
-@property (nonatomic, retain)   AVEmployeesDispatcher   *bookkeepersDispatcher;
+@property (nonatomic, retain)   AVCarWashDispatcher     *carWashDispatcher;
 @property (nonatomic, retain)   AVEmployeesDispatcher   *directorsDispatcher;
 
 @end
@@ -38,35 +38,19 @@ static NSUInteger const kAVCarWashDirectorsCount    = 1;
 @implementation AVCarWash
 
 - (void)dealloc {
-//    void(^removeObservers)(NSMutableArray *employees, NSArray *observers) = ^void(NSMutableArray *employees, NSArray *observers) {
-//        for (id employee in employees) {
-//            [employee removeObservers:observers];
-//        }
-//    };
-//    
-//    removeObservers(self.mutableWashers, @[self.bookkeepersDispatcher]);
-//    removeObservers(self.mutableBookkeepers, @[self.directorsDispatcher]);
-
-//    [self.mutableWashers performOperationOnArrayEachElementUsingBlock:^(id object) {
-//        [object removeObservers:@[self.bookkeepersDispatcher]];
-//    }];
-//
-//    [self.mutableBookkeepers performOperationOnArrayEachElementUsingBlock:^(id object) {
-//        [object removeObservers:@[self.directorsDispatcher]];
-//    }];
-    
     AVRemoveObserversBlock removeObservers = ^void(NSMutableArray *employees, NSArray *observers) {
         [employees performOperationOnArrayEachElementUsingBlock:^(id object) {
             [object removeObservers:observers];
         }];
     };
 
-    removeObservers(self.mutableWashers, @[self.bookkeepersDispatcher]);
+    removeObservers(self.mutableWashers, @[self.carWashDispatcher]);
     removeObservers(self.mutableBookkeepers, @[self.directorsDispatcher]);
 
     self.mutableWashers = nil;
     self.mutableBookkeepers = nil;
     self.mutableDirectors = nil;
+    self.carWashDispatcher = nil;
     self.washersDispatcher = nil;
     self.bookkeepersDispatcher = nil;
     self.directorsDispatcher = nil;
@@ -83,6 +67,8 @@ static NSUInteger const kAVCarWashDirectorsCount    = 1;
 }
 
 - (void)initInfrastructure {
+    self.carWashDispatcher = [AVCarWashDispatcher ini];
+    
     AVManageEmployeesBlock employees= ^id(NSUInteger count, Class employeeClass, NSArray *observers) {
         return [NSMutableArray arrayWithCount:count factoryBlock:^ {
             AVEmployee *employee = [employeeClass object];
@@ -113,20 +99,8 @@ static NSUInteger const kAVCarWashDirectorsCount    = 1;
     self.washersDispatcher = washersDispatcher;
 }
 
-//- (NSArray *)employees {
-//    NSMutableArray *employees = [NSMutableArray array];
-//    
-//    @synchronized (self) {
-//        [employees addObjectsFromArray:self.mutableWashers];
-//        [employees addObjectsFromArray:self.mutableBookkeepers];
-//        [employees addObject:self.director];
-//    }
-//    
-//    return [[employees copy] autorelease];
-//}
-
-- (void)washCar:(AVCar *)car {
-    [self.washersDispatcher processObject:car];
+- (void)washCars {
+    [self.carWashDispatcher washCars];
 }
 
 @end

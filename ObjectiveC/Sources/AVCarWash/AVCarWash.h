@@ -10,9 +10,12 @@
 
 #import "AVCar.h"
 #import "AVEmployee.h"
+#import "AVEmployeesDispatcher.h"
 
 @interface AVCarWash : NSObject <AVEmployeeObserver>
+@property (nonatomic, retain)   AVEmployeesDispatcher   *washersDispatcher;
+@property (nonatomic, retain)   AVEmployeesDispatcher   *bookkeepersDispatcher;
 
-- (void)washCar:(AVCar *)car;
+- (void)washCars;
 
 @end
