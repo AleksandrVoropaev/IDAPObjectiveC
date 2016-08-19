@@ -85,16 +85,10 @@
 - (void)processObject:(id)object {
     [self.objects enqueueObject:object];
     AVEmployee *employee = [self.freeEmployees dequeueObject];
-    
-    @synchronized (employee) {
-        if (employee) {
-            id object = [self.objects dequeueObject];
-            if (object) {
-                employee.state = AVEmployeeBusy;
-                [employee processObject:object];
-            } else {
-                [employee finishProcessing];
-            }
+    if (employee) {
+        id object = [self.objects dequeueObject];
+        if (object) {
+            [employee processObject:object];
         }
     }
 }

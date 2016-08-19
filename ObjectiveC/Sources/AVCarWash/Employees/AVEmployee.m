@@ -14,24 +14,10 @@
 
 @interface AVEmployee()
 @property (nonatomic, assign)   NSUInteger  money;
-//@property (nonatomic, retain)   AVQueue     *processingQueue;
 
 @end
 
 @implementation AVEmployee
-
-- (void)dealloc {
-//    self.processingQueue = nil;
-    
-    [super dealloc];
-}
-
-- (instancetype)init {
-    self = [super init];
-//    self.processingQueue = [AVQueue object];
-    
-    return self;
-}
 
 - (void)increaseMoney:(NSUInteger)value {
     @synchronized (self) {
@@ -58,13 +44,9 @@
 
 - (void)processObject:(id)object {
     @synchronized (self) {
-//        [self.processingQueue enqueueObject:object];
-        
-//        if (self.state == AVEmployeeFree) {
-//            self.state = AVEmployeeBusy;
-            [self performSelectorInBackground:@selector(performWorkOnBackgroundWithObject:)
-                                   withObject:object];
-//        }
+        self.state = AVEmployeeBusy;
+        [self performSelectorInBackground:@selector(performWorkOnBackgroundWithObject:)
+                               withObject:object];
     }
 }
 
@@ -84,14 +66,7 @@
 
 - (void)performWorkOnMainThreadWithObject:(id)object {
     [self finishProcessingObject:object];
-    
-//    @synchronized (self) {
-//        if ([self.processingQueue count]) {
-//            [self performWorkOnBackgroundWithObject:[self.processingQueue dequeueObject]];
-//        } else {
-//            [self finishProcessing];
-//        }
-//    }
+    [self finishProcessing];
 }
 
 - (void)finishProcessingObject:(AVEmployee *)employee {
@@ -130,25 +105,5 @@
 
 #pragma mark -
 #pragma mark Overload methods for AVEmployeeObserver protocol
-
-//- (void)employeeDidBecomeFree:(AVEmployee *)employee {
-//    NSLog(@"%@ did become free", employee);
-//    
-//    @synchronized (employee) {
-//        if ([employee.processingQueue count]) {
-//            [employee processObject:[employee.processingQueue dequeueObject]];
-//        }
-//    }
-//}
-
-//- (void)employeeDidBecomeBusy:(AVEmployee *)employee {
-//    NSLog(@"%@ did become busy", employee);
-//}
-//
-//- (void)employeeDidBecomePending:(AVEmployee *)employee {
-//    NSLog(@"%@ did become pending", employee);
-//
-//    [self processObject:employee];
-//}
 
 @end

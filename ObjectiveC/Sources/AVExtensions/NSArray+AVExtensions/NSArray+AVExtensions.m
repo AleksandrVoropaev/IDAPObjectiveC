@@ -10,15 +10,17 @@
 
 @implementation NSArray (AVExtensions)
 
-+ (NSArray *)arrayWithCount:(NSUInteger)count usingBlock:(id (^)(void))objectsParameters {
++ (NSArray *)arrayWithCount:(NSUInteger)count factoryBlock:(id (^)(void))objectsParametersBlock {
+    if (!objectsParametersBlock) {
+        return nil;
+    }
+    
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:count];
     
     for (NSUInteger index = 0; index < count; index++) {
-        id object = objectsParameters();
-        [result addObject:object];
+        [result addObject:objectsParametersBlock()];
     }
     
-//    return [[result copy] autorelease];
     return [self arrayWithArray:result];
 }
 
@@ -32,6 +34,12 @@
     }];
 
     return [self filteredArrayUsingPredicate:predicate];
+}
+
+- (void)performOperationOnArrayEachElementUsingBlock:(void (^)(id object))operationBlock {
+    for (id object in self) {
+        operationBlock(object);
+    }
 }
 
 @end
