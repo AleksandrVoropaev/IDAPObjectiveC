@@ -101,7 +101,7 @@ static NSUInteger const kAVCarWashDirectorsCount    = 1;
 }
 
 - (void)washCars {
-    [self.carWashDispatcher washCars];
+    [self.carWashDispatcher start];
 }
 
 @end

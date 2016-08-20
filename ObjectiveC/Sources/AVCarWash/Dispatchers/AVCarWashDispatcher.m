@@ -14,6 +14,7 @@
 #import "NSObject+AVExtensions.h"
 
 static const NSUInteger kAVCarWashDispatcherCarsCount = 10;
+static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
 
 @interface AVCarWashDispatcher ()
 @property (nonatomic, retain)   AVCarWash   *carWash;
@@ -38,11 +39,21 @@ static const NSUInteger kAVCarWashDispatcherCarsCount = 10;
     return self;
 }
 
+- (void)start {
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:kAVCarWashDispatcherTimerInterval
+                                                      target:self
+                                                    selector:@selector(washCars)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    [timer fire];
+}
+
 - (void)washCars {
+    AVCarWash *carWash = self.carWash;
     for (NSUInteger index = 0; index < kAVCarWashDispatcherCarsCount; index++) {
         NSLog(@"------- number of car is - %lu", index + 1);
         
-        [self.carWash.washersDispatcher processObject:[AVCar object]];
+        [carWash.washersDispatcher processObject:[AVCar object]];
     }
 }
 
