@@ -67,7 +67,7 @@ static NSUInteger const kAVCarWashDirectorsCount    = 1;
 }
 
 - (void)initInfrastructure {
-    self.carWashDispatcher = [AVCarWashDispatcher ini];
+    AVCarWashDispatcher *carWashDispatcher = [[AVCarWashDispatcher alloc] initWithCarWash:self];
     
     AVManageEmployeesBlock employees= ^id(NSUInteger count, Class employeeClass, NSArray *observers) {
         return [NSMutableArray arrayWithCount:count factoryBlock:^ {
@@ -84,7 +84,7 @@ static NSUInteger const kAVCarWashDirectorsCount    = 1;
     
     NSMutableArray *directors = employees(kAVCarWashDirectorsCount, [AVDirector class], nil);
     NSMutableArray *bookkeepers = employees(kAVCarWashBookkeepersCount, [AVBookkeeper class], @[directorsDispatcher]);
-    NSMutableArray *washers = employees(kAVCarWashWashersCount, [AVWasher class], @[bookkeepersDispatcher]);
+    NSMutableArray *washers = employees(kAVCarWashWashersCount, [AVWasher class], @[carWashDispatcher]);
     
     [directorsDispatcher addEmployees:directors];
     [bookkeepersDispatcher addEmployees:bookkeepers];
@@ -94,6 +94,7 @@ static NSUInteger const kAVCarWashDirectorsCount    = 1;
     self.mutableBookkeepers = bookkeepers;
     self.mutableWashers = washers;
     
+    self.carWashDispatcher = carWashDispatcher;
     self.directorsDispatcher = directorsDispatcher;
     self.bookkeepersDispatcher = bookkeepersDispatcher;
     self.washersDispatcher = washersDispatcher;

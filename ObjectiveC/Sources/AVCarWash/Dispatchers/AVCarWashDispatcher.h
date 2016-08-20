@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AVCarWashDispatcher : NSObject
+#import "AVCarWash.h"
 
+@interface AVCarWashDispatcher : NSObject <AVEmployeeObserver>
+
+- (instancetype)initWithCarWash:(AVCarWash *)carWash;
 - (void)washCars;
 
 @end

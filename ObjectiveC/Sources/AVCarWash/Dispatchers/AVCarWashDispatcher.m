@@ -46,23 +46,10 @@ static const NSUInteger kAVCarWashDispatcherCarsCount = 10;
     }
 }
 
-- (void)employeeDidBecomeFree:(AVEmployee *)employee {
+- (void)employeeDidBecomePending:(AVEmployee *)employee {
     NSLog(@"%@ did become free", employee);
     
     [self.carWash.bookkeepersDispatcher processObject:employee];
 }
-
-//- (void)employeeDidBecomeBusy:(AVEmployee *)employee {
-//    if ([self containsEmployee:employee]) {
-//        NSLog(@"%@ did become busy", employee);
-//    }
-//}
-
-//- (void)employeeDidBecomePending:(AVEmployee *)employee {
-//    if (![self containsEmployee:employee]) {
-//        NSLog(@"%@ did become pending", employee);
-//        [self processObject:employee];
-//    }
-//}
 
 @end

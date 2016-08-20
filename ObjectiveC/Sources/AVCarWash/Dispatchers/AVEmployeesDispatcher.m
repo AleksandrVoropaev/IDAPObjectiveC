@@ -95,7 +95,7 @@
 
 - (void)employeeDidBecomeFree:(AVEmployee *)employee {
     if ([self containsEmployee:employee]) {
-        NSLog(@"%@ did become free", employee);
+//        NSLog(@"%@ did become free", employee);
         
         [self.freeEmployees enqueueObject:employee];
         id object = [self.objects dequeueObject];
@@ -107,13 +107,13 @@
 
 - (void)employeeDidBecomeBusy:(AVEmployee *)employee {
     if ([self containsEmployee:employee]) {
-        NSLog(@"%@ did become busy", employee);
+//        NSLog(@"%@ did become busy", employee);
     }
 }
 
 - (void)employeeDidBecomePending:(AVEmployee *)employee {
     if (![self containsEmployee:employee]) {
-        NSLog(@"%@ did become pending", employee);
+//        NSLog(@"%@ did become pending", employee);
         [self processObject:employee];
     }
 }
