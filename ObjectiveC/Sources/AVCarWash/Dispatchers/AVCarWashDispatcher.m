@@ -15,9 +15,11 @@
 
 static const NSUInteger kAVCarWashDispatcherCarsCount = 10;
 static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
+//static const NSUInteger kAVCarWashDispatcherCarGroupsCount = 100;
 
 @interface AVCarWashDispatcher ()
 @property (nonatomic, retain)   AVCarWash   *carWash;
+@property (nonatomic, assign)   NSUInteger  runCount;
 
 @end
 
@@ -39,13 +41,34 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
     return self;
 }
 
-- (void)start {
+- (void)performTimerOnMainThread {
+    [self performSelectorOnMainThread:@selector(washCars) withObject:nil waitUntilDone:NO];
+}
+
+- (void)performTimerOnBackground {
+    [self performSelectorInBackground:@selector(washCars) withObject:nil];
+}
+
+- (void)performTimer {
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:kAVCarWashDispatcherTimerInterval
                                                       target:self
-                                                    selector:@selector(washCars)
+                                                    selector:@selector(selectThread)
                                                     userInfo:nil
                                                      repeats:YES];
     [timer fire];
+}
+
+- (void)selectThread {
+    NSUInteger count = ++self.runCount;
+    if (count % 2 == 0) {
+        [self performTimerOnMainThread];
+    } else {
+        [self performTimerOnBackground];
+    }
+}
+
+- (void)start {
+    [self performTimer];
 }
 
 - (void)washCars {
