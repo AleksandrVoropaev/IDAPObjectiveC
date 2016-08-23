@@ -31,11 +31,11 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
     [super dealloc];
 }
 
-- (instancetype)initWithCarWash:(AVCarWash *)carWash {
+- (instancetype)init {
     self = [super init];
     
     if (self) {
-        self.carWash = carWash;
+        self.carWash = [AVCarWash object];
     }
     
     return self;
@@ -76,14 +76,14 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
     for (NSUInteger index = 0; index < kAVCarWashDispatcherCarsCount; index++) {
         NSLog(@"------- number of car is - %lu", index + 1);
         
-        [carWash.washersDispatcher processObject:[AVCar object]];
+        [carWash washCar:[AVCar object]];
     }
 }
 
 - (void)employeeDidBecomePending:(AVEmployee *)employee {
     NSLog(@"%@ did become free", employee);
     
-    [self.carWash.bookkeepersDispatcher processObject:employee];
+    [self.carWash bookkeeperDispatcherProcessEmployee:employee];
 }
 
 @end

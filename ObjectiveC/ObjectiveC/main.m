@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AVCarWash.h"
+#import "AVCarWashDispatcher.h"
 
 #import "NSObject+AVExtensions.h"
 
@@ -16,8 +16,8 @@ NSUInteger const kAVCarsCount = 10;
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        AVCarWash *carWash = [AVCarWash object];
-        [carWash washCars];
+        AVCarWashDispatcher *carWashDispatcher = [AVCarWashDispatcher object];
+        [carWashDispatcher start];
         
         [[NSRunLoop mainRunLoop] run];
     }
