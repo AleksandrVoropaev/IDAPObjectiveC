@@ -11,6 +11,5 @@
 @interface AVMaleCreature : AVCreature
 
 - (void)makeWar;
-- (void)performGenderSpecificOperation;
 
 @end

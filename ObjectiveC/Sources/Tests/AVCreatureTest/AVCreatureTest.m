@@ -7,26 +7,25 @@
 //
 
 #import "AVCreatureTest.h"
+
 #import "AVCreature.h"
 #import "AVFemaleCreature.h"
 #import "AVMaleCreature.h"
 
+#import "NSObject+AVExtensions.h"
+
 @implementation AVCreatureTest
 
-- (void)startTest {
-    AVMaleCreature *man = [[AVMaleCreature new] autorelease];
-    man.gender = AVGenderMale;
-    
-    AVFemaleCreature *woman = [[AVFemaleCreature new] autorelease];
-    woman.gender = AVGenderFemale;
+- (void)startTest {    
+    AVMaleCreature *man = [AVMaleCreature object];
+
+    AVFemaleCreature *woman = [AVFemaleCreature object];
     
     AVMaleCreature *boy = [woman makeChild];
-    boy.gender = AVGenderMale;
     
     AVFemaleCreature *girl = [woman makeChild];
-    girl.gender = AVGenderFemale;
 
-    NSMutableArray *array = [[NSMutableArray new] autorelease];
+    NSMutableArray *array = [NSMutableArray array];
     [array addObject:man];
     [array addObject:woman];
     [array addObject:boy];

@@ -15,7 +15,7 @@
 }
 
 - (void)performGenderSpecificOperation {
-    self.makeWar;
+    [self makeWar];
 }
 
 @end

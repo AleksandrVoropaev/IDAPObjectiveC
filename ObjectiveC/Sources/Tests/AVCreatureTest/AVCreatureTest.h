@@ -8,7 +8,7 @@
 
 #import "AVCreature.h"
 
-@interface AVCreatureTest : AVCreature
+@interface AVCreatureTest : NSObject
 
 - (void)startTest;
 

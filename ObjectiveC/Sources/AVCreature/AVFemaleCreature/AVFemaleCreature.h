@@ -10,7 +10,6 @@
 
 @interface AVFemaleCreature : AVCreature
 
-- (id *)makeChild;
-- (void)performGenderSpecificOperation;
+- (id)makeChild;
 
 @end
