@@ -98,7 +98,7 @@
 
 - (void)employeeDidBecomeFree:(AVEmployee *)employee {
     if ([self containsEmployee:employee]) {
-        NSLog(@"%@ did become free", employee);
+//        NSLog(@"%@ did become free", employee);
         
         [self.freeEmployees enqueueObject:employee];
         [self processObject:nil];
@@ -107,14 +107,18 @@
 
 - (void)employeeDidBecomeBusy:(AVEmployee *)employee {
     if ([self containsEmployee:employee]) {
-        NSLog(@"%@ did become busy", employee);
+//        NSLog(@"%@ did become busy", employee);
     }
 }
 
 - (void)employeeDidBecomePending:(AVEmployee *)employee {
     if (![self containsEmployee:employee]) {
+<<<<<<< HEAD
         NSLog(@"%@ did become pending", employee);
         
+=======
+//        NSLog(@"%@ did become pending", employee);
+>>>>>>> feature/carwash_dispatcher
         [self processObject:employee];
     }
 }
