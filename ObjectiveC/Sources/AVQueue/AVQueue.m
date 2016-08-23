@@ -33,6 +33,10 @@
 }
 
 - (void)enqueueObject:(id)object {
+    if (!object) {
+        return;
+    }
+    
     @synchronized (self) {
         [self.mutableQueue addObject:object];
     }

@@ -84,11 +84,14 @@
 
 - (void)processObject:(id)object {
     [self.objects enqueueObject:object];
+    
     AVEmployee *employee = [self.freeEmployees dequeueObject];
     if (employee) {
         id object = [self.objects dequeueObject];
         if (object) {
             [employee processObject:object];
+        } else {
+            [self.freeEmployees enqueueObject:employee];
         }
     }
 }
@@ -98,10 +101,7 @@
         NSLog(@"%@ did become free", employee);
         
         [self.freeEmployees enqueueObject:employee];
-        id object = [self.objects dequeueObject];
-        if (object) {
-            [self processObject:object];
-        }
+        [self processObject:nil];
     }
 }
 
@@ -114,6 +114,7 @@
 - (void)employeeDidBecomePending:(AVEmployee *)employee {
     if (![self containsEmployee:employee]) {
         NSLog(@"%@ did become pending", employee);
+        
         [self processObject:employee];
     }
 }
