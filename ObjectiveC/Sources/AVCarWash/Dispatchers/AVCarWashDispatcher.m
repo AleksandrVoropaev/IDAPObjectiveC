@@ -12,6 +12,7 @@
 #import "AVCar.h"
 
 #import "NSObject+AVExtensions.h"
+#import "NSTimer+AVExtensions.h"
 
 static const NSUInteger kAVCarWashDispatcherCarsCount = 10;
 static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
@@ -52,12 +53,14 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
 
 - (void)startTimer {
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:kAVCarWashDispatcherTimerInterval
-                                                      target:self
-                                                    selector:@selector(washCarsInBackground)
-                                                    userInfo:nil
-                                                     repeats:YES];
+                                                     repeats:YES
+                                                       block:^{ [self washCars]; }];
     self.timer = timer;
     [timer fire];
+}
+
+- (void)start {
+    [self washCarsInBackground];
 }
 
 - (void)stopTimer {
