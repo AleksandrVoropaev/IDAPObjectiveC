@@ -9,12 +9,17 @@
 #import "AVObjectWithBlock.h"
 
 @interface AVObjectWithBlock ()
-@property (nonatomic, assign)   AVProcedureBlock    procedureBlock;
+@property (nonatomic, copy)   AVProcedureBlock    procedureBlock;
 
 @end
 
 @implementation AVObjectWithBlock
 
+- (void)dealloc {
+    self.procedureBlock = nil;
+    
+    [super dealloc];
+}
 - (instancetype)initWithBlock:(AVProcedureBlock)block {
     self = [super init];
     
