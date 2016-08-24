@@ -16,8 +16,9 @@ NSUInteger const kAVCarsCount = 10;
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        AVCarWashDispatcher *carWashDispatcher = [AVCarWashDispatcher object];
-        [carWashDispatcher start];
+        AVCarWash *carWash = [AVCarWash object];
+        AVCarWashDispatcher *carWashDispatcher = [[[AVCarWashDispatcher alloc] initWithCarWash:carWash] autorelease];
+        [carWashDispatcher run];
         
         [[NSRunLoop mainRunLoop] run];
     }

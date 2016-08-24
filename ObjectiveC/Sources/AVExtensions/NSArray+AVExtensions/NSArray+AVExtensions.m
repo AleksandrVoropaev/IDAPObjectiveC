@@ -36,7 +36,7 @@
     return [self filteredArrayUsingPredicate:predicate];
 }
 
-- (void)performOperationOnArrayEachElementUsingBlock:(void (^)(id object))operationBlock {
+- (void)performEachObjectUsingBlock:(void (^)(id object))operationBlock {
     for (id object in self) {
         operationBlock(object);
     }

@@ -15,11 +15,13 @@
 
 static const NSUInteger kAVCarWashDispatcherCarsCount = 10;
 static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
-//static const NSUInteger kAVCarWashDispatcherCarGroupsCount = 100;
 
 @interface AVCarWashDispatcher ()
 @property (nonatomic, retain)   AVCarWash   *carWash;
-@property (nonatomic, assign)   NSUInteger  runCount;
+@property (nonatomic, assign)   NSTimer     *timer;
+
+- (void)startTimer;
+- (void)stopTimer;
 
 @end
 
@@ -31,44 +33,39 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
     [super dealloc];
 }
 
-- (instancetype)init {
-    self = [super init];
+- (instancetype)initWithCarWash:(AVCarWash *)carWash {
+    if (!carWash) {
+        return nil;
+    }
     
+    self = [super init];
     if (self) {
-        self.carWash = [AVCarWash object];
+        self.carWash = carWash;
     }
     
     return self;
 }
 
-- (void)performTimerOnMainThread {
-    [self performSelectorOnMainThread:@selector(washCars) withObject:nil waitUntilDone:NO];
+- (void)run {
+    [self startTimer];
 }
 
-- (void)performTimerOnBackground {
-    [self performSelectorInBackground:@selector(washCars) withObject:nil];
-}
-
-- (void)performTimer {
+- (void)startTimer {
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:kAVCarWashDispatcherTimerInterval
                                                       target:self
-                                                    selector:@selector(selectThread)
+                                                    selector:@selector(washCarsInBackground)
                                                     userInfo:nil
                                                      repeats:YES];
+    self.timer = timer;
     [timer fire];
 }
 
-- (void)selectThread {
-    NSUInteger count = ++self.runCount;
-    if (count % 2 == 0) {
-        [self performTimerOnMainThread];
-    } else {
-        [self performTimerOnBackground];
-    }
+- (void)stopTimer {
+    [self.timer invalidate];
 }
 
-- (void)start {
-    [self performTimer];
+- (void)washCarsInBackground {
+    [self performSelectorInBackground:@selector(washCars) withObject:nil];
 }
 
 - (void)washCars {
@@ -78,12 +75,6 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
         
         [carWash washCar:[AVCar object]];
     }
-}
-
-- (void)employeeDidBecomePending:(AVEmployee *)employee {
-    NSLog(@"%@ did become free", employee);
-    
-    [self.carWash bookkeeperDispatcherProcessEmployee:employee];
 }
 
 @end

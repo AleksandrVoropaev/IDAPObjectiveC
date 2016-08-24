@@ -15,6 +15,5 @@
 @interface AVCarWash : NSObject <AVEmployeeObserver>
 
 - (void)washCar:(AVCar *)car;
-- (void)bookkeeperDispatcherProcessEmployee:(AVEmployee *)employee;
 
 @end
