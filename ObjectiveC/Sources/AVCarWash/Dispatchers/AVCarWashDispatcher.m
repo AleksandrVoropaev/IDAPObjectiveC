@@ -15,11 +15,13 @@
 #import "NSTimer+AVExtensions.h"
 
 static const NSUInteger kAVCarWashDispatcherCarsCount = 10;
-static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
+static const NSUInteger kAVCarWashDispatcherTimerInterval = 2; /* in seconds */
 
 @interface AVCarWashDispatcher ()
-@property (nonatomic, retain)   AVCarWash   *carWash;
-@property (nonatomic, assign)   NSTimer     *timer;
+@property (nonatomic, retain)   AVCarWash           *carWash;
+@property (nonatomic, assign)   NSTimer             *timer;
+@property (nonatomic, retain)   dispatch_queue_t    dispatchQueue;
+@property (nonatomic, assign)   BOOL                needToStopTimer;
 
 - (void)startTimer;
 - (void)stopTimer;
@@ -42,6 +44,7 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
     self = [super init];
     if (self) {
         self.carWash = carWash;
+        self.needToStopTimer = NO;
     }
     
     return self;
@@ -52,24 +55,36 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 1; /* in seconds */
 }
 
 - (void)startTimer {
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:kAVCarWashDispatcherTimerInterval
-                                                     repeats:YES
-                                                       block:^{ [self washCars]; }];
-    self.timer = timer;
-    [timer fire];
-}
+    self.needToStopTimer = NO;
+    dispatch_queue_t dispatchQueue = dispatch_queue_create([@"dispatchQueue" cStringUsingEncoding:NSUTF8StringEncoding],
+                                                           DISPATCH_QUEUE_CONCURRENT);
+    self.dispatchQueue = dispatchQueue;
+    dispatch_release(dispatchQueue);
 
-- (void)start {
-    [self washCarsInBackground];
+    dispatch_after(DISPATCH_TIME_NOW, dispatchQueue, ^{
+        [self washCars];
+        sleep(kAVCarWashDispatcherTimerInterval);
+        if (self.needToStopTimer) {
+            return;
+        }
+        [self startTimer];
+    });
+
+//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:kAVCarWashDispatcherTimerInterval
+//                                                     repeats:YES
+//                                                       block:^{ [self washCars]; }];
+//    self.timer = timer;
+//    [timer fire];
 }
 
 - (void)stopTimer {
-    [self.timer invalidate];
+    self.needToStopTimer = YES;
+//    [self.timer invalidate];
 }
 
-- (void)washCarsInBackground {
-    [self performSelectorInBackground:@selector(washCars) withObject:nil];
-}
+//- (void)washCarsInBackground {
+//    [self performSelectorInBackground:@selector(washCars) withObject:nil];
+//}
 
 - (void)washCars {
     AVCarWash *carWash = self.carWash;
