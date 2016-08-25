@@ -13,6 +13,6 @@
 @interface AVCarWashDispatcher : NSObject <AVEmployeeObserver>
 
 - (instancetype)initWithCarWash:(AVCarWash *)carWash;
-- (void)washCars;
+- (void)run;
 
 @end
