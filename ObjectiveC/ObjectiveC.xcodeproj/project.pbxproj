@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F0AA55B1D6F459800B2FB88 /* AVGrandCentralDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AA55A1D6F459800B2FB88 /* AVGrandCentralDispatch.m */; };
 		1F3C59161D22CCD20083753B /* AVCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C58EA1D22CCD20083753B /* AVCar.m */; };
 		1F3C59171D22CCD20083753B /* AVCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C58EC1D22CCD20083753B /* AVCarWash.m */; };
 		1F3C59181D22CCD20083753B /* AVBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C58F01D22CCD20083753B /* AVBuilding.m */; };
@@ -50,6 +51,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1F0AA5591D6F459800B2FB88 /* AVGrandCentralDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGrandCentralDispatch.h; sourceTree = "<group>"; };
+		1F0AA55A1D6F459800B2FB88 /* AVGrandCentralDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGrandCentralDispatch.m; sourceTree = "<group>"; };
 		1F3C58E91D22CCD20083753B /* AVCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCar.h; sourceTree = "<group>"; };
 		1F3C58EA1D22CCD20083753B /* AVCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCar.m; sourceTree = "<group>"; };
 		1F3C58EB1D22CCD20083753B /* AVCarWash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCarWash.h; sourceTree = "<group>"; };
@@ -121,9 +124,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F0AA5581D6F459800B2FB88 /* AVGrandCentralDispatch */ = {
+			isa = PBXGroup;
+			children = (
+				1F0AA5591D6F459800B2FB88 /* AVGrandCentralDispatch.h */,
+				1F0AA55A1D6F459800B2FB88 /* AVGrandCentralDispatch.m */,
+			);
+			path = AVGrandCentralDispatch;
+			sourceTree = "<group>";
+		};
 		1F3C58E61D22CCD20083753B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1F0AA5581D6F459800B2FB88 /* AVGrandCentralDispatch */,
 				1F64B3C91D37A93600905099 /* AVAlphabet */,
 				1F3C58E71D22CCD20083753B /* AVCarWash */,
 				1F3C58FE1D22CCD20083753B /* AVCreature */,
@@ -452,6 +465,7 @@
 				1F3C59161D22CCD20083753B /* AVCar.m in Sources */,
 				1F3C591B1D22CCD20083753B /* AVBookkeeper.m in Sources */,
 				1F3C59171D22CCD20083753B /* AVCarWash.m in Sources */,
+				1F0AA55B1D6F459800B2FB88 /* AVGrandCentralDispatch.m in Sources */,
 				1F64B3C41D2E90AE00905099 /* NSArray+AVExtensions.m in Sources */,
 				1F3C59201D22CCD20083753B /* AVFemaleCreature.m in Sources */,
 				1F64B3DD1D3CE76100905099 /* AVObservableObject.m in Sources */,

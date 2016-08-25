@@ -6,8 +6,20 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
-#ifndef AVGrandCentralDispatch_h
-#define AVGrandCentralDispatch_h
+void AVDispachAsyncOnMainQueueWithBlock(void(^block)(void));
+void AVDispachSyncOnMainQueueWithBlock(void(^block)(void));
 
+void AVDispachAsyncOnGlobalQueueWithIdentifierAndBlock(long identifier, void(^block)(void));
+void AVDispachSyncOnGlobalQueueWithIdentifierAndBlock(long identifier, void(^block)(void));
 
-#endif /* AVGrandCentralDispatch_h */
+void AVDispachAsyncOnGlobalQueueHighPriorityWithBlock(void(^block)(void));
+void AVDispachSyncOnGlobalQueueHighPriorityWithBlock(void(^block)(void));
+
+void AVDispachAsyncOnGlobalQueueSecondPriorityWithBlock(void(^block)(void));
+void AVDispachSyncOnGlobalQueueSecondPriorityWithBlock(void(^block)(void));
+
+void AVDispachAsyncOnGlobalQueueLowPriorityWithBlock(void(^block)(void));
+void AVDispachSyncOnGlobalQueueLowPriorityWithBlock(void(^block)(void));
+
+void AVDispachAsyncOnGlobalQueueBackgroundPriorityWithBlock(void(^block)(void));
+void AVDispachSyncOnGlobalQueueBackgroundPriorityWithBlock(void(^block)(void));

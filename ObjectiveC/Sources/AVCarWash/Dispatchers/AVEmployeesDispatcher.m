@@ -113,12 +113,7 @@
 
 - (void)employeeDidBecomePending:(AVEmployee *)employee {
     if (![self containsEmployee:employee]) {
-<<<<<<< HEAD
-        NSLog(@"%@ did become pending", employee);
-        
-=======
 //        NSLog(@"%@ did become pending", employee);
->>>>>>> feature/carwash_dispatcher
         [self processObject:employee];
     }
 }

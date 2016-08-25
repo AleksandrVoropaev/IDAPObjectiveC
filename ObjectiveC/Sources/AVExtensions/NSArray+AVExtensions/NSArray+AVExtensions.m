@@ -36,11 +36,7 @@
     return [self filteredArrayUsingPredicate:predicate];
 }
 
-<<<<<<< HEAD
 - (void)performEachObjectUsingBlock:(void (^)(id object))block {
-=======
-- (void)performEachObjectUsingBlock:(void (^)(id object))operationBlock {
->>>>>>> feature/CarWash_with_timer
     for (id object in self) {
         block(object);
     }
