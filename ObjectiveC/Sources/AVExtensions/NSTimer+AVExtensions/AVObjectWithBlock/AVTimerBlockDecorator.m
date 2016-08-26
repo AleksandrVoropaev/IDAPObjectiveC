@@ -6,14 +6,14 @@
 //  Copyright © 2016 Aleksandr Voropaev. All rights reserved.
 //
 
-#import "AVObjectWithBlock.h"
+#import "AVTimerBlockDecorator.h"
 
-@interface AVObjectWithBlock ()
+@interface AVTimerBlockDecorator ()
 @property (nonatomic, copy)   AVProcedureBlock    procedureBlock;
 
 @end
 
-@implementation AVObjectWithBlock
+@implementation AVTimerBlockDecorator
 
 - (void)dealloc {
     self.procedureBlock = nil;
@@ -30,7 +30,7 @@
     return self;
 }
 
-- (void)execute {
+- (void)onTimer:(NSTimer *)timer {
     self.procedureBlock();
 }
 

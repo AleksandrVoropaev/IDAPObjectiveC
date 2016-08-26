@@ -10,9 +10,10 @@
 
 typedef void(^AVProcedureBlock)(void);
 
-@interface AVObjectWithBlock : NSObject
+@interface AVTimerBlockDecorator : NSObject
 
-- (void)execute;
 - (instancetype)initWithBlock:(AVProcedureBlock)block;
+
+- (void)onTimer:(NSTimer *)timer;
 
 @end
