@@ -44,14 +44,10 @@ static const NSUInteger kAVCarWashDispatcherCarsCount = 10;
 }
 
 - (void)run {
-    AVDispachAsyncOnGlobalQueueBackgroundPriorityWithBlock(^{
+    AVDispatchAsyncBlockOnQueueWithBackgroundPriority(^{
         [self washCars];
     });
-//    dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
-//        [self washCars];
-//    });
 }
-
 
 - (void)washCars {
     AVCarWash *carWash = self.carWash;

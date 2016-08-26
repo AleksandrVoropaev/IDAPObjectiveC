@@ -9,50 +9,78 @@
 #import <Foundation/Foundation.h>
 #import "AVGrandCentralDispatch.h"
 
-void AVDispachAsyncOnMainQueueWithBlock(void(^block)(void)) {
-    dispatch_async(dispatch_get_main_queue(), block);
+dispatch_queue_t AVDispatchQueueWithPriority(AVDispatchQueuePriorityType type) {
+    return dispatch_get_global_queue(type, 0);
 }
 
-void AVDispachSyncOnMainQueueWithBlock(void(^block)(void)) {
-    dispatch_sync(dispatch_get_main_queue(), block);
+void AVDispatchAsyncBlockOnMainQueue(void(^block)(void)) {
+    if (!block) {
+        return;
+    }
+    
+    if ([NSThread isMainThread]) {
+        block();
+    } else {
+        dispatch_async(dispatch_get_main_queue(), block);
+    }
 }
 
-void AVDispachAsyncOnGlobalQueueWithIdentifierAndBlock(long identifier, void(^block)(void)){
-    dispatch_async(dispatch_get_global_queue(identifier, 0), block);
+void AVDispatchSyncBlockOnMainQueue(void(^block)(void)) {
+    if (!block) {
+        return;
+    }
+    
+    if ([NSThread isMainThread]) {
+        block();
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
 }
 
-void AVDispachSyncOnGlobalQueueWithIdentifierAndBlock(long identifier, void(^block)(void)) {
-    dispatch_sync(dispatch_get_global_queue(identifier, 0), block);
+void AVDispatchAsyncBlockOnQueueWithType(AVDispatchQueuePriorityType type, void(^block)(void)) {
+    if (!block) {
+        return;
+    }
+    
+    dispatch_async(AVDispatchQueueWithPriority(type), block);
 }
 
-void AVDispachAsyncOnGlobalQueueHighPriorityWithBlock(void(^block)(void)) {
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), block);
+void AVDispatchSyncBlockOnQueueWithType(AVDispatchQueuePriorityType type, void(^block)(void)) {
+    if (!block) {
+        return;
+    }
+    
+    dispatch_sync(AVDispatchQueueWithPriority(type), block);
 }
 
-void AVDispachSyncOnGlobalQueueHighPriorityWithBlock(void(^block)(void)) {
-    dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), block);
+void AVDispatchAsyncBlockOnQueueWithHighPriority(void(^block)(void)) {
+    AVDispatchAsyncBlockOnQueueWithType(AVDispatchQueueHighPriority, block);
 }
 
-void AVDispachAsyncOnGlobalQueueSecondPriorityWithBlock(void(^block)(void)) {
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), block);
+void AVDispatchSyncBlockOnQueueWithHighPriority(void(^block)(void)) {
+    AVDispatchSyncBlockOnQueueWithType(AVDispatchQueueHighPriority, block);
 }
 
-void AVDispachSyncOnGlobalQueueSecondPriorityWithBlock(void(^block)(void)) {
-    dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), block);
+void AVDispatchAsyncBlockOnQueueWithSecondPriority(void(^block)(void)) {
+    AVDispatchAsyncBlockOnQueueWithType(AVDispatchQueueSecondPriority, block);
 }
 
-void AVDispachAsyncOnGlobalQueueLowPriorityWithBlock(void(^block)(void)) {
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), block);
+void AVDispatchSyncBlockOnQueueWithSecondPriority(void(^block)(void)) {
+    AVDispatchSyncBlockOnQueueWithType(AVDispatchQueueSecondPriority, block);
 }
 
-void AVDispachSyncOnGlobalQueueLowPriorityWithBlock(void(^block)(void)) {
-    dispatch_sync(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), block);
+void AVDispatchAsyncBlockOnQueueWithLowPriority(void(^block)(void)) {
+    AVDispatchAsyncBlockOnQueueWithType(AVDispatchQueueLowPriority, block);
 }
 
-void AVDispachAsyncOnGlobalQueueBackgroundPriorityWithBlock(void(^block)(void)) {
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), block);
+void AVDispatchSyncBlockOnQueueWithLowPriority(void(^block)(void)) {
+    AVDispatchSyncBlockOnQueueWithType(AVDispatchQueueLowPriority, block);
 }
 
-void AVDispachSyncOnGlobalQueueBackgroundPriorityWithBlock(void(^block)(void)) {
-    dispatch_sync(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), block);
+void AVDispatchAsyncBlockOnQueueWithBackgroundPriority(void(^block)(void)) {
+    AVDispatchAsyncBlockOnQueueWithType(AVDispatchQueueBackgroundPriority, block);
+}
+
+void AVDispatchSyncBlockOnQueueWithBackgroundPriority(void(^block)(void)) {
+    AVDispatchSyncBlockOnQueueWithType(AVDispatchQueueBackgroundPriority, block);
 }
