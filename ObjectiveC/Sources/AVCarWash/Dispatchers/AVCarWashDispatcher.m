@@ -44,6 +44,9 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 2; /* in seconds */
     self = [super init];
     if (self) {
         self.carWash = carWash;
+        self.dispatchQueue = dispatch_queue_create([@"dispatchQueue" cStringUsingEncoding:NSUTF8StringEncoding],
+                                                   DISPATCH_QUEUE_CONCURRENT);
+        dispatch_release(self.dispatchQueue);
         self.needToStopTimer = NO;
     }
     
@@ -56,35 +59,20 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 2; /* in seconds */
 
 - (void)startTimer {
     self.needToStopTimer = NO;
-    dispatch_queue_t dispatchQueue = dispatch_queue_create([@"dispatchQueue" cStringUsingEncoding:NSUTF8StringEncoding],
-                                                           DISPATCH_QUEUE_CONCURRENT);
-    self.dispatchQueue = dispatchQueue;
-    dispatch_release(dispatchQueue);
+    dispatch_queue_t dispatchQueue = self.dispatchQueue;
 
     dispatch_after(DISPATCH_TIME_NOW, dispatchQueue, ^{
         [self washCars];
         sleep(kAVCarWashDispatcherTimerInterval);
-        if (self.needToStopTimer) {
-            return;
+        if (!self.needToStopTimer) {
+            [self startTimer];
         }
-        [self startTimer];
     });
-
-//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:kAVCarWashDispatcherTimerInterval
-//                                                     repeats:YES
-//                                                       block:^{ [self washCars]; }];
-//    self.timer = timer;
-//    [timer fire];
 }
 
 - (void)stopTimer {
     self.needToStopTimer = YES;
-//    [self.timer invalidate];
 }
-
-//- (void)washCarsInBackground {
-//    [self performSelectorInBackground:@selector(washCars) withObject:nil];
-//}
 
 - (void)washCars {
     AVCarWash *carWash = self.carWash;
