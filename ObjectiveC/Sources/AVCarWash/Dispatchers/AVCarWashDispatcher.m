@@ -20,9 +20,9 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 2; /* in seconds */
 @interface AVCarWashDispatcher ()
 @property (nonatomic, retain)   AVCarWash           *carWash;
 @property (nonatomic, assign)   NSTimer             *timer;
-@property (nonatomic, retain)   dispatch_queue_t    dispatchQueue;
 @property (nonatomic, assign)   BOOL                needToStopTimer;
 
+- (void)washCarsInBackground:(NSTimer *)timer;
 - (void)startTimer;
 - (void)stopTimer;
 
@@ -44,13 +44,17 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 2; /* in seconds */
     self = [super init];
     if (self) {
         self.carWash = carWash;
-        self.dispatchQueue = dispatch_queue_create([@"dispatchQueue" cStringUsingEncoding:NSUTF8StringEncoding],
-                                                   DISPATCH_QUEUE_CONCURRENT);
-        dispatch_release(self.dispatchQueue);
-        self.needToStopTimer = NO;
     }
     
     return self;
+}
+
+-(void)setTimer:(NSTimer *)timer {
+    if (_timer != timer) {
+        [_timer invalidate];
+        
+        _timer = timer;
+    }
 }
 
 - (void)run {
@@ -58,20 +62,18 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 2; /* in seconds */
 }
 
 - (void)startTimer {
-    self.needToStopTimer = NO;
-    dispatch_queue_t dispatchQueue = self.dispatchQueue;
-
-    dispatch_after(DISPATCH_TIME_NOW, dispatchQueue, ^{
-        [self washCars];
-        sleep(kAVCarWashDispatcherTimerInterval);
-        if (!self.needToStopTimer) {
-            [self startTimer];
-        }
-    });
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:kAVCarWashDispatcherTimerInterval
+                                                     repeats:YES
+                                                       block:^{ [self washCarsInBackground:timer]; }];
+    self.timer = timer;
 }
 
 - (void)stopTimer {
-    self.needToStopTimer = YES;
+    [self.timer invalidate];
+}
+
+- (void)washCarsInBackground:(NSTimer *)timer {
+    [self performSelectorInBackground:@selector(washCars) withObject:nil];
 }
 
 - (void)washCars {
