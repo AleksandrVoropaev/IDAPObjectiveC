@@ -18,6 +18,4 @@
                               repeats:(BOOL)repeats
                                 block:(void (^)(void))block;
 
-+ (instancetype)timerWithTypeBlock:(NSTimer *(^)(id timerDecorator))timerBlock processBlock:(void(^)(void))processBlock;
-
 @end
