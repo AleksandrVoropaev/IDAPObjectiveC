@@ -8,9 +8,10 @@
 
 typedef enum {
     AVDispatchQueueHighPriority = QOS_CLASS_USER_INTERACTIVE,
-    AVDispatchQueueSecondPriority = QOS_CLASS_USER_INITIATED,
+    AVDispatchQueueDefaultPriority = QOS_CLASS_USER_INITIATED,
     AVDispatchQueueLowPriority = QOS_CLASS_UTILITY,
     AVDispatchQueueBackgroundPriority = QOS_CLASS_BACKGROUND,
+    AVDispatchQueueUIPriority,
 } AVDispatchQueuePriorityType;
 
 dispatch_queue_t AVDispatchQueueWithPriority(AVDispatchQueuePriorityType type);
@@ -21,14 +22,14 @@ void AVDispatchSyncBlockOnMainQueue(void(^block)(void));
 void AVDispatchAsyncBlockOnQueueWithType(AVDispatchQueuePriorityType type, void(^block)(void));
 void AVDispatchSyncBlockOnQueueWithType(AVDispatchQueuePriorityType type, void(^block)(void));
 
-void AVDispatchAsyncBlockOnQueueWithHighPriority(void(^block)(void));
-void AVDispatchSyncBlockOnQueueWithHighPriority(void(^block)(void));
+void AVDispatchAsyncBlockOnHighPriorityQueue(void(^block)(void));
+void AVDispatchSyncBlockOnHighPriorityQueue(void(^block)(void));
 
-void AVDispatchAsyncBlockOnQueueWithSecondPriority(void(^block)(void));
-void AVDispatchSyncBlockOnQueueWithSecondPriority(void(^block)(void));
+void AVDispatchAsyncBlockOnDefaultPriorityQueue(void(^block)(void));
+void AVDispatchSyncBlockOnDefaultPriorityQueue(void(^block)(void));
 
-void AVDispatchAsyncBlockOnQueueWithLowPriority(void(^block)(void));
-void AVDispatchSyncBlockOnQueueWithLowPriority(void(^block)(void));
+void AVDispatchAsyncBlockOnLowPriorityQueue(void(^block)(void));
+void AVDispatchSyncBlockOnLowPriorityQueue(void(^block)(void));
 
-void AVDispatchAsyncBlockOnQueueWithBackgroundPriority(void(^block)(void));
-void AVDispatchSyncBlockOnQueueWithBackgroundPriority(void(^block)(void));
+void AVDispatchAsyncBlockOnBackgroundPriorityQueue(void(^block)(void));
+void AVDispatchSyncBlockOnBackgroundPriorityQueue(void(^block)(void));
