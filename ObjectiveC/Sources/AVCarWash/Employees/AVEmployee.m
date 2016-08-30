@@ -9,6 +9,7 @@
 #import "AVEmployee.h"
 
 #import "AVQueue.h"
+#import "AVGrandCentralDispatch.h"
 
 #import "NSObject+AVExtensions.h"
 
@@ -45,29 +46,37 @@
 - (void)processObject:(id)object {
     @synchronized (self) {
         self.state = AVEmployeeBusy;
-        [self performSelectorInBackground:@selector(performWorkOnBackgroundWithObject:)
-                               withObject:object];
+        AVDispatchAsyncBlockOnBackgroundPriorityQueue(^{
+            ++self.performedObjectsCount;
+            [self performWorkWithObject:object];
+        });
+        AVDispatchAsyncBlockOnMainQueue(^{
+            [self finishProcessingObject:object];
+            [self finishProcessing];
+        });
+//        [self performSelectorInBackground:@selector(performWorkOnBackgroundWithObject:)
+//                               withObject:object];
     }
 }
 
-- (void)performWorkOnBackgroundWithObject:(id)object {
-    @synchronized (self) {
-        ++self.performedObjectsCount;
-        [self performWorkWithObject:object];
-        [self performSelectorOnMainThread:@selector(performWorkOnMainThreadWithObject:)
-                               withObject:object
-                            waitUntilDone:NO];
-    }
-}
+//- (void)performWorkOnBackgroundWithObject:(id)object {
+//    @synchronized (self) {
+//        ++self.performedObjectsCount;
+//        [self performWorkWithObject:object];
+//        [self performSelectorOnMainThread:@selector(performWorkOnMainThreadWithObject:)
+//                               withObject:object
+//                            waitUntilDone:NO];
+//    }
+//}
 
 - (void)performWorkWithObject:(id)object {
     //rewrote in all employees
 }
 
-- (void)performWorkOnMainThreadWithObject:(id)object {
-    [self finishProcessingObject:object];
-    [self finishProcessing];
-}
+//- (void)performWorkOnMainThreadWithObject:(id)object {
+//    [self finishProcessingObject:object];
+//    [self finishProcessing];
+//}
 
 - (void)finishProcessingObject:(AVEmployee *)employee {
     employee.state = AVEmployeeFree;
