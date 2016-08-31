@@ -49,34 +49,18 @@
         AVDispatchAsyncBlockOnBackgroundPriorityQueue(^{
             ++self.performedObjectsCount;
             [self performWorkWithObject:object];
+            
+            AVDispatchAsyncBlockOnMainQueue(^{
+                [self finishProcessingObject:object];
+                [self finishProcessing];
+            });
         });
-        AVDispatchAsyncBlockOnMainQueue(^{
-            [self finishProcessingObject:object];
-            [self finishProcessing];
-        });
-//        [self performSelectorInBackground:@selector(performWorkOnBackgroundWithObject:)
-//                               withObject:object];
     }
 }
-
-//- (void)performWorkOnBackgroundWithObject:(id)object {
-//    @synchronized (self) {
-//        ++self.performedObjectsCount;
-//        [self performWorkWithObject:object];
-//        [self performSelectorOnMainThread:@selector(performWorkOnMainThreadWithObject:)
-//                               withObject:object
-//                            waitUntilDone:NO];
-//    }
-//}
 
 - (void)performWorkWithObject:(id)object {
     //rewrote in all employees
 }
-
-//- (void)performWorkOnMainThreadWithObject:(id)object {
-//    [self finishProcessingObject:object];
-//    [self finishProcessing];
-//}
 
 - (void)finishProcessingObject:(AVEmployee *)employee {
     employee.state = AVEmployeeFree;
