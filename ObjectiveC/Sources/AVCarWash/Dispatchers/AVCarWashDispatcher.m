@@ -32,6 +32,7 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 2; /* in seconds */
 
 - (void)dealloc {
     self.carWash = nil;
+    [self stopTimer];
     
     [super dealloc];
 }
@@ -49,7 +50,7 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 2; /* in seconds */
     return self;
 }
 
--(void)setTimer:(NSTimer *)timer {
+- (void)setTimer:(NSTimer *)timer {
     if (_timer != timer) {
         [_timer invalidate];
         
@@ -62,14 +63,15 @@ static const NSUInteger kAVCarWashDispatcherTimerInterval = 2; /* in seconds */
 }
 
 - (void)startTimer {
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:kAVCarWashDispatcherTimerInterval
-                                                     repeats:YES
-                                                       block:^{ [self washCarsInBackground:timer]; }];
-    self.timer = timer;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:kAVCarWashDispatcherTimerInterval
+                                                 repeats:YES
+                                                   block:^{
+                                                       [self washCarsInBackground:nil];
+                                                   }];
 }
 
 - (void)stopTimer {
-    [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (void)washCarsInBackground:(NSTimer *)timer {

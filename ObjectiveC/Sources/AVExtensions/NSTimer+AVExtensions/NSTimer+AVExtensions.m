@@ -16,11 +16,11 @@
                                        repeats:(BOOL)repeats
                                          block:(void (^)(void))block
 {
-    if (!block) {
+    NSTimer *timer = [self timerWithTimeInterval:timeInterval repeats:repeats block:block];
+    if (!timer) {
         return nil;
     }
     
-    NSTimer *timer = [self timerWithTimeInterval:timeInterval repeats:repeats block:block];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
     return timer;
